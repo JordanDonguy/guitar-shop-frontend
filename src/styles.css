@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap");
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+    --font-onest: "Onest", sans-serif; 
+  }
+
+html {
+    font-size: 16px
+}
