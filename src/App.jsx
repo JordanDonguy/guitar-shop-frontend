@@ -1,12 +1,19 @@
 import Navbar from './components/Navbar';
 import HomePage from './components/HomePage';
+import Footer from './components/Footer';
 
 export default function App() {
     return (
-      <header>
-        <Navbar />
-        <HomePage />
-      </header>
+      <div>
+        <header>
+          <Navbar />
+        </header>
 
+        <main>
+          <HomePage />
+        </main>
+        
+        <Footer />
+      </div>
     )
   };
