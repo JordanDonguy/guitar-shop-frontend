@@ -1,5 +1,6 @@
 import logo from "../assets/img/logo.png";
 import { ShoppingCart, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     return (
@@ -10,10 +11,10 @@ export default function Navbar() {
             </div>
 
             <ul class="flex w-1/3 justify-between text-xl font-light px-[1vw]">
-                <li><a href="#" class="hover:text-teal-600">About</a></li>
-                <li><a href="#" class="hover:text-teal-600">Products</a></li>
-                <li><a href="#" class="hover:text-teal-600">Services</a></li>
-                <li><a href="#" class="hover:text-teal-600">Contact</a></li>
+                <li><Link to="/" class="hover:text-teal-600">About</Link></li>
+                <li><Link to="/products" class="hover:text-teal-600">Products</Link></li>
+                <li><Link to="#" class="hover:text-teal-600">Services</Link></li>
+                <li><Link to="#" class="hover:text-teal-600">Contact</Link></li>
             </ul>
 
             <form class="flex h-12 w-[25vw] pl-8 bg-gray-200 justify-between rounded-4xl">
@@ -24,11 +25,11 @@ export default function Navbar() {
                 </button>
             </form>
 
-            <a href="#" class="filter">
+            <Link to="#" class="filter">
                 <ShoppingCart class="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
-            </a>
+            </Link>
 
-            <a href="#" class="w-25 h-10 flex justify-center items-center text-xl font-light border border-solid-black rounded-4xl hover:bg-teal-200">Login</a>
+            <Link to="#" class="w-25 h-10 flex justify-center items-center text-xl font-light border border-solid-black rounded-4xl hover:bg-teal-200">Login</Link>
         </nav>
     )
 }
