@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import PriceRangeSlider from './PriceRangeSlider';
+import { BASE_URL } from './utils/api';
 
 export default function Filter({ onFilterChange, priceMax }) {
     const [categories, setCategories] = useState([]);
@@ -14,7 +15,7 @@ export default function Filter({ onFilterChange, priceMax }) {
 
     // Fetch categories and brands on mount
     useEffect(() => {
-        fetch('http://localhost:3000/products')
+        fetch(`${BASE_URL}/products`)
             .then(res => res.json())
             .then(data => {
                 setCategories(data.categories);

@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import addToCart from "../assets/img/add-to-cart.png";
 import Filter from "../components/Filter";
+import { BASE_URL } from "../components/utils/api";
 
 export default function Products() {
-    const base_URL = "http://localhost:3000";
+    const BASE_URL = "http://localhost:3000";
 
     const [products, setProducts] = useState([]);
     const [priceMax, setPriceMax] = useState(null);
@@ -16,7 +17,7 @@ export default function Products() {
     });
 
     useEffect(() => {
-        fetch(`${base_URL}/products`)
+        fetch(`${BASE_URL}/products`)
             .then(res => res.json())
             .then(data => {
                 const maxPrice = Math.max(...data.products.map(product => product.price));
@@ -45,7 +46,7 @@ export default function Products() {
             params.append('maxPrice', filter.priceRange[1]);
         }
 
-        fetch(`${base_URL}/products?${params.toString()}`)
+        fetch(`${BASE_URL}/products?${params.toString()}`)
             .then(res => res.json())
             .then(data => setProducts(data.products))
             .catch(err => console.log(err));
