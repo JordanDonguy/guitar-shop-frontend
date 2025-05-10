@@ -4,6 +4,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "@tailwindcss/typography";
 
 @theme {
     --font-onest: "Onest", sans-serif; 
@@ -20,4 +21,8 @@ html {
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+.boxShadow {
+        box-shadow:  4px 0px 4px rgba(0, 0, 0, 0.1)
 }
