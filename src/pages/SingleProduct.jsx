@@ -22,15 +22,15 @@ export default function SingleProduct() {
     return (
         <div class="font-sans pt-[140px] px-[10%] bg-gray-100">
             {/* SECTION 1 */}
-            <div class="flex mb-10 border-t border-teal-400 shadow-lg">
-                <div class="inline-flex justify-center w-full bg-teal-50">
+            <div class="flex mb-10 shadow-lg rounded-xl">
+                <div class="inline-flex justify-center w-full bg-teal-50 rounded-xl">
                     <img
                         src={productInfos.image_url2}
                         alt={productInfos.name}
-                        class="max-h-[80vh] w-[70%] object-contain bg-white border-r border-teal-200"
+                        class="max-h-[80vh] w-[70%] object-contain bg-white rounded-l-xl"
                     />
 
-                    <div class="flex-1 w-[30%] ml-5 pt-15">
+                    <div class="flex-1 w-[30%] pl-5 pt-15 border-l border-teal-200">
                         <h1 class="text-4xl font-bold pb-5">{productInfos.brand}</h1>
                         <h1 class="text-2xl pb-10">{productInfos.name}</h1>
 
@@ -51,7 +51,7 @@ export default function SingleProduct() {
             </div>
 
             {/* SECTION 2 */}
-            <div class="flex flex-col items-center  my-24 mb-10 mx-auto leading-relaxed border-x border-teal-400 bg-teal-50 shadow-lg">
+            <div class="flex flex-col items-center  my-24 mb-10 mx-auto leading-relaxed bg-teal-50 shadow-lg rounded-xl">
                 <h2 class="text-4xl font-semibold p-10 text-center ">Description</h2>
                 <div class="prose-lg px-[5%] py-5">
                     <Markdown>{productInfos.description}</Markdown>
