@@ -1,39 +1,77 @@
 import { useState, useEffect } from "react";
 import { BASE_URL } from "../components/utils/api";
+import { useAuth } from "../components/utils/AuthContext";
 
 export default function UserProfile() {
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useAuth();
     const [countries, setCountries] = useState([]);
     const [error, setError] = useState(null);
+
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
         fetch(`${BASE_URL}/user`, {
             credentials: "include"
         })
-        .then(res => {
-            if (!res.ok) throw new Error('Not authenticated');
-            return res.json();
-        })
-        .then(data => {
-            setUser(data.user);
-            setCountries(data.countries);
-            setError(data.error)
-        })
-        .catch(err => {
-            console.error('Auth error:', err);
-        });
+            .then(res => {
+                if (!res.ok) throw new Error('Not authenticated');
+                return res.json();
+            })
+            .then(data => {
+                setUser(data.user);
+                setCountries(data.countries);
+                setError(data.error)
+            })
+            .catch(err => {
+                console.error('Auth error:', err);
+            });
     }, []);
 
-    function handleSubmit(e) {
-        
+    async function handleSubmit(e) {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+
+        const updatedUser = {
+            first_name: formData.get('first_name'),
+            last_name: formData.get('last_name'),
+            email: formData.get('email'),
+            phone_number: formData.get('phone_number'),
+            street: formData.get('street'),
+            city: formData.get('city'),
+            state: formData.get('state'),
+            postal_code: formData.get('postal_code'),
+            country: formData.get('country')
+        };
+
+        try {
+            const response = await fetch(`${BASE_URL}/user/${user.id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                body: JSON.stringify(updatedUser)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to update user');
+            }
+
+            const data = await response.json();
+            setSuccessMessage(data.message);
+        } catch (error) {
+            setErrorMessage('Could not update user profile');
+        }
     };
 
-       if (user === null) {
+    if (user === null) {
         return <div>Loading...</div>;
-    }
+    };
 
     return (
-        <div class="flex w-full justify-center pt-[140px]">
+        <div class="flex w-full justify-center pt-[140px] mb-30">
             <div class="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
                 <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">My Profile</h1>
                 {error && (
@@ -41,7 +79,18 @@ export default function UserProfile() {
                         {error}
                     </div>
                 )}
-                <form class="space-y-6">
+                {successMessage && (
+                    <div className="bg-green-100 text-green-700 p-3 rounded mb-4 text-sm">
+                        {successMessage}
+                    </div>
+                )}
+
+                {errorMessage && (
+                    <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+                        {errorMessage}
+                    </div>
+                )}
+                <form onSubmit={handleSubmit} class="space-y-6">
                     <div>
                         <h2 class="text-xl font-semibold text-gray-700 mb-4">Personal Information</h2>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -96,8 +145,8 @@ export default function UserProfile() {
                                     id="country"
                                     name="country"
                                     required
-                                    defaultValue={user.country || ''}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    value={user.country || ''}
+                                    class="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     {!user.country && (
                                         <option value="" disabled>
