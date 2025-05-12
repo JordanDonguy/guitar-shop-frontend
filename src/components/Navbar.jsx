@@ -4,10 +4,12 @@ import { ShoppingCart, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
+import { User } from 'lucide-react';
+import { LogOut } from 'lucide-react';
 
 export default function Navbar() {
     const { user, setUser } = useAuth();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     // Handle logout
     const handleLogout = () => {
@@ -27,9 +29,9 @@ export default function Navbar() {
 
 
     return (
-        <nav className="fixed z-10 flex w-full h-[80px] items-center justify-between px-[10%] bg-[rgba(240,253,250,0.75)] shadow-md backdrop-blur-sm">
+        <nav className="fixed z-10 flex w-full h-[100px] items-center justify-between px-[10%] bg-[rgba(240,253,250,0.75)] shadow-md backdrop-blur-sm">
             <div className="flex w-[110px] justify-between items-center">
-                <img src={logo} className="w-[50px] h-[50px]" alt="shop logo"/>
+                <img src={logo} className="w-[50px] h-[50px]" alt="shop logo" />
                 <h1 className="text-lg w-[50px]">Guitar Shop</h1>
             </div>
 
@@ -48,25 +50,26 @@ export default function Navbar() {
                 </button>
             </form>
 
-            <Link to="#" className="filter">
-                <ShoppingCart className="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
-            </Link>
-
-            {/* Conditionally render Login, My Profile, and Logout links */}
-            {user ? (
-                <div className="flex items-center space-x-4">
-                    <Link to="/user" className="w-25 h-10 flex justify-center items-center text-xl font-light border border-solid-black rounded-4xl hover:bg-teal-200">
-                        My Profile
-                    </Link>
-                    <button onClick={handleLogout} className="w-25 h-10 flex justify-center items-center text-xl font-light border border-solid-black rounded-4xl hover:bg-teal-200">
-                        Logout
-                    </button>
-                </div>
-            ) : (
-                <Link to="/auth/login" className="w-25 h-10 flex justify-center items-center text-xl font-light border border-solid-black rounded-4xl hover:bg-teal-200">
-                    Login
+            <div class="flex justify-between w-50">
+                <Link to="#" className="filter">
+                    <ShoppingCart className="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
                 </Link>
-            )}
+                {/* Conditionally render Login, My Profile, and Logout links */}
+                {user ? (
+                    <Link to="/user" className="">
+                        <User className="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
+                    </Link>
+                ) : (
+                    <Link to="/auth/login" className="w-25 h-10 flex justify-center items-center text-xl font-light border-1 border-black rounded-4xl hover:bg-teal-200">
+                        Login
+                    </Link>
+                )}
+                {user ? (
+                    <button onClick={handleLogout} className="hover:cursor-pointer">
+                        <LogOut className="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
+                    </button>
+                ) : <div></div>}
+            </div>
         </nav>
     );
 }
