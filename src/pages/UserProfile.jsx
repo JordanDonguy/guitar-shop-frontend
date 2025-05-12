@@ -11,6 +11,7 @@ export default function UserProfile() {
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetch(`${BASE_URL}/user`, {
             credentials: "include"
         })
@@ -71,82 +72,82 @@ export default function UserProfile() {
     };
 
     return (
-        <div class="flex w-full justify-center pt-[140px] mb-30">
-            <div class="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
-                <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">My Profile</h1>
+        <div className="flex w-full justify-center pt-[140px] mb-30">
+            <div className="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
+                <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">My Profile</h1>
                 {error && (
-                    <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+                    <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
                         {error}
                     </div>
                 )}
                 {successMessage && (
-                    <div className="bg-green-100 text-green-700 p-3 rounded mb-4 text-sm">
+                    <div classNameName="bg-green-100 text-green-700 p-3 rounded mb-4 text-sm">
                         {successMessage}
                     </div>
                 )}
 
                 {errorMessage && (
-                    <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+                    <div classNameName="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
                         {errorMessage}
                     </div>
                 )}
-                <form onSubmit={handleSubmit} class="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-700 mb-4">Personal Information</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <h2 className="text-xl font-semibold text-gray-700 mb-4">Personal Information</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="first_name" class="block text-sm font-medium text-gray-700">First Name</label>
+                                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">First Name</label>
                                 <input type="text" id="first_name" name="first_name" defaultValue={user.first_name} required
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label htmlFor="last_name" class="block text-sm font-medium text-gray-700">Last Name</label>
+                                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">Last Name</label>
                                 <input type="text" id="last_name" name="last_name" defaultValue={user.last_name} required
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
-                            <div class="sm:col-span-2">
-                                <label htmlFor="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <div className="sm:col-span-2">
+                                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
                                 <input type="email" id="email" name="email" defaultValue={user.email} required
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
-                            <div class="sm:col-span-2">
-                                <label htmlFor="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <div className="sm:col-span-2">
+                                <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700">Phone Number</label>
                                 <input type="tel" id="phone_number" name="phone_number" defaultValue={user.phone_number}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h2 class="text-xl font-semibold text-gray-700 mb-4">Address</h2>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="sm:col-span-2">
-                                <label htmlFor="street" class="block text-sm font-medium text-gray-700">Street</label>
+                        <h2 className="text-xl font-semibold text-gray-700 mb-4">Address</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="sm:col-span-2">
+                                <label htmlFor="street" className="block text-sm font-medium text-gray-700">Street</label>
                                 <input type="text" id="street" name="street" defaultValue={user.street}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label htmlFor="city" class="block text-sm font-medium text-gray-700">City</label>
+                                <label htmlFor="city" className="block text-sm font-medium text-gray-700">City</label>
                                 <input type="text" id="city" name="city" defaultValue={user.city}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label htmlFor="state" class="block text-sm font-medium text-gray-700">State</label>
+                                <label htmlFor="state" className="block text-sm font-medium text-gray-700">State</label>
                                 <input type="text" id="state" name="state" defaultValue={user.state}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label htmlFor="postal_code" class="block text-sm font-medium text-gray-700">Postal Code</label>
+                                <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700">Postal Code</label>
                                 <input type="text" id="postal_code" name="postal_code" defaultValue={user.postal_code}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
                             </div>
                             <div>
-                                <label htmlFor="country" class="block text-sm font-medium text-gray-700">Country</label>
+                                <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country</label>
                                 <select
                                     id="country"
                                     name="country"
                                     required
                                     value={user.country || ''}
-                                    class="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     {!user.country && (
                                         <option value="" disabled>
@@ -162,9 +163,9 @@ export default function UserProfile() {
                             </div>
                         </div>
                     </div>
-                    <div class="pt-4">
+                    <div className="pt-4">
                         <button type="submit"
-                            class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 hover:cursor-pointer transition">
+                            className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 hover:cursor-pointer transition">
                             Update Info
                         </button>
                     </div>

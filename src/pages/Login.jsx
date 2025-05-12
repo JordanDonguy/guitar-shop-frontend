@@ -13,7 +13,7 @@ const Login = () => {
   const { fetchUser } = useAuth();
 
   useEffect(() => {
-    // Load the cart from localStorage
+    window.scrollTo(0, 0);
     const cart = localStorage.getItem('cart') || '[]';
     setTemporaryCart(cart);
   }, []);
@@ -33,6 +33,8 @@ const Login = () => {
     if (response.ok) {
       fetchUser();
       navigate('/'); 
+      localStorage.removeItem("cart");
+      setTemporaryCart('');
     } else {
       setErrorMessage(data.error || 'Something went wrong');
     }

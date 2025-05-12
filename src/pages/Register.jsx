@@ -60,19 +60,19 @@ export default function Register(){
   }, []);
 
   return (
-    <div class="flex justify-center pt-[140px]">
-        <div class="bg-white rounded-2xl shadow-md w-full max-w-xl p-8 mb-30">
-          <h1 class="text-3xl font-bold text-center mb-6 text-gray-800">
+    <div className="flex justify-center pt-[140px]">
+        <div className="bg-white rounded-2xl shadow-md w-full max-w-xl p-8 mb-30">
+          <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
             Create an Account
           </h1>
           {error && (
-            <div class="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
+            <div className="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
               {error}
             </div>
           )}
-          <form onSubmit={handleSubmit} class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="first_name" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="first_name" className="block text-sm font-medium text-gray-700">
                 First Name
               </label>
               <input
@@ -82,11 +82,11 @@ export default function Register(){
                 required
                 value={formData.first_name}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="last_name" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="last_name" className="block text-sm font-medium text-gray-700">
                 Last Name
               </label>
               <input
@@ -96,11 +96,11 @@ export default function Register(){
                 required
                 value={formData.last_name}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div class="sm:col-span-2">
-              <label htmlFor="email" class="block text-sm font-medium text-gray-700">
+            <div className="sm:col-span-2">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email
               </label>
               <input
@@ -110,11 +110,11 @@ export default function Register(){
                 required
                 value={formData.email}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div class="sm:col-span-2">
-              <label htmlFor="phone_number" class="block text-sm font-medium text-gray-700">
+            <div className="sm:col-span-2">
+              <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700">
                 Phone Number
               </label>
               <input
@@ -124,11 +124,11 @@ export default function Register(){
                 required
                 value={formData.phone_number}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div class="sm:col-span-2">
-              <label htmlFor="street" class="block text-sm font-medium text-gray-700">
+            <div className="sm:col-span-2">
+              <label htmlFor="street" className="block text-sm font-medium text-gray-700">
                 Street
               </label>
               <input
@@ -138,11 +138,11 @@ export default function Register(){
                 required
                 value={formData.street}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="city" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
                 City
               </label>
               <input
@@ -152,11 +152,11 @@ export default function Register(){
                 required
                 value={formData.city}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="state" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="state" className="block text-sm font-medium text-gray-700">
                 State
               </label>
               <input
@@ -166,11 +166,11 @@ export default function Register(){
                 required
                 value={formData.state}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="postal_code" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700">
                 Postal Code
               </label>
               <input
@@ -180,11 +180,11 @@ export default function Register(){
                 required
                 value={formData.postal_code}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
             <div>
-              <label htmlFor="country" class="block text-sm font-medium text-gray-700">
+              <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                 Country
               </label>
               <select
@@ -193,7 +193,7 @@ export default function Register(){
                 required
                 value={formData.country}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">-- Select a country --</option>
                 {countries &&
@@ -204,8 +204,8 @@ export default function Register(){
                   ))}
               </select>
             </div>
-            <div class="sm:col-span-2">
-              <label htmlFor="password" class="block text-sm font-medium text-gray-700">
+            <div className="sm:col-span-2">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                 Password
               </label>
               <input
@@ -215,18 +215,18 @@ export default function Register(){
                 required
                 value={formData.password}
                 onChange={handleInputChange}
-                class="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-1 w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div class="sm:col-span-2">
-              <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 hover:cursor-pointer transition">
+            <div className="sm:col-span-2">
+              <button type="submit" className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 hover:cursor-pointer transition">
                 Register
               </button>
             </div>
           </form>
-          <p class="mt-4 text-center text-sm text-gray-600">
+          <p className="mt-4 text-center text-sm text-gray-600">
             Already have an account?
-            <Link to="/auth/login" class="text-blue-600 hover:underline">
+            <Link to="/auth/login" className="text-blue-600 hover:underline">
               Login
             </Link>
           </p>

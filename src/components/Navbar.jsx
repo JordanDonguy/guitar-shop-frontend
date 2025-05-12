@@ -50,8 +50,8 @@ export default function Navbar() {
                 </button>
             </form>
 
-            <div class="flex justify-between w-50">
-                <Link to="#" className="filter">
+            <div className="flex justify-between w-50">
+                <Link to="/cart" className="filter">
                     <ShoppingCart className="w-[40px] h-[40px] hover:text-teal-600 transition duration:100" />
                 </Link>
                 {/* Conditionally render Login, My Profile, and Logout links */}

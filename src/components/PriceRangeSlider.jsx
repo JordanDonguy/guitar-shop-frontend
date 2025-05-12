@@ -12,19 +12,19 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
   };
 
   return (
-    <div class="w-5/6">
-      <div class="flex justify-between text-sm mb-2">
+    <div className="w-5/6">
+      <div className="flex justify-between text-sm mb-2">
         <span>${minVal}</span>
         <span>${maxVal}</span>
       </div>
-      <div class="flex flex-col gap-2">
+      <div className="flex flex-col gap-2">
         <input
           type="range"
           min={min}
           max={max}
           value={minVal}
           onChange={handleMinChange}
-          class="w-full accent-blue-500 hover:cursor-pointer"
+          className="w-full accent-blue-500 hover:cursor-pointer"
         />
         <input
           type="range"
@@ -32,7 +32,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
           max={max}
           value={maxVal}
           onChange={handleMaxChange}
-          class="w-full accent-blue-500 hover:cursor-pointer"
+          className="w-full accent-blue-500 hover:cursor-pointer"
         />
       </div>
     </div>

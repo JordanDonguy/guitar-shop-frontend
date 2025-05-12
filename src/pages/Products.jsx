@@ -3,9 +3,11 @@ import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
 import { BASE_URL } from "../components/utils/api";
 import { Link } from "react-router-dom";
+import { useAuth } from "../components/utils/AuthContext";
 
 export default function Products() {
     const BASE_URL = "http://localhost:3000";
+    const { user } = useAuth();
 
     const [products, setProducts] = useState([]);
     const [priceMax, setPriceMax] = useState(null);
@@ -56,25 +58,25 @@ export default function Products() {
 
     const renderProducts = () => {
         return products.map(product => (
-            <div key={product.id} class="flex mb-10 pl-10 p-5 bg-white rounded-xl shadow-sm">
-                <img src={product.image_url} alt="product image" class="w-60 h-60" />
-                <div class="flex flex-col justify-between pl-10 py-2">
-                    <Link class="border-y border-transparent hover:border-teal-400 hover:bg-teal-50" to={`/products/${product.id}`}>
+            <div key={product.id} className="flex mb-10 rounded-xl shadow-sm border-2 border-neutral-300">
+                <img src={product.image_url} alt="product image" className="w-100 h-60 bg-white px-20 rounded-l-xl" />
+                <div className="flex flex-col justify-between pl-10 py-2">
+                    <Link className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50" to={`/products/${product.id}`}>
                         <div>
-                            <h3 class="text-3xl pb-4">{product.brand}</h3>
-                            <h4 class="text-2xl font-light">{product.name}</h4>
+                            <h3 className="text-3xl pb-4">{product.brand}</h3>
+                            <h4 className="text-2xl font-light">{product.name}</h4>
                         </div>
                     </Link>
-                    <div class="flex items-end">
-                        <div class="flex flex-col pr-10">
+                    <div className="flex items-end">
+                        <div className="flex flex-col pr-10">
                             {product.stock > 0 ? (
-                                <span class="text-green-600 text-2xl">● Available</span>
+                                <span className="text-green-600 text-2xl">● Available</span>
                             ) : (
-                                <span class="text-red-600 text-xl">● Out of Stock</span>
+                                <span className="text-red-600 text-xl">● Out of Stock</span>
                             )}
-                            <span class="text-3xl font-medium pt-4">$ {product.price}</span>
+                            <span className="text-3xl font-medium pt-4">$ {product.price}</span>
                         </div>
-                        <AddToCart />
+                        <AddToCart product_id={product.id} brand={product.brand} name={product.name} image_url={product.image_url} price={product.price} />
                     </div>
                 </div>
             </div>
@@ -86,10 +88,10 @@ export default function Products() {
     };
 
     return (
-        <div class="flex justify-between pt-[140px] px-[10%] font-onest min-h-[100vh]">
+        <div className="flex justify-between pt-[140px] px-[10%] font-onest min-h-[100vh]">
             {/* Render Filter component only after priceMax is loaded */}
             {!loading && <Filter priceMax={priceMax} onFilterChange={handleFilterChange} />}
-            <div class="flex flex-col pl-20 w-full">
+            <div className="flex flex-col pl-20 w-full">
                 {renderProducts()}
             </div>
         </div>
