@@ -5,7 +5,7 @@ import xLogo from '../assets/img/x-logo.png';
 
 export default function Footer() {
     return (
-        <footer class="flex justify-between items-center bg-neutral-800 px-[10%] h-80 mt-30 text-teal-50">
+        <footer class="flex justify-between items-center bg-neutral-800 px-[10%] h-80 text-teal-50">
             <div class="flex items-center justify-between w-120">
                 <a href="http://facebook.com" target="_blank"><img src={facebookLogo} class="w-24 h-24 hover:brightness-125"/></a>
                 <a href="http://instagram.com" target="_blank"><img src={instagramLogo} class="w-20 h-20 hover:brightness-125"/></a>

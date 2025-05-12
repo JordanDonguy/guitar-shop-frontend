@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { BASE_URL } from '../components/utils/api';
 import { useAuth } from '../components/utils/AuthContext';
 
@@ -39,7 +39,7 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 flex items-center justify-center min-h-screen p-6">
+    <div className="bg-gray-100 flex items-center justify-center min-h-screen p-6 mb-30">
       <div className="bg-white rounded-2xl shadow-md w-full max-w-md p-8">
         <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Login</h1>
 
@@ -92,9 +92,9 @@ const Login = () => {
 
         <p className="mt-4 text-center text-sm text-gray-600">
           Don’t have an account?
-          <a href="/auth/register" className="text-blue-600 hover:underline">
+          <Link to="/auth/register" className="text-blue-600 hover:underline">
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </div>

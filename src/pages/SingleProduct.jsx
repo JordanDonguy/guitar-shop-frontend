@@ -20,7 +20,7 @@ export default function SingleProduct() {
     }, [])
 
     return (
-        <div class="font-sans pt-[140px] px-[10%] bg-gray-100">
+        <div class="font-sans pt-[140px] px-[10%] bg-gray-100 mb-30">
             {/* SECTION 1 */}
             <div class="flex mb-10 shadow-lg rounded-xl">
                 <div class="inline-flex justify-center w-full bg-teal-50 rounded-xl">
@@ -60,7 +60,7 @@ export default function SingleProduct() {
                         src={productInfos.video_url}
                         frameBorder="0"
                         allowFullScreen
-                        class="w-full max-w-[1200px] h-[675px] my-5 mb-15 rounded-xl shadow-xl"
+                        class="w-[90%] h-200 my-5 mb-15 rounded-xl shadow-xl"
                     ></iframe>
             </div>
 
