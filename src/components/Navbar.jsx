@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import logo from "../assets/img/logo.png";
-import { ShoppingCart, Search } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
 import { User } from 'lucide-react';
 import { LogOut } from 'lucide-react';
+import SearchBar from "./SearchBar";
 
 export default function Navbar() {
     const { user, setUser } = useAuth();
@@ -42,13 +43,7 @@ export default function Navbar() {
                 <li><Link to="#" className="hover:text-teal-600">Contact</Link></li>
             </ul>
 
-            <form className="flex h-12 w-[25vw] pl-8 bg-gray-200 justify-between rounded-4xl">
-                <label htmlFor="search"></label>
-                <input id="search" name="search" type="text" className="w-full text-lg font-light focus:outline-none" placeholder="Search..." />
-                <button type="submit" className="flex justify-center items-center w-16 h-12 rounded-4xl hover:cursor-pointer hover:bg-teal-100">
-                    <Search />
-                </button>
-            </form>
+            <SearchBar />
 
             <div className="flex justify-between w-50">
                 <Link to="/cart" className="filter">

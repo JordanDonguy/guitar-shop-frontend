@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
 import { BASE_URL } from "../components/utils/api";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuth } from "../components/utils/AuthContext";
 
 export default function Products() {
     const BASE_URL = "http://localhost:3000";
     const { user } = useAuth();
+    const [searchParams] = useSearchParams();
 
     const [products, setProducts] = useState([]);
     const [priceMax, setPriceMax] = useState(null);
@@ -19,7 +20,10 @@ export default function Products() {
         priceRange: [0, priceMax],
     });
 
+    const searchQuery = searchParams.get('search') || '';
+
     useEffect(() => {
+        window.scrollTo(0, 0);
         fetch(`${BASE_URL}/products`)
             .then(res => res.json())
             .then(data => {
@@ -33,7 +37,6 @@ export default function Products() {
 
     // Fetch products based on filter changes
     useEffect(() => {
-        window.scrollTo(0, 0);
         if (!filter || !priceMax) return;
         const params = new URLSearchParams();
 
@@ -48,15 +51,20 @@ export default function Products() {
         }
         if (filter.priceRange[1] < priceMax) {
             params.append('maxPrice', filter.priceRange[1]);
-        }
+        };
+        if (searchQuery) {
+            params.append('search', searchQuery);
+        };
+
 
         fetch(`${BASE_URL}/products?${params.toString()}`)
             .then(res => res.json())
             .then(data => setProducts(data.products))
             .catch(err => console.log(err));
-    }, [filter]);
+    }, [filter, searchQuery]);
 
     const renderProducts = () => {
+        if (products.length == 0) return <div className="text-2xl">No products match your search...</div>
         return products.map(product => (
             <div key={product.id} className="flex mb-10 rounded-xl shadow-sm border-2 border-neutral-300">
                 <img src={product.image_url} alt="product image" className="w-100 h-60 bg-white px-20 rounded-l-xl" />
