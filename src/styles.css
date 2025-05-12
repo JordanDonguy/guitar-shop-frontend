@@ -7,22 +7,45 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-    --font-onest: "Onest", sans-serif; 
+  --font-onest: "Onest", sans-serif;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0.4;
+    width: 0%;
   }
 
+  100% {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+.fade-in {
+  width: 0%;
+  opacity: 0.4;
+  /* Initially invisible */
+  animation: fadeIn 1s ease-out forwards;
+  /* Apply the fade-in effect */
+}
+
 html {
-    font-size: 16px
+  font-size: 16px
 }
 
 .scrollbar-hide {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
+  /* Chrome, Safari */
 }
 
 .boxShadow {
-        box-shadow:  4px 0px 4px rgba(0, 0, 0, 0.1)
+  box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1)
 }
