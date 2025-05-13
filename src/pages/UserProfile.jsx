@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
+import { toast, ToastContainer } from 'react-toastify';
 
 export default function UserProfile() {
-    const { user, setUser } = useAuth();
+    const { user, setUser, loadingAuth } = useAuth();
     const [countries, setCountries] = useState([]);
     const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -28,6 +32,23 @@ export default function UserProfile() {
                 console.error('Auth error:', err);
             });
     }, []);
+
+    useEffect(() => {
+        if (loadingAuth) return
+        if (!user) {
+            navigate("/auth/login")
+        }
+    }, [user, loadingAuth]),
+
+    useEffect(() => {
+        if (location.state?.toastMessage) {
+            toast.success(location.state.toastMessage, {
+                position: 'bottom-center',
+                autoClose: 5000,
+            });
+        }
+    }, [location.state]);
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -73,6 +94,7 @@ export default function UserProfile() {
 
     return (
         <div className="flex w-full justify-center pt-[140px] mb-30">
+            <ToastContainer />
             <div className="bg-white shadow-lg rounded-2xl w-full max-w-2xl p-8">
                 <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">My Profile</h1>
                 {error && (
@@ -147,6 +169,7 @@ export default function UserProfile() {
                                     name="country"
                                     required
                                     value={user.country || ''}
+                                    onChange={(e) => setUser({ ...user, country: e.target.value })}
                                     className="mt-1 w-full px-4 py-2 border rounded-lg bg-white hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 >
                                     {!user.country && (

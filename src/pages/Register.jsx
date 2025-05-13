@@ -1,66 +1,74 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
+import { useAuth } from "../components/utils/AuthContext";
 
-export default function Register(){
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
-    email: "",
-    phone_number: "",
-    street: "",
-    city: "",
-    state: "",
-    postal_code: "",
-    country: "",
-    password: "",
-  });
-  const [error, setError] = useState(null);
-  const [countries, setCountries] = useState()
-  const navigate = useNavigate();
+export default function Register() {
+    const [formData, setFormData] = useState({
+      first_name: "",
+      last_name: "",
+      email: "",
+      phone_number: "",
+      street: "",
+      city: "",
+      state: "",
+      postal_code: "",
+      country: "",
+      password: "",
+    });
+    const [error, setError] = useState(null);
+    const [countries, setCountries] = useState()
+    const navigate = useNavigate();
+    const { user } = useAuth();
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+    const handleInputChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const handleSubmit = async (e) => {
+      e.preventDefault();
 
-    try {
-      const response = await fetch(`${BASE_URL}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      try {
+        const response = await fetch(`${BASE_URL}/auth/register`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
-        navigate("/auth/login");
-      } else {
-        setError(data.error || "Something went wrong");
+        if (response.ok) {
+          navigate("/auth/login");
+        } else {
+          setError(data.error || "Something went wrong");
+        }
+      } catch (err) {
+        setError("Something went wrong while processing your request");
+        console.error(err);
       }
-    } catch (err) {
-      setError("Something went wrong while processing your request");
-      console.error(err);
-    }
-  };
+    };
 
-  useEffect(() => {
-    fetch(`${BASE_URL}/auth/register`)
-    .then(res => res.json())
-    .then(data => setCountries(data.countries))
-    .catch(err => console.log(err))
-  }, []);
+    useEffect(() => {
+      fetch(`${BASE_URL}/auth/register`)
+        .then(res => res.json())
+        .then(data => setCountries(data.countries))
+        .catch(err => console.log(err))
+    }, []);
 
-  return (
-    <div className="flex justify-center pt-[140px]">
+    useEffect(() => {
+      if (user) {
+        navigate('/')
+      }
+    }, [user, navigate])
+
+    return (
+      <div className="flex justify-center pt-[140px]">
         <div className="bg-white rounded-2xl shadow-md w-full max-w-xl p-8 mb-30">
           <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
             Create an Account
@@ -231,6 +239,6 @@ export default function Register(){
             </Link>
           </p>
         </div>
-    </div>
-  );
-};
+      </div>
+    );
+  };  

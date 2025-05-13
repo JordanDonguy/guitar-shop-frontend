@@ -10,13 +10,19 @@ const Login = () => {
   const [temporaryCart, setTemporaryCart] = useState('');
   const navigate = useNavigate();
 
-  const { fetchUser } = useAuth();
+  const { fetchUser, user } = useAuth();
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const cart = localStorage.getItem('cart') || '[]';
     setTemporaryCart(cart);
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      navigate('/')
+    }
+  }, [user, navigate])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
