@@ -21,7 +21,7 @@ export default function AddToCart({ product_id, brand, name, image_url, price })
                     body: JSON.stringify({ product_id, user }),
                 });
                 const result = await response.json();
-                toast('Item added to cart!', {
+                toast.success('Item added to cart!', {
                     position: "bottom-center",
                     autoClose: 2000,
                 });
@@ -49,7 +49,10 @@ export default function AddToCart({ product_id, brand, name, image_url, price })
                 }
 
                 localStorage.setItem('cart', JSON.stringify(cart));
-                console.log('Item added to local cart.');
+                toast('Item added to cart!', {
+                    position: "bottom-center",
+                    autoClose: 2000,
+                });
             } catch (err) {
                 console.error('Error adding to local cart:', err);
             }

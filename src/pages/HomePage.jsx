@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import guitar from "../assets/img/guitar-homepage.png";
 import eGuitar from "../assets/img/e-guitar.png";
 import aGuitar from "../assets/img/a-guitar.png";
@@ -22,7 +23,7 @@ export default function HomePage() {
                 <div className="flex flex-col justify-between pt-5 pb-10 pl-[10%]">
                     <h1 className="text-8xl/30 text-shadow-lg">Find the guitar you’ve always wanted</h1>
                     <p className="w-170 text-4xl/15 font-light  text-shadow-lg">Explore our selection of electric and acoustic guitars, amps, effects and all the accessories and home-studio gear that you’re dreaming of !</p>
-                    <a href="#" className="flex justify-center items-center w-60 h-15 bg-teal-50 text-2xl shadow-md border border-black rounded-4xl hover:bg-teal-200 hover:border-2">Explore now</a>
+                    <Link to="/products" className="flex justify-center items-center w-60 h-15 bg-teal-50 text-2xl shadow-md border border-black rounded-4xl hover:bg-teal-200 hover:border-2">Explore now</Link>
                 </div>
                 <div className="flex justify-center items-center bg-neutral-200 w-[80%] pr-[10%]"><img src={guitar} alt="guitar" className="h-full py-10" style={{ filter: 'drop-shadow(30px 20px 5px rgba(139, 143, 143, 0.5))' }} /></div>
             </div>

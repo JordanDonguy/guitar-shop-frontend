@@ -12,8 +12,8 @@ export default function Products() {
 
     const [products, setProducts] = useState([]);
     const [priceMax, setPriceMax] = useState(null);
-    const [loading, setLoading] = useState(true); // Loading state
-
+    const [loading, setLoading] = useState(true);
+    const [loadingProducts, setLoadingProducts] = useState(true);
     const [filter, setFilter] = useState({
         categoryIds: [],
         brandIds: [],
@@ -30,7 +30,7 @@ export default function Products() {
                 const maxPrice = Math.max(...data.products.map(product => product.price));
                 setPriceMax(maxPrice);
                 setFilter(prev => ({ ...prev, priceRange: [0, maxPrice] }));
-                setLoading(false); // Done loading
+                setLoading(false);
             })
             .catch(err => console.log(err));
     }, []);
@@ -56,20 +56,23 @@ export default function Products() {
             params.append('search', searchQuery);
         };
 
-
         fetch(`${BASE_URL}/products?${params.toString()}`)
             .then(res => res.json())
-            .then(data => setProducts(data.products))
+            .then(data => {
+                setProducts(data.products);
+                setLoadingProducts(false);
+            })
             .catch(err => console.log(err));
     }, [filter, searchQuery]);
 
     const renderProducts = () => {
         if (products.length == 0) return <div className="text-2xl">No products match your search...</div>
+
         return products.map(product => (
             <div key={product.id} className="flex mb-10 rounded-xl shadow-sm border-2 border-neutral-300">
                 <img src={product.image_url} alt="product image" className="w-100 h-60 bg-white px-20 rounded-l-xl" />
                 <div className="flex flex-col justify-between pl-10 py-2">
-                    <Link className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50" to={`/products/${product.id}`}>
+                    <Link className="mr-5 border-y border-transparent hover:border-teal-400 hover:bg-teal-50" to={`/products/${product.id}`}>
                         <div>
                             <h3 className="text-3xl pb-4">{product.brand}</h3>
                             <h4 className="text-2xl font-light">{product.name}</h4>
@@ -100,7 +103,7 @@ export default function Products() {
             {/* Render Filter component only after priceMax is loaded */}
             {!loading && <Filter priceMax={priceMax} onFilterChange={handleFilterChange} />}
             <div className="flex flex-col pl-20 w-full">
-                {renderProducts()}
+                {!loadingProducts && renderProducts()}
             </div>
         </div>
     );
