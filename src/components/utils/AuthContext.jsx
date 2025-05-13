@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [loadingAuth, setLoadingAuth] = useState(true);
 
     const fetchUser = async () => {
         try {
@@ -17,6 +18,8 @@ export const AuthProvider = ({ children }) => {
             }
         } catch (err) {
             setUser(null);
+        } finally {
+            setLoadingAuth(false)
         }
     };
 
@@ -25,7 +28,7 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, setUser, fetchUser }}>
+        <AuthContext.Provider value={{ user, setUser, fetchUser, loadingAuth }}>
             {children}
         </AuthContext.Provider>
     );

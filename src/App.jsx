@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import UserProfile from './pages/UserProfile';
 import Cart from './pages/Cart';
+import CheckoutForm from './pages/Checkout';
 import { AuthProvider } from './components/utils/AuthContext';
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
               <Route path="/auth/register" element={<Register />}></Route>
               <Route path="/user" element={<UserProfile />} ></Route>
               <Route path="/cart" element={<Cart />} ></Route>
+              <Route path="/checkout" element={<CheckoutForm />}></Route>
             </Route>
           </Routes>
         </AuthProvider>

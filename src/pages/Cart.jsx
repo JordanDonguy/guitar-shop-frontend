@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import CartProduct from "../components/CartProduct";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
     const { user, setUser } = useAuth();
@@ -94,28 +95,26 @@ export default function Cart() {
         <div className="w-1/2 mx-auto pt-[140px]">
             {user ? (
                 <>
-                    {products.map(product => 
-                    <CartProduct 
-                    key={product.id} 
-                    product={product} 
-                    cartId={cartId} 
-                    updateFinalPrice={updateFinalPrice} 
-                    handleQuantityChange={handleQuantityChange}
-                    />)}
+                    {products.map(product =>
+                        <CartProduct
+                            key={product.id}
+                            product={product}
+                            cartId={cartId}
+                            updateFinalPrice={updateFinalPrice}
+                            handleQuantityChange={handleQuantityChange}
+                        />)}
                     <div className="flex justify-between items-center my-12 w-full">
                         <div className="text-2xl font-light">Total price : <span className="font-semibold">$ {Number(finalPriceFormatted || 0).toFixed(2)}</span></div>
                     </div>
                     <div className="mb-12">
-                        <form action="/checkout/initiate" method="POST">
-                            <input type="hidden" name="cart_id" value={cartId} />
-                            <input type="hidden" name="total_price" value={Number(finalPriceFormatted || 0).toFixed(2)} />
+                        <Link to={user ? "/checkout" : "/auth/login"} state={{ total_price: finalPrice }}>
                             <button
                                 type="submit"
                                 className="bg-green-700 hover:bg-green-500 hover:cursor-pointer text-white px-6 py-3 rounded-lg text-lg w-full"
                             >
                                 Checkout
                             </button>
-                        </form>
+                        </Link>
                     </div>
                 </>
             ) : (
@@ -131,15 +130,14 @@ export default function Cart() {
                         <div className="text-3xl font-light">Total price : <span className="font-semibold">$ {guestTotalFormatted}</span></div>
                     </div>
                     <div className="mb-12">
-                        <form action="/checkout" method="GET">
-                            <input type="hidden" name="checkout" />
+                        <Link to={user ? "/checkout" : "/auth/login"}>
                             <button
                                 type="submit"
                                 className="bg-green-700 hover:bg-green-500 hover:cursor-pointer text-white px-6 py-3 rounded-lg text-lg w-full"
                             >
                                 Checkout
                             </button>
-                        </form>
+                        </Link>
                     </div>
                 </>
             )}
