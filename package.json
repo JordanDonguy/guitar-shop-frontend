@@ -6,7 +6,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "tailwind": "tailwindcss --version"
+    "tailwind": "tailwindcss --version",
+    "format": "prettier --write ."
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "lucide-react": "^0.508.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-helmet": "^6.1.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.6.0",
     "react-toastify": "^11.0.5"
@@ -27,6 +29,8 @@
     "@vitejs/plugin-react": "^4.4.1",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11",
     "tailwindcss": "^4.1.5",
     "vite": "^6.3.5"
   }
