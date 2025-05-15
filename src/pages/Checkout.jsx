@@ -3,8 +3,9 @@ import { Helmet } from "react-helmet";
 import { useAuth } from "../components/utils/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { toast } from "react-toastify";
+
 
 const CheckoutForm = () => {
   const { user, loadingAuth } = useAuth();
@@ -47,12 +48,8 @@ const CheckoutForm = () => {
   const handleCheckout = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${BASE_URL}/checkout`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/checkout`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
         body: JSON.stringify({ cardNumber, expiry, cvv, total_price, user }),
       });
       if (response.ok) {
@@ -165,7 +162,6 @@ const CheckoutForm = () => {
         >
           Pay Now
         </button>
-        <ToastContainer />
       </form>
     </div>
   );

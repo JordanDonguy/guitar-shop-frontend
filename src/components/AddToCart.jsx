@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
+import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 import addToCart from "../assets/img/add-to-cart.png";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 export default function AddToCart({
   product_id,
@@ -19,11 +19,8 @@ export default function AddToCart({
 
     if (user) {
       try {
-        const response = await fetch(`${BASE_URL}/cart/add`, {
+        const response = await fetchWithCsrf(`${BASE_URL}/cart/add`, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
           body: JSON.stringify({ product_id, user }),
         });
         const result = await response.json();
@@ -74,7 +71,7 @@ export default function AddToCart({
         <img src={addToCart} className="w-10 max-lg:w-12" />
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
-      <ToastContainer />
+
     </form>
   );
 }

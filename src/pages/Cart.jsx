@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 
@@ -69,11 +70,8 @@ export default function Cart() {
     const product_id = formData.get("product_id");
 
     try {
-      const response = await fetch(`${BASE_URL}/cart/addOne`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/cart/addOne`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           product_id,
           cart_id: cartId,

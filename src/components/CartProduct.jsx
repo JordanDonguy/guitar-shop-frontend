@@ -1,7 +1,8 @@
-import { useAuth } from "./utils/AuthContext";
 import { useState } from "react";
-import { BASE_URL } from "./utils/api";
 import { Link } from "react-router-dom";
+import { useAuth } from "./utils/AuthContext";
+import { BASE_URL } from "./utils/api";
+import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 
 export default function CartProduct({
   product,
@@ -21,11 +22,8 @@ export default function CartProduct({
     const quantity = Number(formData.get("quantity"));
 
     try {
-      const response = await fetch(`${BASE_URL}/cart/updateQuantity`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/cart/updateQuantity`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify({
           product_id,
           cart_id: cartId,
