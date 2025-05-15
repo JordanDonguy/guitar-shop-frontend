@@ -33,7 +33,12 @@ export default function SingleProduct() {
             <img
               src={productInfos.image_url2}
               alt={productInfos.name}
-              className="max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:w-full max-lg:h-110 max-lg:object-contain max-lg:py-5"
+              className="max-lg:hidden max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%]"
+            />
+            <img
+              src={productInfos.image_url}
+              alt={productInfos.name}
+              className="hidden max-lg:block rounded-l-xl bg-white object-contain px-[2%] w-full h-110 py-5"
             />
             <div className="w-[30%] flex-1 border-l border-teal-200 pt-15 pl-5 max-lg:w-full max-lg:pt-10 max-lg:border-l-0 max-lg:border-t">
               <h1 className="pb-5 text-4xl font-bold">{productInfos.brand}</h1>
@@ -67,12 +72,14 @@ export default function SingleProduct() {
           <div className="prose-lg px-[5%] py-5">
             <Markdown>{productInfos.description}</Markdown>
           </div>
-          <iframe
-            src={productInfos.video_url}
-            frameBorder="0"
-            allowFullScreen
-            className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl"
-          ></iframe>
+          {productInfos.video_url ?
+            <iframe
+              src={productInfos.video_url}
+              frameBorder="0"
+              allowFullScreen
+              className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl"
+            ></iframe>
+          : null}
         </div>
         {/* SECTION 3 */}
         <div className="my-24 flex w-full flex-col items-center">
