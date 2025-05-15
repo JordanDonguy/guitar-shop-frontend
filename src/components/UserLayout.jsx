@@ -20,7 +20,7 @@ const UserLayout = () => {
       </div>
 
       {/* Mobile */}
-      <div className="mb-30 hidden min-h-screen px-[5%] pt-[140px] max-lg:flex max-lg:flex-col">
+      <div className="fade-in mb-30 hidden min-h-screen px-[5%] pt-[140px] max-lg:flex max-lg:flex-col">
         <div className="mb-10 flex h-fit rounded-lg border-2 border-teal-600 p-1">
           <Link
             to="/user/user-profile"
