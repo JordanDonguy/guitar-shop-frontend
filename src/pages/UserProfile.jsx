@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
@@ -8,13 +9,9 @@ import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 export default function UserProfile() {
   const { user, setUser, loadingAuth } = useAuth();
   const [countries, setCountries] = useState([]);
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const [successMessage, setSuccessMessage] = useState("");
-  const [errorMessage, setErrorMessage] = useState("");
-
-    useEffect(() => {
+  useEffect(() => {
     if (loadingAuth) return;
     if (!user) {
       navigate("/auth/login");
@@ -31,7 +28,6 @@ export default function UserProfile() {
       .then((data) => {
         setUser(data.user);
         setCountries(data.countries);
-        setError(data.error);
       })
       .catch((err) => {
         console.error("Auth error:", err);
@@ -66,9 +62,15 @@ export default function UserProfile() {
       }
 
       const data = await response.json();
-      setSuccessMessage(data.message);
+      toast.success("Your profile has been updated !", {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
     } catch (error) {
-      setErrorMessage("Could not update user profile");
+      toast.error("Could not update user profile", {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
     }
   }
 
@@ -85,22 +87,6 @@ export default function UserProfile() {
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Profile
         </h1>
-        {error && (
-          <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700">
-            {error}
-          </div>
-        )}
-        {successMessage && (
-          <div classNameName="bg-green-100 text-green-700 p-3 rounded mb-4 text-sm">
-            {successMessage}
-          </div>
-        )}
-
-        {errorMessage && (
-          <div classNameName="bg-red-100 text-red-700 p-3 rounded mb-4 text-sm">
-            {errorMessage}
-          </div>
-        )}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <h2 className="mb-4 text-xl font-semibold text-gray-700">
