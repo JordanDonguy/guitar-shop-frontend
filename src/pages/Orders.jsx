@@ -23,7 +23,6 @@ export default function Orders() {
   useEffect(() => {
     if (loadingAuth) return;
     window.scrollTo(0, 0);
-
     fetch(`${BASE_URL}/orders/?userId=${user.id}`, { credentials: "include" })
       .then((res) => res.json())
       .then((data) => {

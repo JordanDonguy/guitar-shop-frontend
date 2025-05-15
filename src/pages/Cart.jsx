@@ -96,7 +96,7 @@ export default function Cart() {
   const guestTotalFormatted = Number(guestTotal || 0).toFixed(2);
 
   return (
-    <div className="mx-auto w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%]">
+    <div className="fade-in mx-auto w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%]">
       <Helmet>
         <title>Cart | Guitar Shop</title>
       </Helmet>

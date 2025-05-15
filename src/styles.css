@@ -12,22 +12,17 @@
 
 @keyframes fadeIn {
   0% {
-    opacity: 0.4;
-    width: 0%;
+    opacity: 0;
   }
 
   100% {
     opacity: 1;
-    width: 100%;
   }
 }
 
 .fade-in {
-  width: 0%;
-  opacity: 0.4;
-  /* Initially invisible */
-  animation: fadeIn 1s ease-out forwards;
-  /* Apply the fade-in effect */
+  opacity: 0;
+  animation: fadeIn 0.4s ease-out forwards;
 }
 
 html {

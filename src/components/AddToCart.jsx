@@ -69,9 +69,9 @@ export default function AddToCart({
     <form onSubmit={handleSubmit} id="add-to-cart-form">
       <button
         type="submit"
-        className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:mb-5 max-lg:w-15"
+        className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:w-20 max-lg:h-20"
       >
-        <img src={addToCart} className="w-10" />
+        <img src={addToCart} className="w-10 max-lg:w-12" />
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
       <ToastContainer />

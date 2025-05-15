@@ -87,7 +87,7 @@ const CheckoutForm = () => {
   }, [user, total_price, navigate, loadingAuth]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-100 p-4 pt-[100px]">
+    <div className="fade-in flex min-h-screen items-center justify-center bg-gray-100 p-4 pt-[100px]">
       <Helmet>
         <title>Checkout | Guitar Shop</title>
       </Helmet>
