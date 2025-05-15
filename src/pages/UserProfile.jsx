@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 
 export default function UserProfile() {
   const { user, setUser, loadingAuth } = useAuth();
@@ -37,15 +38,7 @@ export default function UserProfile() {
     if (!user) {
       navigate("/auth/login");
     }
-  }, [user, loadingAuth]),
-    useEffect(() => {
-      if (location.state?.toastMessage) {
-        toast.success(location.state.toastMessage, {
-          position: "bottom-center",
-          autoClose: 5000,
-        });
-      }
-    }, [location.state]);
+  }, [user, loadingAuth]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,12 +58,8 @@ export default function UserProfile() {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/user/${user.id}`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/user/${user.id}`, {
         method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
         body: JSON.stringify(updatedUser),
       });
 
