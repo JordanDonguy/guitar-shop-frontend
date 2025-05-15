@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -34,16 +35,12 @@ export default function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/auth/register`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/auth/register`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
-
       if (response.ok) {
         navigate("/auth/login");
       } else {
@@ -56,20 +53,20 @@ export default function Register() {
   };
 
   useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
     fetch(`${BASE_URL}/auth/register`)
       .then((res) => res.json())
       .then((data) => setCountries(data.countries))
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
-
   return (
-    <div className="flex justify-center pt-[140px]">
+    <div className="fade-in flex justify-center pt-[140px]">
       <Helmet>
         <title>Register | Guitar Shop</title>
       </Helmet>

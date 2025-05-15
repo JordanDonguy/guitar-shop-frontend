@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,28 +28,30 @@ const Login = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      const response = await fetchWithCsrf(`${BASE_URL}/auth/login`, {
+        method: "POST",
+        body: JSON.stringify({ email, password, temporaryCart }),
+      });
 
-    const response = await fetch(`${BASE_URL}/auth/login`, {
-      method: "POST",
-      credentials: "include",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, temporaryCart }),
-    });
+      const data = await response.json();
 
-    const data = await response.json();
-
-    if (response.ok) {
-      fetchUser();
-      navigate("/");
-      localStorage.removeItem("cart");
-      setTemporaryCart("");
-    } else {
-      setErrorMessage(data.error || "Something went wrong");
+      if (response.ok) {
+        fetchUser();
+        navigate("/");
+        localStorage.removeItem("cart");
+        setTemporaryCart("");
+      } else {
+        setErrorMessage(data.error || "Something went wrong");
+      }
+    } catch (error) {
+      console.error("Login error", error);
+      setErrorMessage("An unexpected error occurred");
     }
   };
 
   return (
-    <div className="mb-30 flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div className="fade-in mb-30 flex min-h-screen items-center justify-center bg-gray-100 p-6">
       <Helmet>
         <title>Login | Guitar Shop</title>
       </Helmet>

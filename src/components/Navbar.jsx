@@ -4,6 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
+import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 import { User } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
@@ -27,11 +28,11 @@ export default function Navbar() {
   }, []);
 
   const handleLogout = () => {
-    fetch(`${BASE_URL}/auth/logout`, { method: "POST", credentials: "include" })
+    fetchWithCsrf(`${BASE_URL}/auth/logout`, { method: "POST" })
       .then((res) => {
         if (res.ok) {
-          setUser(null); // Clear user info
-          navigate("/"); // Redirect to homepage after logout
+          setUser(null);
+          navigate("/");
         } else {
           console.error("Logout failed");
         }
@@ -109,7 +110,7 @@ export default function Navbar() {
             </Link>
           )}
           {user ? (
-            <button className="hover:cursor-pointer">
+            <button onClick={handleLogout} className="hover:cursor-pointer">
               <LogOut className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
             </button>
           ) : (
