@@ -270,7 +270,7 @@ export default function Register() {
           </div>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account?
+          Already have an account ?&nbsp;
           <Link to="/auth/login" className="text-blue-600 hover:underline">
             Login
           </Link>

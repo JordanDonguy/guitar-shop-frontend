@@ -6,12 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="flex flex-col justify-between">
       <header className="max-md:pb-[95px]">
         <Navbar />
       </header>
 
-      <main className="min-h-screen">
+      <main className="flex-grow  min-h-screen">
         <Outlet />
       </main>
 

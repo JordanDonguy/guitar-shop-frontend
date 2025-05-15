@@ -6,7 +6,7 @@ import xLogo from "../assets/img/x-logo.png";
 
 export default function Footer() {
   return (
-    <footer className="flex h-85 items-center justify-between bg-neutral-800 px-[10%] text-teal-50 max-2xl:px-[5%] max-lg:h-auto max-lg:flex-col">
+    <footer className="flex items-center justify-between bg-neutral-800 px-[10%] text-teal-50 max-2xl:px-[5%] max-lg:h-auto max-lg:flex-col">
       <div className="flex w-120 flex-wrap items-center justify-between max-lg:w-full max-lg:py-10">
         <a href="http://facebook.com" target="_blank">
           <img

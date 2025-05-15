@@ -22,7 +22,6 @@ export default function Navbar() {
     const handleScroll = () => {
       setHasShadow(window.scrollY > 95);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

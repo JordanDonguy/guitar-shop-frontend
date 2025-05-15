@@ -102,7 +102,7 @@ export default function Products() {
       return <div className="text-2xl w-full">No products match your search...</div>;
 
     return searchedProducts.map((product) => (
-      <DelayedMount delay={50}>
+      <DelayedMount delay={50} key={product.id}>
         <div
           key={product.id}
           className="fade-in flex mb-10 rounded-xl border-2 border-neutral-300 shadow-sm"
