@@ -104,7 +104,7 @@ export default function Navbar() {
           ) : (
             <Link
               to="/auth/login"
-              className="flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:bg-teal-200"
+              className="flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:bg-teal-200 hover:border-2"
             >
               Login
             </Link>

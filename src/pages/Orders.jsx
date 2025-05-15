@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../components/utils/AuthContext";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { BASE_URL } from "../components/utils/api";
 import { toast } from "react-toastify";
 import Order from "../components/Order";
@@ -23,7 +24,7 @@ export default function Orders() {
   useEffect(() => {
     if (loadingAuth) return;
     window.scrollTo(0, 0);
-    fetch(`${BASE_URL}/orders/?userId=${user.id}`, { credentials: "include" })
+    fetchWithCsrf(`${BASE_URL}/orders/`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data.orders || []);

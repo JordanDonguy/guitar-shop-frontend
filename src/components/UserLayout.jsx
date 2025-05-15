@@ -1,8 +1,19 @@
-import { Outlet, Link } from "react-router-dom";
-import { useMediaQuery } from "./utils/useMediaQuery"; // update path as needed
+import { useEffect } from "react";
+import { Outlet, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "./utils/AuthContext";
+import { useMediaQuery } from "./utils/useMediaQuery";
 
 const UserLayout = () => {
+  const { user, loadingAuth } = useAuth();
+  const navigate = useNavigate();
   const isMobile = useMediaQuery("(max-width: 1024px)");
+
+    useEffect(() => {
+      if (loadingAuth) return;
+      if (!user) {
+        navigate("/auth/login");
+      }
+    }, [user, loadingAuth]);
 
   if (isMobile) {
     return (

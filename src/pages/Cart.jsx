@@ -7,7 +7,7 @@ import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-  const { user, setUser } = useAuth();
+  const { user, setUser, loadingAuth } = useAuth();
   const [guestCart, setGuestCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
@@ -18,11 +18,12 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
+    if (loadingAuth) return;
     if (!user) {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
       setGuestCart(storedCart);
     } else {
-      fetch(`${BASE_URL}/cart/?userId=${user.id}`)
+      fetchWithCsrf(`${BASE_URL}/cart/?userId=${user.id}`)
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);

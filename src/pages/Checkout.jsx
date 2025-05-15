@@ -50,7 +50,7 @@ const CheckoutForm = () => {
     try {
       const response = await fetchWithCsrf(`${BASE_URL}/checkout`, {
         method: "POST",
-        body: JSON.stringify({ cardNumber, expiry, cvv, total_price, user }),
+        body: JSON.stringify({ cardNumber, expiry, cvv }),
       });
       if (response.ok) {
         const result = await response.json();

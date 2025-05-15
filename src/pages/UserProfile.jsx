@@ -14,11 +14,16 @@ export default function UserProfile() {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+    useEffect(() => {
+    if (loadingAuth) return;
+    if (!user) {
+      navigate("/auth/login");
+    }
+  }, [user, loadingAuth]);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetch(`${BASE_URL}/user`, {
-      credentials: "include",
-    })
+    fetchWithCsrf(`${BASE_URL}/user`)
       .then((res) => {
         if (!res.ok) throw new Error("Not authenticated");
         return res.json();
@@ -32,13 +37,6 @@ export default function UserProfile() {
         console.error("Auth error:", err);
       });
   }, []);
-
-  useEffect(() => {
-    if (loadingAuth) return;
-    if (!user) {
-      navigate("/auth/login");
-    }
-  }, [user, loadingAuth]);
 
   async function handleSubmit(e) {
     e.preventDefault();
