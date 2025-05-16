@@ -24,6 +24,8 @@ export default function Products() {
   const [FilterVisibility, setFilterVisibility] = useState(false);
   const [blurBackground, setBlurBackground] = useState(false);
 
+  const [sortOrder, setSortOrder] = useState("desc");
+
   const [filter, setFilter] = useState({
     categoryIds: [],
     brandIds: [],
@@ -97,6 +99,18 @@ export default function Products() {
     setSearchedProducts(filtered);
   }, [searchTerm, products]);
 
+  const handleSort = () => {
+    if (sortOrder === "desc") {
+      setSortOrder("asc");
+    } else {
+      setSortOrder("desc")
+    };
+    const sorted = [...searchedProducts].sort((a, b) => {
+      return sortOrder === 'desc' ? a.price - b.price : b.price - a.price;
+    });
+    setSearchedProducts(sorted);
+  };
+
   const renderProducts = () => {
     if (searchedProducts.length == 0)
       return <div className="text-2xl w-full">No products match your search...</div>;
@@ -148,7 +162,17 @@ export default function Products() {
   };
 
   return (
-      <div className="fade-in mb-20 items-center pt-[140px] max-xl:flex flex-col">
+    <div className="max-xl:pt-[140px]">
+      <div className="max-xl:hidden flex justify-between mx-[10%] pt-[140px] border-b pb-2 mb-10 border-teal-300 max-2xl:mx-[5%]">
+        <h3 className="text-4xl">Filters</h3>
+        <button
+          onClick={handleSort}
+          className="text-2xl font-light hover:cursor-pointer hover:text-neutral-500"
+        >
+          Order by : {sortOrder === "desc" ? "↓" : "↑"}
+        </button>
+      </div>
+      <div className="fade-in mb-20 items-center max-xl:flex flex-col">
         <Helmet>
           <title>Products | Guitar Shop</title>
         </Helmet>
@@ -159,23 +183,30 @@ export default function Products() {
           >
             Filter
           </button>
+          <button
+            onClick={handleSort}
+            className="w-1/2 text-center text-2xl hover:cursor-pointer hover:text-neutral-500"
+          >
+            Order by : {sortOrder === "desc" ? "↓" : "↑"}
+          </button>
         </div>
-        <div className="flex min-h-[100vh] justify-between px-[10%] max-xl:px-[5%]">
+        <div className="flex min-h-[100vh] justify-between px-[10%] max-2xl:px-[5%]">
           {/* Render Filter component only after priceMax is loaded */}
-            {!loading && (
-              <Filter
-                priceMax={priceMax}
-                onFilterChange={handleFilterChange}
-                FilterVisibility={FilterVisibility}
-                toggleFilterVisibility={toggleFilterVisibility}
-              />
-            )}
+          {!loading && (
+            <Filter
+              priceMax={priceMax}
+              onFilterChange={handleFilterChange}
+              FilterVisibility={FilterVisibility}
+              toggleFilterVisibility={toggleFilterVisibility}
+            />
+          )}
           <div
             className={`flex w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && `blur`} xl:blur-none`}
           >
-              {!loadingProducts && renderProducts()} 
+            {!loadingProducts && renderProducts()}
           </div>
         </div>
       </div>
+    </div>
   );
 }
