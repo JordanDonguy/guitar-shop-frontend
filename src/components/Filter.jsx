@@ -5,7 +5,7 @@ import { BASE_URL } from "./utils/api";
 export default function Filter({
   onFilterChange,
   priceMax,
-  FilterVisibility,
+  filterVisibility,
   toggleFilterVisibility,
 }) {
   const [categories, setCategories] = useState([]);
@@ -53,15 +53,16 @@ export default function Filter({
 
   return (
     <div
-      className={`w-1/5 max-xl:w-[90%] ${FilterVisibility ? `max-xl:fixed` : `max-xl:hidden`} z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
+      className={`w-1/5 max-xl:w-[90%] ${filterVisibility ? `max-xl:fixed` : `max-xl:hidden`} z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
     >
-      <div className="xl:bg-white p-2 sticky top-[140px] h-[80vh] border-r-2 border-teal-400 max-xl:h-[50vh] max-xl:border-none">
+      <div className="xl:bg-white p-2 sticky top-[140px] h-[80vh] xl:shadow-sm rounded-r-xl xl:border-2 border-neutral-300 max-xl:h-[50vh] max-xl:border-none">
         <div className="flex h-full flex-col overflow-hidden">
 
           <div className="absolute right-0 top-0 hidden max-xl:flex items-center justify-between">
             <button
               onClick={toggleFilterVisibility}
-              className="rounded-lg border px-2 text-3xl hover:cursor-pointer hover:text-teal-600"
+                        className="border text-xl font-semibold rounded-full px-3 py-1 hover:bg-neutral-300"
+
             >
               X
             </button>

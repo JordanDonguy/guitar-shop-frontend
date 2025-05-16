@@ -24,7 +24,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
           max={max}
           value={minVal}
           onChange={handleMinChange}
-          className="w-full accent-blue-500 hover:cursor-pointer"
+          className="w-full accent-blue-500 hover:cursor-pointer mb-2 max-xl:mb-10"
         />
         <input
           type="range"

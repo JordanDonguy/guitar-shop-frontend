@@ -8,10 +8,10 @@ import AddToCart from "../components/AddToCart";
 
 export default function SingleProduct() {
   const { id } = useParams();
-  const [productInfos, setProductInfos] = useState([]);
+  const [productInfos, setProductInfos] = useState({});
 
   useEffect(() => {
-    window.scrollTo(0, 0); // This scrolls the page to the top when selecting a product from Products.jsx
+    window.scrollTo(0, 0);
   }, [id]);
 
   useEffect(() => {
@@ -19,8 +19,9 @@ export default function SingleProduct() {
       .then((res) => res.json())
       .then((data) => setProductInfos(data.product))
       .catch((err) => console.log(err));
-  }, []);
+  }, [id]);
 
+  if (!productInfos) return;
   return (
     <DelayedMount>
       <div className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%]">
@@ -77,6 +78,7 @@ export default function SingleProduct() {
               src={productInfos.video_url}
               frameBorder="0"
               allowFullScreen
+              title={`${productInfos.name} video`}
               className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl"
             ></iframe>
           : null}

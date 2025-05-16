@@ -37,7 +37,6 @@ export default function AddToCart({
         if (index !== -1) {
           cart[index].quantity += 1;
         } else {
-          // Add a new product structure (add other fields as needed)
           cart.push({
             product_id,
             quantity: 1,
@@ -45,7 +44,6 @@ export default function AddToCart({
             name,
             image_url,
             price,
-            // optionally include: name, image_url, price, etc.
           });
         }
 
@@ -61,12 +59,12 @@ export default function AddToCart({
   }
 
   return (
-    <form onSubmit={handleSubmit} id="add-to-cart-form">
+    <form onSubmit={handleSubmit} id={`add-to-cart-${product_id}`}>
       <button
         type="submit"
         className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:w-20 max-lg:h-20"
       >
-        <img src={addToCart} className="w-10 max-lg:w-12" />
+        <img src={addToCart} className="w-10 max-lg:w-12" alt="Add to cart"/>
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
 

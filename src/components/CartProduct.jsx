@@ -26,7 +26,6 @@ export default function CartProduct({
         method: "POST",
         body: JSON.stringify({
           product_id,
-          cart_id: cartId,
           quantity,
         }),
       });
@@ -51,7 +50,7 @@ export default function CartProduct({
 
   return (
     <div
-      key={product.product_id}
+      key={product.id}
       className="my-5 flex items-center rounded-xl border-2 border-neutral-300 shadow-md"
     >
       <img
@@ -87,7 +86,7 @@ export default function CartProduct({
               </>
             ) : (
               <>
-                <form onSubmit={handleSubmit} id="remove-one-form">
+                <form onSubmit={handleSubmit} id={`remove-one-${product.id}`}>
                   <input
                     type="hidden"
                     name="product_id"
@@ -103,7 +102,7 @@ export default function CartProduct({
                   </button>
                 </form>
                 <span className="w-1/3 text-center">{productQuantity}</span>
-                <form onSubmit={handleSubmit} id="add-one-form">
+                <form onSubmit={handleSubmit} id={`add-one-${product.id}`}>
                   <input
                     type="hidden"
                     name="product_id"

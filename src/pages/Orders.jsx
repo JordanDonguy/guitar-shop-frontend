@@ -19,7 +19,7 @@ export default function Orders() {
     if (!user) {
       navigate("/auth/login");
     }
-  }, [user, loadingAuth]);
+  }, [user, loadingAuth, navigate]);
 
   useEffect(() => {
     if (loadingAuth) return;
@@ -72,7 +72,7 @@ return (
     <Helmet>
       <title>Orders | Guitar Shop</title>
     </Helmet>
-    <div className="w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
+    <div className="w-3/4 h-fit rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
       <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
         My Orders
       </h1>

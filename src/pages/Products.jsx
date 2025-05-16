@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import { useSearch } from "../components/utils/SearchContext";
-import DelayedMount from "../components/utils/DelayedMount";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
 import { Link } from "react-router-dom";
@@ -17,7 +16,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [loadingProducts, setLoadingProducts] = useState(true);
 
-  const [FilterVisibility, setFilterVisibility] = useState(false);
+  const [filterVisibility, setFilterVisibility] = useState(false);
   const [blurBackground, setBlurBackground] = useState(false);
 
   const [sortOrder, setSortOrder] = useState("desc");
@@ -69,14 +68,14 @@ export default function Products() {
         setLoadingProducts(false);
       })
       .catch((err) => console.log(err));
-  }, [filter]);
+  }, [filter, priceMax]);
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
 
   const toggleFilterVisibility = () => {
-    if (FilterVisibility) {
+    if (filterVisibility) {
       setFilterVisibility(false);
       setBlurBackground(false);
     } else {
@@ -96,11 +95,8 @@ export default function Products() {
   }, [searchTerm, products]);
 
   const handleSort = () => {
-    if (sortOrder === "desc") {
-      setSortOrder("asc");
-    } else {
-      setSortOrder("desc")
-    };
+    const newOrder = sortOrder === "desc" ? "asc" : "desc";
+    setSortOrder(newOrder);
     const sorted = [...searchedProducts].sort((a, b) => {
       return sortOrder === 'desc' ? a.price - b.price : b.price - a.price;
     });
@@ -112,7 +108,6 @@ export default function Products() {
       return <div className="text-2xl w-full">No products match your search...</div>;
 
     return searchedProducts.map((product) => (
-      <DelayedMount delay={50} key={product.id}>
         <div
           key={product.id}
           className="fade-in flex mb-10 rounded-xl border-2 border-neutral-300 shadow-sm"
@@ -153,13 +148,12 @@ export default function Products() {
             </div>
           </div>
         </div>
-      </DelayedMount>
     ));
   };
 
   return (
     <div className="max-xl:pt-[140px]">
-      <div className="max-xl:hidden flex justify-between mx-[10%] pt-[140px] border-b pb-2 mb-10 border-teal-300 max-2xl:mx-[5%]">
+      <div className="max-xl:hidden flex justify-between mx-[10%] pt-[140px] border-b-2 pb-2 mb-10 border-neutral-300 max-2xl:mx-[5%]">
         <h3 className="text-4xl">Filters</h3>
         <button
           onClick={handleSort}
@@ -192,7 +186,7 @@ export default function Products() {
             <Filter
               priceMax={priceMax}
               onFilterChange={handleFilterChange}
-              FilterVisibility={FilterVisibility}
+              filterVisibility={filterVisibility}
               toggleFilterVisibility={toggleFilterVisibility}
             />
           )}

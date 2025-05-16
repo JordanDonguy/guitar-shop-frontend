@@ -44,11 +44,7 @@ export default function Order({
   }
 
   function toggleItemsVisible() {
-    if (!itemsVisible) {
-      setItemsVisible(true);
-    } else {
-      setItemsVisible(false);
-    }
+    setItemsVisible((prev) => !prev);
   }
 
   return (

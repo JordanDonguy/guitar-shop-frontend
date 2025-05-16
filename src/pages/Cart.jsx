@@ -94,7 +94,7 @@ export default function Cart() {
             <div className="text-2xl font-light">
               Total price :{" "}
               <span className="font-semibold">
-                $ {Number(finalPriceFormatted || 0).toFixed(2)}
+                $ {finalPriceFormatted}
               </span>
             </div>
           </div>
@@ -104,7 +104,7 @@ export default function Cart() {
               state={{ total_price: finalPrice }}
             >
               <button
-                type="submit"
+                type="button"
                 className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
               >
                 Checkout
@@ -115,10 +115,10 @@ export default function Cart() {
       ) : (
         <>
           <div>
-            {guestCart && guestCart.length > 0 ? (
+            {guestCart.length > 0 ? (
               guestCart.map((product) => (
                 <CartProduct
-                  key={product.product_id}
+                  key={product.id}
                   product={product}
                   updateLocalCart={updateLocalCart}
                 />
@@ -136,7 +136,7 @@ export default function Cart() {
           <div className="mb-12">
             <Link to={user ? "/checkout" : "/auth/login"}>
               <button
-                type="submit"
+                type="button"
                 className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
               >
                 Checkout

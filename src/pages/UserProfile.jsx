@@ -16,7 +16,7 @@ export default function UserProfile() {
     if (!user) {
       navigate("/auth/login");
     }
-  }, [user, loadingAuth]);
+  }, [user, loadingAuth, navigate]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -141,7 +141,7 @@ export default function UserProfile() {
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-              <div className="sm:col-span-">
+              <div className="sm:col-span-1">
                 <label
                   htmlFor="phone_number"
                   className="block text-sm font-medium text-gray-700"

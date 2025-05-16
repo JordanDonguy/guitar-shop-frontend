@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import DelayedMount from "../components/utils/DelayedMount";
@@ -9,10 +9,7 @@ import amp from "../assets/img/amp.png";
 import newsletter from "../assets/img/newsletter.png";
 
 export default function HomePage() {
-  const [isVisible, setIsVisible] = useState(false);
-
   useEffect(() => {
-    setIsVisible(true);
     window.scrollTo(0, 0);
   }, []);
 
@@ -23,9 +20,7 @@ export default function HomePage() {
           <title>Homepage | Guitar Shop</title>
         </Helmet>
         {/* Hero Section */}
-        <div
-          className={`${isVisible ? "fade-in" : ""} flex h-screen pt-[100px] shadow-lg max-lg:h-fit`}
-        >
+        <div className="fade-in flex h-screen pt-[100px] shadow-lg max-lg:h-fit">
           <div className="flex w-full flex-col justify-between pt-5 pb-10 pl-[10%] max-2xl:pl-[5%] max-xl:w-4/6 max-xl:justify-around max-lg:w-full max-lg:items-center max-lg:pl-0">
             <h1 className="text-8xl/30 text-shadow-lg max-2xl:text-8xl/25 max-lg:px-[5%] max-lg:text-center">
               Find the guitar you’ve always wanted
@@ -65,7 +60,7 @@ export default function HomePage() {
         </div>
         {/* Hottest Products Section */}
         <div
-          className={`${isVisible ? "fade-in" : ""} flex flex-col items-center`}
+          className="fade-in flex flex-col items-center"
         >
           <h1 className="my-25 pl-12 text-6xl max-lg:pl-0">Hottest products</h1>
           <div className="flex justify-center text-shadow-lg max-lg:flex-col">
@@ -115,7 +110,7 @@ export default function HomePage() {
               <Link to="/products/18" className="flex h-[30%] w-full flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 rounded-r-xl max-lg:rounded-xl hover:outline outline-teal-200">
                 <h3 className="text-3xl font-medium">Martin</h3>
                 <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
-                  Special D classNameic Dreadnought Acoustic
+                  Special D Classic Dreadnought Acoustic
                 </h4>
                 <span className="text-3xl font-bold">$ 889</span>
               </Link>
