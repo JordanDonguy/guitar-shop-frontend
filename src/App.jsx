@@ -1,15 +1,17 @@
+import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import HomePage from "./pages/HomePage";
-import Products from "./pages/Products";
-import SingleProduct from "./pages/SingleProduct";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import UserLayout from "./components/UserLayout";
-import UserProfile from "./pages/UserProfile";
-import Orders from "./pages/Orders";
-import Cart from "./pages/Cart";
-import CheckoutForm from "./pages/Checkout";
+const HomePage = lazy(() => import("./pages/HomePage"));
+const Products = lazy(() => import("./pages/Products"));
+const SingleProduct = lazy(() => import("./pages/SingleProduct"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
+const UserLayout = lazy(() => import("./components/UserLayout"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const Orders = lazy(() => import("./pages/Orders"));
+const Cart = lazy(() => import("./pages/Cart"));
+const CheckoutForm = lazy(() => import("./pages/Checkout"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 import { AuthProvider } from "./components/utils/AuthContext";
 import { SearchProvider } from "./components/utils/SearchContext";
 
@@ -25,11 +27,12 @@ export default function App() {
             <Route path="/auth/login" element={<Login />}></Route>
             <Route path="/auth/register" element={<Register />}></Route>
             <Route path="/user" element={<UserLayout />}>
-              <Route path="user-profile" element={<UserProfile />}></Route>
+              <Route path="profile" element={<UserProfile />}></Route>
               <Route path="orders" element={<Orders />}></Route>
             </Route>
             <Route path="/cart" element={<Cart />}></Route>
             <Route path="/checkout" element={<CheckoutForm />}></Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </SearchProvider>

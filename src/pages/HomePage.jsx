@@ -200,11 +200,10 @@ export default function HomePage() {
             </div>
             <form className="flex h-40 flex-col justify-between">
               <div>
-                <label htmlFor="email"></label>
                 <input
                   id="email"
                   name="email"
-                  type="text"
+                  type="email"
                   placeholder="Email address"
                   className="h-12 rounded-lg border pl-5 text-2xl"
                 ></input>

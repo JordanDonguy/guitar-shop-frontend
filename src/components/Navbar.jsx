@@ -97,7 +97,7 @@ export default function Navbar() {
           </button>
           {/* Conditionally render Login, My Profile, and Logout links */}
           {user ? (
-            <Link to="/user/user-profile" className="">
+            <Link to="/user/profile" className="">
               <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
             </Link>
           ) : (
