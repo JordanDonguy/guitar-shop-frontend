@@ -17,9 +17,12 @@ const CheckoutForm = () => {
   const [expiry, setExpiry] = useState("");
   const [cvv, setCvv] = useState("");
 
+  const [loadingPaiement, setLoadingPaiement] = useState(false);
+
   const handleCardNumberChange = (e) => {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 16) value = value.slice(0, 16);
+    let value = e.target.value.replace(/\D/g, '').slice(0, 16);
+    // Add spaces every 4 digits
+    value = value.replace(/(.{4})/g, '$1 ').trim();
     setCardNumber(value);
   };
 
@@ -47,10 +50,12 @@ const CheckoutForm = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
+    const rawCardNumber = cardNumber.replace(/\s/g, '')
+    setLoadingPaiement(true);
     try {
       const response = await fetchWithCsrf(`${BASE_URL}/checkout`, {
         method: "POST",
-        body: JSON.stringify({ cardNumber, expiry, cvv }),
+        body: JSON.stringify({ cardNumber: rawCardNumber, expiry, cvv }),
       });
       if (response.ok) {
         navigate("/user/orders", {
@@ -65,6 +70,12 @@ const CheckoutForm = () => {
       }
     } catch (err) {
       console.error("Error adding item to cart:", err);
+      toast.error("Network or unexpected error. Please try again.", {
+        position: "bottom-center",
+        autoClose: 4000,
+      });
+    } finally {
+      setLoadingPaiement(false);
     }
   };
 
@@ -157,6 +168,7 @@ const CheckoutForm = () => {
 
         <button
           type="submit"
+          disabled={loadingPaiement}
           className="w-full rounded bg-blue-600 py-3 text-white transition hover:cursor-pointer hover:bg-blue-700"
         >
           Pay Now
