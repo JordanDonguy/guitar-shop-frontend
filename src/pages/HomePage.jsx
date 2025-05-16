@@ -78,13 +78,13 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-              <div className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0">
-                <h3 className="text-3xl font-medium">PRS</h3>
-                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit">
-                  John Mayer Silver Sky Electric Guitar Tungsten
-                </h4>
-                <span className="text-3xl font-bold">$ 2749</span>
-              </div>
+                <Link to="/products/11" className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 rounded-l-xl max-lg:rounded-xl hover:outline outline-teal-200">
+                  <h3 className="text-3xl font-medium">PRS</h3>
+                  <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
+                    John Mayer Silver Sky Electric Guitar Tungsten
+                  </h4>
+                  <span className="text-3xl font-bold">$ 2749</span>
+                </Link>
             </div>
             {/* Product card */}
             <div className="flex h-160 w-1/3 flex-col items-center justify-between border-r-2 border-teal-200 max-lg:mb-10 max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-y max-lg:border-r-0 max-lg:py-10">
@@ -95,13 +95,13 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-              <div className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0">
+              <Link to="/products/45" className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 max-lg:rounded-xl hover:outline outline-teal-200">
                 <h3 className="text-3xl font-medium">Tone King</h3>
-                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit">
+                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
                   Imperial MKII 20W 1x12 Tube Guitar Combo Amp
                 </h4>
                 <span className="text-3xl font-bold">$ 2695</span>
-              </div>
+              </Link>
             </div>
             {/* Product card */}
             <div className="flex h-160 w-1/3 flex-col items-center justify-between max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-b max-lg:border-teal-200 max-lg:pb-10">
@@ -112,13 +112,13 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-              <div className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0">
+              <Link to="/products/18" className="flex h-[30%] w-full flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 rounded-r-xl max-lg:rounded-xl hover:outline outline-teal-200">
                 <h3 className="text-3xl font-medium">Martin</h3>
-                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit">
+                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
                   Special D classNameic Dreadnought Acoustic
                 </h4>
                 <span className="text-3xl font-bold">$ 889</span>
-              </div>
+              </Link>
             </div>
           </div>
         </div>
