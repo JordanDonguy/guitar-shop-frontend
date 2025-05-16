@@ -17,6 +17,7 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       }
     } catch (err) {
+      console.log(err);
       setUser(null);
     } finally {
       setLoadingAuth(false);

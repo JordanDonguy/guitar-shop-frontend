@@ -5,14 +5,10 @@ import { useSearch } from "../components/utils/SearchContext";
 import DelayedMount from "../components/utils/DelayedMount";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
-import { Link, useSearchParams } from "react-router-dom";
-import { useAuth } from "../components/utils/AuthContext";
+import { Link } from "react-router-dom";
 
 export default function Products() {
-  const BASE_URL = "http://localhost:3000";
-  const { user } = useAuth();
   const { searchTerm } = useSearch();
-  const [searchParams] = useSearchParams();
 
   const [products, setProducts] = useState([]);
   const [searchedProducts, setSearchedProducts] = useState([]);

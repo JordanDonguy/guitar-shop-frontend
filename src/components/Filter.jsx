@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import PriceRangeSlider from "./PriceRangeSlider";
 import { BASE_URL } from "./utils/api";
-import DelayedMount from "./utils/DelayedMount";
 
 export default function Filter({
   onFilterChange,

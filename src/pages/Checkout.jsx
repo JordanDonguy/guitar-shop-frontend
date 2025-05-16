@@ -53,7 +53,6 @@ const CheckoutForm = () => {
         body: JSON.stringify({ cardNumber, expiry, cvv }),
       });
       if (response.ok) {
-        const result = await response.json();
         navigate("/user/orders", {
           state: { toastMessage: "🎉 Thank you! Your order was successful." },
         });

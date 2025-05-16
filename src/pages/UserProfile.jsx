@@ -59,14 +59,14 @@ export default function UserProfile() {
 
       if (!response.ok) {
         throw new Error("Failed to update user");
-      }
+      };
 
-      const data = await response.json();
       toast.success("Your profile has been updated !", {
         position: "bottom-center",
         autoClose: 3000,
       });
     } catch (error) {
+      console.log(error);
       toast.error("Could not update user profile", {
         position: "bottom-center",
         autoClose: 3000,

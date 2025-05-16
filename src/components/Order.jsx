@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BASE_URL } from "./utils/api";
 
 export default function Order({
   created_at,

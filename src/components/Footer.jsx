@@ -8,25 +8,25 @@ export default function Footer() {
   return (
     <footer className="flex items-center justify-between bg-neutral-800 px-[10%] text-teal-50 max-2xl:px-[5%] max-lg:h-auto max-lg:flex-col">
       <div className="flex w-120 flex-wrap items-center justify-between max-lg:w-full max-lg:py-10">
-        <a href="http://facebook.com" target="_blank">
+        <a href="http://facebook.com" target="_blank" rel="noreferrer">
           <img
             src={facebookLogo}
             className="mr-4 h-24 w-24 hover:brightness-125"
           />
         </a>
-        <a href="http://instagram.com" target="_blank">
+        <a href="http://instagram.com" target="_blank" rel="noreferrer">
           <img
             src={instagramLogo}
             className="mx-4 h-20 w-20 hover:brightness-125"
           />
         </a>
-        <a href="http://youtube.com" target="_blank">
+        <a href="http://youtube.com" target="_blank" rel="noreferrer">
           <img
             src={youtubeLogo}
             className="mx-4 h-24 w-24 hover:brightness-125"
           />
         </a>
-        <a href="http://x.com" target="_blank">
+        <a href="http://x.com" target="_blank" rel="noreferrer">
           <img src={xLogo} className="h-24 w-24 hover:brightness-200" />
         </a>
       </div>

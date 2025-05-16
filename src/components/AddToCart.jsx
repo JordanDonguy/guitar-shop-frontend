@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
@@ -19,11 +18,10 @@ export default function AddToCart({
 
     if (user) {
       try {
-        const response = await fetchWithCsrf(`${BASE_URL}/cart/add`, {
+        await fetchWithCsrf(`${BASE_URL}/cart/add`, {
           method: "POST",
           body: JSON.stringify({ product_id, user }),
         });
-        const result = await response.json();
         toast.success("Item added to cart!", {
           position: "bottom-center",
           autoClose: 2000,

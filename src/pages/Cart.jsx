@@ -7,7 +7,7 @@ import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-  const { user, setUser, loadingAuth } = useAuth();
+  const { user, loadingAuth } = useAuth();
   const [guestCart, setGuestCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
@@ -62,26 +62,6 @@ export default function Cart() {
       }
       localStorage.setItem("cart", JSON.stringify(cart));
       setGuestCart(cart);
-    }
-  };
-
-  const addOne = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const product_id = formData.get("product_id");
-
-    try {
-      const response = await fetchWithCsrf(`${BASE_URL}/cart/addOne`, {
-        method: "POST",
-        body: JSON.stringify({
-          product_id,
-          cart_id: cartId,
-        }),
-      });
-
-      if (!response.ok) throw new Error("Failed to update cart");
-    } catch (err) {
-      console.error(err);
     }
   };
 

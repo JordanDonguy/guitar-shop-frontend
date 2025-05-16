@@ -1,3 +1,5 @@
+import typography from "@tailwindcss/typography";
+
 export default {
   purge: [],
   darkMode: false, // or 'media' or 'class'
@@ -19,5 +21,5 @@ export default {
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 };
