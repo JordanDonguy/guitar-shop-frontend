@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import logo from "../assets/img/logo.png";
 import { ShoppingCart } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
@@ -14,6 +14,7 @@ import SearchBarMobile from "./SearchBarMobile";
 export default function Navbar() {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [hasShadow, setHasShadow] = useState(false);
   const [menuVisibility, setMenuVisibility] = useState(false);
 
@@ -55,58 +56,65 @@ export default function Navbar() {
       <nav
         className={`fixed z-20 flex h-[100px] w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] md:shadow-md ${hasShadow ? "max-md:shadow-md" : ""}`}
       >
-        <Link
+
+        <NavLink
           to="/"
           className="flex w-[110px] items-center justify-between max-xl:w-[60px]"
         >
           <img src={logo} className="h-[50px] w-[50px]" alt="shop logo" />
           <h1 className="w-[50px] text-lg max-xl:hidden">Guitar Shop</h1>
-        </Link>
+        </NavLink>
+
         <ul className="flex w-1/3 justify-between px-[1vw] text-xl font-light max-xl:w-2/5 max-lg:hidden">
           <li>
-            <Link to="/" className="hover:text-teal-600">
+            <NavLink to="/" className={({ isActive }) => `py-1 hover:text-teal-600 ${isActive ? "border-y-2" : ""} border-teal-400`}>
               About
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/products" className="hover:text-teal-600">
+            <NavLink to="/products" className={({ isActive }) => `py-1 hover:text-teal-600 ${isActive ? "border-y-2" : ""} border-teal-400`}>
               Products
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="#" className="hover:text-teal-600">
+            <NavLink to="#" className="py-1 hover:text-teal-600">
               Services
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="#" className="hover:text-teal-600">
+            <NavLink to="#" className="py-1 hover:text-teal-600">
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
+
         <SearchBar />
         <div className="flex w-50 justify-between max-lg:w-60">
-          <Link to="/cart" className="filter">
+          <NavLink to="/cart" className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"}`}>
             <ShoppingCart className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
-          </Link>
+          </NavLink>
           <button
             onClick={toggleMenuVisibility}
             className="hidden filter hover:cursor-pointer max-lg:block"
           >
             <Menu className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600" />
           </button>
-          {/* Conditionally render Login, My Profile, and Logout links */}
+
+          {/* Conditionally render Login, My Profile, and Logout NavLinks */}
           {user ? (
-            <Link to="/user/profile" className="">
-              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
-            </Link>
+            <NavLink to="/user/profile"
+              className={
+                location.pathname.startsWith("/user") ? "border-teal-400 border-y-2 filter py-1" : "border-transparent border-y-2 filter py-1"
+              }>
+                <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
+            </NavLink>
           ) : (
-            <Link
+            <NavLink
               to="/auth/login"
-              className="flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:bg-teal-200 hover:border-2"
+              className={({ isActive }) => `flex h-11 w-25 my-1 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:bg-teal-200 hover:border-2 ${isActive ? "border-2 bg-teal-200" : ""}`}
             >
               Login
-            </Link>
+            </NavLink>
           )}
           {user ? (
             <button onClick={handleLogout} className="hover:cursor-pointer">
@@ -120,50 +128,52 @@ export default function Navbar() {
       <SearchBarMobile />
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed ${menuVisibility ? "block" : "hidden"} z-10 h-1/2 w-full bg-[rgba(240,253,250,0.75)] pt-[120px] shadow-md backdrop-blur-sm`}
+        className={`fixed left-0 top-[100px] z-10 w-full bg-[rgba(240,253,250,0.95)] backdrop-blur-sm shadow-md transition-all duration-300 ease-in-out ${menuVisibility ? "max-h-1/2 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          }`}
       >
+
         <button
           onClick={toggleMenuVisibility}
-          className="ml-[5%] rounded-lg border px-4 py-2"
+          className="absolute right-6 top-6 border text-xl font-semibold rounded-full px-3 py-1 hover:bg-teal-200"
         >
-          X
+          ✕
         </button>
-        <ul className="flex h-full flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light">
+        <ul className="flex h-[50vh] flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light">
           <li>
-            <Link
+            <NavLink
               to="/"
               onClick={toggleMenuVisibility}
-              className="hover:text-teal-600"
+              className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`}
             >
               About
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="/products"
               onClick={toggleMenuVisibility}
-              className="hover:text-teal-600"
+              className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`}
             >
               Products
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="#"
               onClick={toggleMenuVisibility}
               className="hover:text-teal-600"
             >
               Services
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link
+            <NavLink
               to="#"
               onClick={toggleMenuVisibility}
               className="hover:text-teal-600"
             >
               Contact
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>
