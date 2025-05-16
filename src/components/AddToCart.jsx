@@ -62,12 +62,11 @@ export default function AddToCart({
     <form onSubmit={handleSubmit} id={`add-to-cart-${product_id}`}>
       <button
         type="submit"
-        className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:w-20 max-lg:h-20"
+        className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:h-20 max-lg:w-20"
       >
-        <img src={addToCart} className="w-10 max-lg:w-12" alt="Add to cart"/>
+        <img src={addToCart} className="w-10 max-lg:w-12" alt="Add to cart" />
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
-
     </form>
   );
 }

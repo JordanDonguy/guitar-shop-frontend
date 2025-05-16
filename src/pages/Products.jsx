@@ -89,7 +89,7 @@ export default function Products() {
     const filtered = products.filter(
       (p) =>
         p.name.toLowerCase().includes(term) ||
-        p.brand.toLowerCase().includes(term)
+        p.brand.toLowerCase().includes(term),
     );
     setSearchedProducts(filtered);
   }, [searchTerm, products]);
@@ -98,62 +98,64 @@ export default function Products() {
     const newOrder = sortOrder === "desc" ? "asc" : "desc";
     setSortOrder(newOrder);
     const sorted = [...searchedProducts].sort((a, b) => {
-      return sortOrder === 'desc' ? a.price - b.price : b.price - a.price;
+      return sortOrder === "desc" ? a.price - b.price : b.price - a.price;
     });
     setSearchedProducts(sorted);
   };
 
   const renderProducts = () => {
     if (searchedProducts.length == 0)
-      return <div className="text-2xl w-full">No products match your search...</div>;
+      return (
+        <div className="w-full text-2xl">No products match your search...</div>
+      );
 
     return searchedProducts.map((product) => (
-        <div
-          key={product.id}
-          className="fade-in flex mb-10 rounded-xl border-2 border-neutral-300 shadow-sm"
-        >
-          <img
-            src={product.image_url}
-            alt="product image"
-            className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-5 max-lg:py-5"
-          />
-          <div className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
-            <Link
-              className="mr-5 border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
-              to={`/products/${product.id}`}
-            >
-              <div>
-                <h3 className="pb-4 text-3xl max-lg:pb-2">{product.brand}</h3>
-                <h4 className="text-2xl font-light">{product.name}</h4>
-              </div>
-            </Link>
-            <div className="flex items-end pr-15">
-              <div className="flex flex-col pr-10">
-                {product.stock > 0 ? (
-                  <span className="text-2xl text-green-600">● Available</span>
-                ) : (
-                  <span className="text-xl text-red-600">● Out of Stock</span>
-                )}
-                <span className="pt-4 text-3xl font-medium">
-                  $ {product.price}
-                </span>
-              </div>
-              <AddToCart
-                product_id={product.id}
-                brand={product.brand}
-                name={product.name}
-                image_url={product.image_url}
-                price={product.price}
-              />
+      <div
+        key={product.id}
+        className="fade-in mb-10 flex rounded-xl border-2 border-neutral-300 shadow-sm"
+      >
+        <img
+          src={product.image_url}
+          alt="product image"
+          className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-5 max-lg:py-5"
+        />
+        <div className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
+          <Link
+            className="mr-5 border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
+            to={`/products/${product.id}`}
+          >
+            <div>
+              <h3 className="pb-4 text-3xl max-lg:pb-2">{product.brand}</h3>
+              <h4 className="text-2xl font-light">{product.name}</h4>
             </div>
+          </Link>
+          <div className="flex items-end pr-15">
+            <div className="flex flex-col pr-10">
+              {product.stock > 0 ? (
+                <span className="text-2xl text-green-600">● Available</span>
+              ) : (
+                <span className="text-xl text-red-600">● Out of Stock</span>
+              )}
+              <span className="pt-4 text-3xl font-medium">
+                $ {product.price}
+              </span>
+            </div>
+            <AddToCart
+              product_id={product.id}
+              brand={product.brand}
+              name={product.name}
+              image_url={product.image_url}
+              price={product.price}
+            />
           </div>
         </div>
+      </div>
     ));
   };
 
   return (
     <div className="max-xl:pt-[140px]">
-      <div className="max-xl:hidden flex justify-between mx-[10%] pt-[140px] border-b-2 pb-2 mb-10 border-neutral-300 max-2xl:mx-[5%]">
+      <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden">
         <h3 className="text-4xl">Filters</h3>
         <button
           onClick={handleSort}
@@ -162,7 +164,7 @@ export default function Products() {
           Order by : {sortOrder === "desc" ? "↓" : "↑"}
         </button>
       </div>
-      <div className="fade-in mb-20 items-center max-xl:flex flex-col">
+      <div className="fade-in mb-20 flex-col items-center max-xl:flex">
         <Helmet>
           <title>Products | Guitar Shop</title>
         </Helmet>

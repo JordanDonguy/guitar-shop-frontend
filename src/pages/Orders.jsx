@@ -37,47 +37,47 @@ export default function Orders() {
   }, [user, loadingAuth]);
 
   useEffect(() => {
-  let toastShown = false;
+    let toastShown = false;
 
-  if (location.state?.toastMessage && !toastShown) {
-    toastShown = true;
+    if (location.state?.toastMessage && !toastShown) {
+      toastShown = true;
 
-    toast.success(location.state.toastMessage, {
-      position: "bottom-center",
-      autoClose: 5000,
-    });
+      toast.success(location.state.toastMessage, {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
 
-    // Clear state so it doesn't trigger again
-    navigate(location.pathname, { replace: true });
+      // Clear state so it doesn't trigger again
+      navigate(location.pathname, { replace: true });
+    }
+  }, []);
+
+  function renderOrders() {
+    if (orders.length == 0)
+      return <div className="text-xl">No orders found... </div>;
+    return orders.map((order) => (
+      <Order
+        key={order.id}
+        created_at={order.created_at}
+        total_price={order.total_price}
+        first_name={order.first_name}
+        last_name={order.last_name}
+        items={order.items}
+      />
+    ));
   }
-}, []);
 
-function renderOrders() {
-  if (orders.length == 0)
-    return <div className="text-xl">No orders found... </div>;
-  return orders.map((order) => (
-    <Order
-      key={order.id}
-      created_at={order.created_at}
-      total_price={order.total_price}
-      first_name={order.first_name}
-      last_name={order.last_name}
-      items={order.items}
-    />
-  ));
-}
-
-return (
-  <div className="flex w-full justify-center">
-    <Helmet>
-      <title>Orders | Guitar Shop</title>
-    </Helmet>
-    <div className="w-3/4 h-fit rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
-      <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
-        My Orders
-      </h1>
-      <div>{!loading && renderOrders()}</div>
+  return (
+    <div className="flex w-full justify-center">
+      <Helmet>
+        <title>Orders | Guitar Shop</title>
+      </Helmet>
+      <div className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
+        <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
+          My Orders
+        </h1>
+        <div>{!loading && renderOrders()}</div>
+      </div>
     </div>
-  </div>
-);
+  );
 }

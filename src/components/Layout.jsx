@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import loadingGif from "../assets/img/loading.gif"
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import loadingGif from "../assets/img/loading.gif";
 
 const Layout = () => {
   return (
@@ -13,15 +13,17 @@ const Layout = () => {
         <Navbar />
       </header>
 
-      <Suspense fallback={
-        <div className="flex justify-center items-center h-screen">
-          <img src={loadingGif}></img>
-          <img src={loadingGif}></img>
-          <img src={loadingGif}></img>
-          <img src={loadingGif}></img>
-        </div>
-      }>
-        <main className="flex-grow min-h-screen">
+      <Suspense
+        fallback={
+          <div className="flex h-screen items-center justify-center">
+            <img src={loadingGif}></img>
+            <img src={loadingGif}></img>
+            <img src={loadingGif}></img>
+            <img src={loadingGif}></img>
+          </div>
+        }
+      >
+        <main className="min-h-screen flex-grow">
           <Outlet />
         </main>
       </Suspense>

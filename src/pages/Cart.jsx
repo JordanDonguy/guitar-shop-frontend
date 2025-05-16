@@ -93,9 +93,7 @@ export default function Cart() {
           <div className="my-12 flex w-full items-center justify-between">
             <div className="text-2xl font-light">
               Total price :{" "}
-              <span className="font-semibold">
-                $ {finalPriceFormatted}
-              </span>
+              <span className="font-semibold">$ {finalPriceFormatted}</span>
             </div>
           </div>
           <div className="mb-12">

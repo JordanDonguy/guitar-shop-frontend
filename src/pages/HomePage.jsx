@@ -59,9 +59,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* Hottest Products Section */}
-        <div
-          className="fade-in flex flex-col items-center"
-        >
+        <div className="fade-in flex flex-col items-center">
           <h1 className="my-25 pl-12 text-6xl max-lg:pl-0">Hottest products</h1>
           <div className="flex justify-center text-shadow-lg max-lg:flex-col">
             {/* Product card */}
@@ -73,13 +71,16 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-                <Link to="/products/11" className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 rounded-l-xl max-lg:rounded-xl hover:outline outline-teal-200">
-                  <h3 className="text-3xl font-medium">PRS</h3>
-                  <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
-                    John Mayer Silver Sky Electric Guitar Tungsten
-                  </h4>
-                  <span className="text-3xl font-bold">$ 2749</span>
-                </Link>
+              <Link
+                to="/products/11"
+                className="flex h-[30%] flex-col items-center justify-between rounded-l-xl pt-5 outline-teal-200 hover:bg-neutral-200 hover:outline max-lg:h-40 max-lg:rounded-xl max-lg:pt-0"
+              >
+                <h3 className="text-3xl font-medium">PRS</h3>
+                <h4 className="w-[60%] text-center text-2xl max-xl:w-5/6 max-lg:w-fit">
+                  John Mayer Silver Sky Electric Guitar Tungsten
+                </h4>
+                <span className="text-3xl font-bold">$ 2749</span>
+              </Link>
             </div>
             {/* Product card */}
             <div className="flex h-160 w-1/3 flex-col items-center justify-between border-r-2 border-teal-200 max-lg:mb-10 max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-y max-lg:border-r-0 max-lg:py-10">
@@ -90,9 +91,12 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-              <Link to="/products/45" className="flex h-[30%] flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 max-lg:rounded-xl hover:outline outline-teal-200">
+              <Link
+                to="/products/45"
+                className="flex h-[30%] flex-col items-center justify-between pt-5 outline-teal-200 hover:bg-neutral-200 hover:outline max-lg:h-40 max-lg:rounded-xl max-lg:pt-0"
+              >
                 <h3 className="text-3xl font-medium">Tone King</h3>
-                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
+                <h4 className="w-[60%] text-center text-2xl max-xl:w-5/6 max-lg:w-fit">
                   Imperial MKII 20W 1x12 Tube Guitar Combo Amp
                 </h4>
                 <span className="text-3xl font-bold">$ 2695</span>
@@ -107,9 +111,12 @@ export default function HomePage() {
                   filter: "drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.5))",
                 }}
               />
-              <Link to="/products/18" className="flex h-[30%] w-full flex-col items-center justify-between pt-5 max-lg:h-40 max-lg:pt-0 hover:bg-neutral-200 rounded-r-xl max-lg:rounded-xl hover:outline outline-teal-200">
+              <Link
+                to="/products/18"
+                className="flex h-[30%] w-full flex-col items-center justify-between rounded-r-xl pt-5 outline-teal-200 hover:bg-neutral-200 hover:outline max-lg:h-40 max-lg:rounded-xl max-lg:pt-0"
+              >
                 <h3 className="text-3xl font-medium">Martin</h3>
-                <h4 className="w-[60%] text-center text-2xl max-lg:w-fit max-xl:w-5/6">
+                <h4 className="w-[60%] text-center text-2xl max-xl:w-5/6 max-lg:w-fit">
                   Special D Classic Dreadnought Acoustic
                 </h4>
                 <span className="text-3xl font-bold">$ 889</span>
@@ -128,7 +135,8 @@ export default function HomePage() {
             <p>
               I ordered the Fender Player Strat and it arrived in perfect
               condition, set up and ready to go. Super fast shipping and the
-              customer support was top-notch. Will definitely buy again!<br></br>
+              customer support was top-notch. Will definitely buy again!
+              <br></br>
             </p>
             <p className="font-bold">
               {" "}
@@ -141,9 +149,9 @@ export default function HomePage() {
               “Excellent customer service for picky players.”
             </p>
             <p>
-              I had a few questions about neck profiles and pickup configs — their
-              support team knew their stuff. Ended up with a Gretsch hollow body
-              that fits my style perfectly.<br></br>
+              I had a few questions about neck profiles and pickup configs —
+              their support team knew their stuff. Ended up with a Gretsch
+              hollow body that fits my style perfectly.<br></br>
             </p>
             <p className="font-bold">
               {" "}
@@ -155,8 +163,8 @@ export default function HomePage() {
             <p className="font-medium">“Beginner-friendly and trustworthy.”</p>
             <p>
               As a total beginner, I wasn’t sure what to buy. Their live chat
-              helped me pick the perfect starter bundle. Got my acoustic guitar in
-              3 days and I’ve been practicing daily since!<br></br>
+              helped me pick the perfect starter bundle. Got my acoustic guitar
+              in 3 days and I’ve been practicing daily since!<br></br>
             </p>
             <p className="font-bold">
               {" "}
@@ -175,12 +183,14 @@ export default function HomePage() {
                 alt="newsletter"
               />
               <div className="hidden w-120 flex-col items-center justify-center pl-20 text-center max-xl:flex max-lg:mx-[10%] max-lg:w-full max-lg:pl-0">
-                <p className="pb-5 text-4xl">Stay in Tune With the Latest Gear</p>
+                <p className="pb-5 text-4xl">
+                  Stay in Tune With the Latest Gear
+                </p>
                 <p className="text-2xl">
                   {" "}
                   Subscribe to our newsletter and be the first to know about
-                  exclusive deals, new arrivals, and guitar tips straight from the
-                  pros. No spam — just great tone in your inbox.
+                  exclusive deals, new arrivals, and guitar tips straight from
+                  the pros. No spam — just great tone in your inbox.
                 </p>
               </div>
             </div>

@@ -30,29 +30,32 @@ export default function SingleProduct() {
         </Helmet>
         {/* SECTION 1 */}
         <div className="mb-10 flex rounded-xl shadow-lg">
-          <div className="flex w-full justify-center rounded-xl bg-teal-50 max-lg:flex-col ">
+          <div className="flex w-full justify-center rounded-xl bg-teal-50 max-lg:flex-col">
             <img
               src={productInfos.image_url2}
               alt={productInfos.name}
-              className="max-lg:hidden max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%]"
+              className="max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden"
             />
             <img
               src={productInfos.image_url}
               alt={productInfos.name}
-              className="hidden max-lg:block rounded-l-xl bg-white object-contain px-[2%] w-full h-110 py-5"
+              className="hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block"
             />
-            <div className="w-[30%] flex-1 border-l border-teal-200 pt-15 pl-5 max-lg:w-full max-lg:pt-10 max-lg:border-l-0 max-lg:border-t">
+            <div className="w-[30%] flex-1 border-l border-teal-200 pt-15 pl-5 max-lg:w-full max-lg:border-t max-lg:border-l-0 max-lg:pt-10">
               <h1 className="pb-5 text-4xl font-bold">{productInfos.brand}</h1>
-              <h1 className="pb-10 text-2xl max-xl:pb-5">{productInfos.name}</h1>
-              <div className="max-lg:flex justify-between pr-5 items-end max-lg:mb-10">
+              <h1 className="pb-10 text-2xl max-xl:pb-5">
+                {productInfos.name}
+              </h1>
+              <div className="items-end justify-between pr-5 max-lg:mb-10 max-lg:flex">
                 <div>
                   <div
-                    className={`my-2 pb-5 text-xl ${productInfos.stock > 0 ? "text-green-600" : "text-red-600"
-                      }`}
+                    className={`my-2 pb-5 text-xl ${
+                      productInfos.stock > 0 ? "text-green-600" : "text-red-600"
+                    }`}
                   >
                     {productInfos.stock > 0 ? "● Available" : "● Out of Stock"}
                   </div>
-                  <div className="my-2 pb-7 text-4xl max-xl:pb-5 max-lg:mr-15 max-lg:pb-0 max-lg:my-0">
+                  <div className="my-2 pb-7 text-4xl max-xl:pb-5 max-lg:my-0 max-lg:mr-15 max-lg:pb-0">
                     ${Number(productInfos.price).toFixed(2)}
                   </div>
                 </div>
@@ -69,11 +72,13 @@ export default function SingleProduct() {
         </div>
         {/* SECTION 2 */}
         <div className="mx-auto my-24 mb-10 flex flex-col items-center rounded-xl bg-teal-50 leading-relaxed shadow-lg">
-          <h2 className="p-10 text-center text-4xl font-semibold">Description</h2>
+          <h2 className="p-10 text-center text-4xl font-semibold">
+            Description
+          </h2>
           <div className="prose-lg px-[5%] py-5">
             <Markdown>{productInfos.description}</Markdown>
           </div>
-          {productInfos.video_url ?
+          {productInfos.video_url ? (
             <iframe
               src={productInfos.video_url}
               frameBorder="0"
@@ -81,7 +86,7 @@ export default function SingleProduct() {
               title={`${productInfos.name} video`}
               className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl"
             ></iframe>
-          : null}
+          ) : null}
         </div>
         {/* SECTION 3 */}
         <div className="my-24 flex w-full flex-col items-center">

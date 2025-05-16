@@ -18,7 +18,7 @@ export default defineConfig([
       },
     },
     rules: {
-      'react/react-in-jsx-scope': 'off', // ✅ turn off this outdated rule
+      "react/react-in-jsx-scope": "off", // ✅ turn off this outdated rule
       "react/prop-types": "off",
     },
     extends: ["js/recommended", pluginReact.configs.flat.recommended],

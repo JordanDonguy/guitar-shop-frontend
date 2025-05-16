@@ -56,7 +56,6 @@ export default function Navbar() {
       <nav
         className={`fixed z-20 flex h-[100px] w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] md:shadow-md ${hasShadow ? "max-md:shadow-md" : ""}`}
       >
-
         <NavLink
           to="/"
           className="flex w-[110px] items-center justify-between max-xl:w-[60px]"
@@ -67,12 +66,22 @@ export default function Navbar() {
 
         <ul className="flex w-1/3 justify-between px-[1vw] text-xl font-light max-xl:w-2/5 max-lg:hidden">
           <li>
-            <NavLink to="/" className={({ isActive }) => `py-1 hover:text-teal-600 ${isActive ? "border-y-2" : ""} border-teal-400`}>
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
+              }
+            >
               About
             </NavLink>
           </li>
           <li>
-            <NavLink to="/products" className={({ isActive }) => `py-1 hover:text-teal-600 ${isActive ? "border-y-2" : ""} border-teal-400`}>
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
+              }
+            >
               Products
             </NavLink>
           </li>
@@ -90,34 +99,45 @@ export default function Navbar() {
 
         <SearchBar />
         <div className="flex w-50 justify-between max-lg:w-60">
-          <NavLink to="/cart" className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"}`}>
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100" : "border-transparent"}`
+            }
+          >
             <ShoppingCart className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
           </NavLink>
           <button
             onClick={toggleMenuVisibility}
-            className="hidden filter hover:cursor-pointer max-lg:block"
+            className="hidden p-2 filter hover:cursor-pointer max-lg:block"
           >
             <Menu className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600" />
           </button>
 
           {/* Conditionally render Login, My Profile, and Logout NavLinks */}
           {user ? (
-            <NavLink to="/user/profile"
+            <NavLink
+              to="/user/profile"
               className={
-                location.pathname.startsWith("/user") ? "border-teal-400 border-y-2 filter py-1" : "border-transparent border-y-2 filter py-1"
-              }>
-                <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
+                location.pathname.startsWith("/user")
+                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter"
+                  : "border-y-2 border-transparent p-2 filter"
+              }
+            >
+              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
             </NavLink>
           ) : (
             <NavLink
               to="/auth/login"
-              className={({ isActive }) => `flex h-11 w-25 my-1 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:bg-teal-200 hover:border-2 ${isActive ? "border-2 bg-teal-200" : ""}`}
+              className={({ isActive }) =>
+                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""}`
+              }
             >
               Login
             </NavLink>
           )}
           {user ? (
-            <button onClick={handleLogout} className="hover:cursor-pointer">
+            <button onClick={handleLogout} className="p-2 hover:cursor-pointer">
               <LogOut className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
             </button>
           ) : (
@@ -128,13 +148,15 @@ export default function Navbar() {
       <SearchBarMobile />
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed left-0 top-[100px] z-10 w-full bg-[rgba(240,253,250,0.95)] backdrop-blur-sm shadow-md transition-all duration-300 ease-in-out ${menuVisibility ? "max-h-1/2 opacity-100" : "max-h-0 opacity-0 overflow-hidden"
-          }`}
+        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
+          menuVisibility
+            ? "max-h-1/2 opacity-100"
+            : "max-h-0 overflow-hidden opacity-0"
+        }`}
       >
-
         <button
           onClick={toggleMenuVisibility}
-          className="absolute right-6 top-6 border text-xl font-semibold rounded-full px-3 py-1 hover:bg-teal-200"
+          className="absolute top-6 right-6 rounded-full border px-3 py-1 text-xl font-semibold hover:bg-teal-200"
         >
           ✕
         </button>
@@ -143,7 +165,9 @@ export default function Navbar() {
             <NavLink
               to="/"
               onClick={toggleMenuVisibility}
-              className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`}
+              className={({ isActive }) =>
+                `border-y-2 py-1 filter ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`
+              }
             >
               About
             </NavLink>
@@ -152,7 +176,9 @@ export default function Navbar() {
             <NavLink
               to="/products"
               onClick={toggleMenuVisibility}
-              className={({ isActive }) => `border-y-2 filter py-1 ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`}
+              className={({ isActive }) =>
+                `border-y-2 py-1 filter ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`
+              }
             >
               Products
             </NavLink>

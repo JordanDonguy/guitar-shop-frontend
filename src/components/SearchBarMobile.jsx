@@ -10,9 +10,9 @@ export default function SearchBarMobile() {
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchTerm(searchTerm);
-    console.log(location.pathname)
-    if (location.pathname !== '/products') {
-      navigate('/products');
+    console.log(location.pathname);
+    if (location.pathname !== "/products") {
+      navigate("/products");
     }
   };
 

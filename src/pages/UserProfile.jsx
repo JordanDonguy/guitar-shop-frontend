@@ -59,7 +59,7 @@ export default function UserProfile() {
 
       if (!response.ok) {
         throw new Error("Failed to update user");
-      };
+      }
 
       toast.success("Your profile has been updated !", {
         position: "bottom-center",
@@ -79,11 +79,11 @@ export default function UserProfile() {
   }
 
   return (
-    <div className="h-fit flex w-full justify-center">
+    <div className="flex h-fit w-full justify-center">
       <Helmet>
         <title>User Profile | Guitar Shop</title>
       </Helmet>
-      <div className="w-3/4 rounded-2xl pb-15 bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
+      <div className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Profile
         </h1>

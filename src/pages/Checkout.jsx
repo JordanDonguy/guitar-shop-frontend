@@ -6,7 +6,6 @@ import { BASE_URL } from "../components/utils/api";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
-
 const CheckoutForm = () => {
   const { user, loadingAuth } = useAuth();
   const location = useLocation();
@@ -20,9 +19,9 @@ const CheckoutForm = () => {
   const [loadingPaiement, setLoadingPaiement] = useState(false);
 
   const handleCardNumberChange = (e) => {
-    let value = e.target.value.replace(/\D/g, '').slice(0, 16);
+    let value = e.target.value.replace(/\D/g, "").slice(0, 16);
     // Add spaces every 4 digits
-    value = value.replace(/(.{4})/g, '$1 ').trim();
+    value = value.replace(/(.{4})/g, "$1 ").trim();
     setCardNumber(value);
   };
 
@@ -50,7 +49,7 @@ const CheckoutForm = () => {
 
   const handleCheckout = async (e) => {
     e.preventDefault();
-    const rawCardNumber = cardNumber.replace(/\s/g, '')
+    const rawCardNumber = cardNumber.replace(/\s/g, "");
     setLoadingPaiement(true);
     try {
       const response = await fetchWithCsrf(`${BASE_URL}/checkout`, {

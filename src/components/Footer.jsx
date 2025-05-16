@@ -6,22 +6,37 @@ import xLogo from "../assets/img/x-logo.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-neutral-800 ">
+    <footer className="bg-neutral-800">
       <div className="flex items-center justify-between px-[10%] text-teal-50 max-2xl:px-[5%] max-lg:h-auto max-lg:flex-col">
         <div className="flex w-120 flex-wrap items-center justify-between max-lg:w-full max-lg:py-10">
-          <a href="http://facebook.com" target="_blank" rel="noreferrer" alt="facebook">
+          <a
+            href="http://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            alt="facebook"
+          >
             <img
               src={facebookLogo}
               className="mr-4 h-24 w-24 hover:brightness-125"
             />
           </a>
-          <a href="http://instagram.com" target="_blank" rel="noreferrer" alt="instagram">
+          <a
+            href="http://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            alt="instagram"
+          >
             <img
               src={instagramLogo}
               className="mx-4 h-20 w-20 hover:brightness-125"
             />
           </a>
-          <a href="http://youtube.com" target="_blank" rel="noreferrer" alt="youtube">
+          <a
+            href="http://youtube.com"
+            target="_blank"
+            rel="noreferrer"
+            alt="youtube"
+          >
             <img
               src={youtubeLogo}
               className="mx-4 h-24 w-24 hover:brightness-125"
@@ -61,10 +76,9 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="w-full border-t border-teal-700 py-4 px-[10%] text-sm text-neutral-400 max-2xl:px-[5%]">
-  © {new Date().getFullYear()} Guitar-Shop. All rights reserved.
-</div>
-
+      <div className="w-full border-t border-teal-700 px-[10%] py-4 text-sm text-neutral-400 max-2xl:px-[5%]">
+        © {new Date().getFullYear()} Guitar-Shop. All rights reserved.
+      </div>
     </footer>
   );
 }

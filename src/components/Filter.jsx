@@ -55,24 +55,22 @@ export default function Filter({
     <div
       className={`w-1/5 max-xl:w-[90%] ${filterVisibility ? `max-xl:fixed` : `max-xl:hidden`} z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
     >
-      <div className="xl:bg-white p-2 sticky top-[140px] h-[80vh] xl:shadow-sm rounded-r-xl xl:border-2 border-neutral-300 max-xl:h-[50vh] max-xl:border-none">
+      <div className="sticky top-[140px] h-[80vh] rounded-r-xl border-neutral-300 p-2 max-xl:h-[50vh] max-xl:border-none xl:border-2 xl:bg-white xl:shadow-sm">
         <div className="flex h-full flex-col overflow-hidden">
-
-          <div className="absolute right-0 top-0 hidden max-xl:flex items-center justify-between">
+          <div className="absolute top-0 right-0 hidden items-center justify-between max-xl:flex">
             <button
               onClick={toggleFilterVisibility}
-                        className="border text-xl font-semibold rounded-full px-3 py-1 hover:bg-neutral-300"
-
+              className="rounded-full border px-3 py-1 text-xl font-semibold hover:bg-neutral-300"
             >
               X
             </button>
           </div>
 
-          <div className="fade-in scrollbar-hide flex-1 overflow-y-auto mr-10">
+          <div className="fade-in scrollbar-hide mr-10 flex-1 overflow-y-auto">
             {/* Categories Section */}
-            <div className="max-xl:w-fit ">
+            <div className="max-xl:w-fit">
               <h4
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 "
+                className="text-xl font-light hover:cursor-pointer hover:text-teal-600"
                 onClick={() => setCategoriesVisible(!isCategoriesVisible)}
               >
                 {isCategoriesVisible ? "↓" : "→"} Categories
@@ -141,7 +139,7 @@ export default function Filter({
               {isPriceVisible ? "↓" : "→"} Price
             </h4>
             <div
-              className="pt-2 w-full"
+              className="w-full pt-2"
               style={{ display: isPriceVisible ? "block" : "none" }}
             >
               <PriceRangeSlider
