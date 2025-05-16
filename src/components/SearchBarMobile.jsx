@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useSearch } from "./utils/SearchContext";
 import { useState } from "react";
 import { Search } from "lucide-react";
@@ -6,10 +6,15 @@ import { Search } from "lucide-react";
 export default function SearchBarMobile() {
   const { searchTerm, setSearchTerm } = useSearch();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = (e) => {
     e.preventDefault();
-    setSearchTerm(value || "");
+    setSearchTerm(searchTerm);
+    console.log(location.pathname)
+    if (location.pathname !== '/products') {
+      navigate('/products');
+    }
   };
 
   return (
