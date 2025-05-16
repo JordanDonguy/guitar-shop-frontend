@@ -11,7 +11,7 @@ const Layout = () => {
         <Navbar />
       </header>
 
-      <main className="flex-grow  min-h-screen">
+      <main className="flex-grow min-h-screen">
         <Outlet />
       </main>
 

@@ -12,7 +12,7 @@ export default function PriceRangeSlider({ min, max, value, onChange }) {
   };
 
   return (
-    <div className="w-5/6">
+    <div className="w-full">
       <div className="mb-2 flex justify-between text-sm">
         <span>${minVal}</span>
         <span>${maxVal}</span>

@@ -68,7 +68,7 @@ function renderOrders() {
 }
 
 return (
-  <div className="mb-30 flex w-full justify-center">
+  <div className="flex w-full justify-center">
     <Helmet>
       <title>Orders | Guitar Shop</title>
     </Helmet>

@@ -17,8 +17,8 @@ const UserLayout = () => {
 
   if (isMobile) {
     return (
-      <div className="fade-in mb-30 min-h-screen px-[5%] pt-[140px] flex flex-col">
-        <div className="mb-10 flex h-fit rounded-lg border-2 border-teal-600 p-1">
+      <div className="fade-in mb-20 px-[5%] pt-[140px] flex flex-col">
+        <div className="mb-10 flex rounded-lg border-2 border-teal-600 p-1">
           <Link
             to="/user/user-profile"
             className="w-1/2 border-r-2 border-teal-400 text-center text-2xl hover:text-neutral-500"
