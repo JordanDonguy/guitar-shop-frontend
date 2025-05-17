@@ -19,6 +19,7 @@ export default function Register() {
     password: "",
   });
   const [error, setError] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
   const [countries, setCountries] = useState();
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -41,16 +42,29 @@ export default function Register() {
       });
 
       const data = await response.json();
-      if (response.ok) {
-        navigate("/auth/login");
-      } else {
-        setError(data.error || "Something went wrong");
+
+      if (!response.ok) {
+        if (data.errors) {
+          const formattedErrors = {};
+          data.errors.forEach((err) => {
+            formattedErrors[err.field] = err.message || err.msg;
+          });
+          setFieldErrors(formattedErrors);
+        } else {
+          setError(data.error || "Something went wrong");
+        }
+        return; //
       }
+
+      navigate("/auth/login", {
+        state: { toastMessage: "🎉 Registration successful! Please log in." },
+      });
     } catch (err) {
       setError("Something went wrong while processing your request");
-      console.error(err);
+      console.error("Register error:", err);
     }
   };
+
 
   useEffect(() => {
     if (user) {
@@ -150,6 +164,9 @@ export default function Register() {
               onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
+            {fieldErrors.phone_number && (
+              <p className="text-red-500 text-sm">{fieldErrors.phone_number}</p>
+            )}
           </div>
           <div className="sm:col-span-2">
             <label

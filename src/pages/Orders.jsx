@@ -38,16 +38,12 @@ export default function Orders() {
 
   useEffect(() => {
     let toastShown = false;
-
     if (location.state?.toastMessage && !toastShown) {
       toastShown = true;
-
       toast.success(location.state.toastMessage, {
         position: "bottom-center",
         autoClose: 5000,
       });
-
-      // Clear state so it doesn't trigger again
       navigate(location.pathname, { replace: true });
     }
   }, []);

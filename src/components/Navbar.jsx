@@ -32,7 +32,9 @@ export default function Navbar() {
       .then((res) => {
         if (res.ok) {
           setUser(null);
-          navigate("/");
+          navigate("/", {
+            state: { toastMessage: "Thanks for stopping by! Come back anytime 🤘" },
+          });
         } else {
           console.error("Logout failed");
         }
@@ -148,11 +150,10 @@ export default function Navbar() {
       <SearchBarMobile />
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
-          menuVisibility
+        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${menuVisibility
             ? "max-h-1/2 opacity-100"
             : "max-h-0 overflow-hidden opacity-0"
-        }`}
+          }`}
       >
         <button
           onClick={toggleMenuVisibility}

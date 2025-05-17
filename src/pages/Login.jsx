@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
@@ -11,6 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const [temporaryCart, setTemporaryCart] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { fetchUser, user } = useAuth();
 
@@ -38,7 +40,9 @@ const Login = () => {
 
       if (response.ok) {
         fetchUser();
-        navigate("/");
+        navigate("/", {
+          state: { toastMessage: "Hey there, you're back! Great to see you again 🎸" },
+        });
         localStorage.removeItem("cart");
         setTemporaryCart("");
       } else {
@@ -49,6 +53,16 @@ const Login = () => {
       setErrorMessage("An unexpected error occurred");
     }
   };
+
+  useEffect(() => {
+    if (location.state?.toastMessage) {
+      toast.success(location.state.toastMessage, {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
+      navigate(location.pathname, { replace: true });
+    }
+  }, []);
 
   return (
     <div className="fade-in mb-30 flex min-h-screen items-center justify-center bg-gray-100 p-6">

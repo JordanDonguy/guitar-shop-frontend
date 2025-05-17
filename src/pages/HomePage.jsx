@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 import DelayedMount from "../components/utils/DelayedMount";
 import guitar from "../assets/img/guitar-homepage.png";
 import eGuitar from "../assets/img/e-guitar.png";
@@ -9,9 +10,22 @@ import amp from "../assets/img/amp.png";
 import newsletter from "../assets/img/newsletter.png";
 
 export default function HomePage() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (location.state?.toastMessage) {
+      toast.success(location.state.toastMessage, {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location]);
 
   return (
     <DelayedMount>
