@@ -1,15 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import { BASE_URL } from "./utils/api";
+import { useAuth } from "./utils/AuthContext";
 
 export default function Order({
+  order_id,
   created_at,
   total_price,
   first_name,
   last_name,
-  items,
 }) {
   const date = new Date(created_at);
   const [itemsVisible, setItemsVisible] = useState(false);
+  const [items, setItems] = useState([]);
+  const { user } = useAuth();
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     month: "short", // May
@@ -43,9 +48,20 @@ export default function Order({
     ));
   }
 
-  function toggleItemsVisible() {
-    setItemsVisible((prev) => !prev);
-  }
+  async function toggleItemsVisible() {
+    try {
+      if(!itemsVisible) {
+        const response = await fetchWithCsrf(`${BASE_URL}/orders/items?userId=${user.id}&order_id=${order_id}`);
+        const data = await response.json();
+
+        setItems(data.items);
+      };
+      setItemsVisible((prev) => !prev);
+    } catch (err) {
+      console.error('Error fetching items:', err);
+    }
+  };
+
 
   return (
     <div className="mb-10 rounded-lg border-2 border-neutral-300 p-4 shadow-lg">

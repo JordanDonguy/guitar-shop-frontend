@@ -54,11 +54,11 @@ export default function Orders() {
     return orders.map((order) => (
       <Order
         key={order.id}
+        order_id={order.id}
         created_at={order.created_at}
         total_price={order.total_price}
         first_name={order.first_name}
         last_name={order.last_name}
-        items={order.items}
       />
     ));
   }
