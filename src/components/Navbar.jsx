@@ -33,7 +33,9 @@ export default function Navbar() {
         if (res.ok) {
           setUser(null);
           navigate("/", {
-            state: { toastMessage: "Thanks for stopping by! Come back anytime 🤘" },
+            state: {
+              toastMessage: "Thanks for stopping by! Come back anytime 🤘",
+            },
           });
         } else {
           console.error("Logout failed");
@@ -56,13 +58,17 @@ export default function Navbar() {
   return (
     <div>
       <nav
-        className={`fixed z-20 flex h-[100px] w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] md:shadow-md ${hasShadow ? "max-md:shadow-md" : ""}`}
+        className={`fixed z-20 flex h-[100px] w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
       >
         <NavLink
           to="/"
-          className="flex w-[110px] items-center justify-between max-xl:w-[60px]"
+          className="flex w-[110px] items-center justify-between max-xl:w-[60px] max-lg:w-[80px]"
         >
-          <img src={logo} className="h-[50px] w-[50px]" alt="shop logo" />
+          <img
+            src={logo}
+            className="h-[50px] w-[50px] max-lg:h-[70px] max-lg:w-[80px]"
+            alt="shop logo"
+          />
           <h1 className="w-[50px] text-lg max-xl:hidden">Guitar Shop</h1>
         </NavLink>
 
@@ -100,20 +106,20 @@ export default function Navbar() {
         </ul>
 
         <SearchBar />
-        <div className="flex w-50 justify-between max-lg:w-60">
+        <div className="flex w-50 items-center justify-between max-lg:w-60 md:w-fit">
           <NavLink
             to="/cart"
             className={({ isActive }) =>
               `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100" : "border-transparent"}`
             }
           >
-            <ShoppingCart className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
+            <ShoppingCart className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mr-8 max-lg:mb-1 max-lg:h-[60px] max-lg:w-[60px]" />
           </NavLink>
           <button
             onClick={toggleMenuVisibility}
             className="hidden p-2 filter hover:cursor-pointer max-lg:block"
           >
-            <Menu className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600" />
+            <Menu className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mr-8 max-lg:h-[60px] max-lg:w-[60px]" />
           </button>
 
           {/* Conditionally render Login, My Profile, and Logout NavLinks */}
@@ -126,13 +132,13 @@ export default function Navbar() {
                   : "border-y-2 border-transparent p-2 filter"
               }
             >
-              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
+              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:mr-8 max-lg:h-[60px] max-lg:w-[60px]" />
             </NavLink>
           ) : (
             <NavLink
               to="/auth/login"
               className={({ isActive }) =>
-                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""}`
+                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""} max-lg:border-2 max-lg:font-medium`
               }
             >
               Login
@@ -140,7 +146,7 @@ export default function Navbar() {
           )}
           {user ? (
             <button onClick={handleLogout} className="p-2 hover:cursor-pointer">
-              <LogOut className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600" />
+              <LogOut className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:h-[60px] max-lg:w-[60px]" />
             </button>
           ) : (
             <div></div>
@@ -150,18 +156,19 @@ export default function Navbar() {
       <SearchBarMobile />
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${menuVisibility
+        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
+          menuVisibility
             ? "max-h-1/2 opacity-100"
             : "max-h-0 overflow-hidden opacity-0"
-          }`}
+        }`}
       >
         <button
           onClick={toggleMenuVisibility}
-          className="absolute top-6 right-6 rounded-full border px-3 py-1 text-xl font-semibold hover:bg-teal-200"
+          className="absolute top-6 right-6 rounded-full border px-4 py-2 text-2xl font-semibold hover:bg-teal-200"
         >
           ✕
         </button>
-        <ul className="flex h-[50vh] flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light">
+        <ul className="flex h-[50vh] flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light max-lg:text-3xl">
           <li>
             <NavLink
               to="/"

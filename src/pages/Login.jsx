@@ -41,7 +41,9 @@ const Login = () => {
       if (response.ok) {
         fetchUser();
         navigate("/", {
-          state: { toastMessage: "Hey there, you're back! Great to see you again 🎸" },
+          state: {
+            toastMessage: "Hey there, you're back! Great to see you again 🎸",
+          },
         });
         localStorage.removeItem("cart");
         setTemporaryCart("");
@@ -65,26 +67,30 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="fade-in mb-30 flex min-h-screen items-center justify-center bg-gray-100 p-6">
+    <div className="fade-in mb-30 flex min-h-screen items-center justify-center p-6 max-lg:mt-[20%] max-lg:mb-0 max-lg:min-h-fit">
       <Helmet>
         <title>Login | Guitar Shop</title>
       </Helmet>
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md">
+      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           Login
         </h1>
 
         {errorMessage && (
-          <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700">
+          <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700 max-lg:text-lg">
             {errorMessage}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} id="login-form" className="space-y-4">
+        <form
+          onSubmit={handleSubmit}
+          id="login-form"
+          className="space-y-4 max-lg:space-y-8"
+        >
           <div>
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
             >
               Email
             </label>
@@ -95,14 +101,14 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
             >
               Password
             </label>
@@ -113,7 +119,7 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
             />
           </div>
 
@@ -126,13 +132,13 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700"
+            className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:rounded-xl max-lg:py-4 max-lg:text-2xl"
           >
             Login
           </button>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-600">
+        <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">
           Don’t have an account ?&nbsp;
           <Link to="/auth/register" className="text-blue-600 hover:underline">
             Register

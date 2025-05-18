@@ -34,29 +34,29 @@ export default function HomePage() {
           <title>Homepage | Guitar Shop</title>
         </Helmet>
         {/* Hero Section */}
-        <div className="fade-in flex h-screen pt-[100px] shadow-lg max-lg:h-fit">
+        <div className="fade-in flex h-screen pt-[100px] shadow-lg max-lg:h-fit max-lg:pt-[80px]">
           <div className="flex w-full flex-col justify-between pt-5 pb-10 pl-[10%] max-2xl:pl-[5%] max-xl:w-4/6 max-xl:justify-around max-lg:w-full max-lg:items-center max-lg:pl-0">
-            <h1 className="text-8xl/30 text-shadow-lg max-2xl:text-8xl/25 max-lg:px-[5%] max-lg:text-center">
+            <h1 className="text-8xl/30 text-shadow-lg max-2xl:text-8xl/25 max-lg:px-[5%] max-lg:text-center max-lg:text-7xl/24">
               Find the guitar you’ve always wanted
             </h1>
-            <div className="hidden w-[80%] items-center justify-center bg-neutral-200 max-lg:flex max-lg:h-2/5 max-lg:w-full">
+            <div className="hidden w-[80%] items-center justify-center bg-neutral-200 max-lg:flex max-lg:h-1/3 max-lg:w-full">
               <img
                 src={guitar}
                 alt="guitar"
-                className="h-full py-10 max-xl:h-5/6 max-lg:h-auto max-lg:rotate-[90deg] max-lg:py-0"
+                className="h-full py-10 max-xl:h-5/6 max-lg:h-auto max-lg:rotate-[90deg] max-lg:py-0 md:w-1/2"
                 style={{
                   filter: "drop-shadow(30px 20px 5px rgba(139, 143, 143, 0.5))",
                 }}
               />
             </div>
-            <p className="w-170 text-4xl/15 font-light text-shadow-lg max-lg:w-auto max-lg:px-[5%] max-lg:py-10 max-lg:text-center">
+            <p className="w-170 text-4xl/15 font-light text-shadow-lg max-lg:w-auto max-lg:px-[5%] max-lg:py-5 max-lg:text-center">
               Explore our selection of electric and acoustic guitars, amps,
               effects and all the accessories and home-studio gear that you’re
               dreaming of !
             </p>
             <Link
               to="/products"
-              className="flex h-15 w-60 items-center justify-center rounded-4xl border border-black bg-teal-50 text-2xl shadow-md hover:border-2 hover:bg-teal-200 max-lg:mb-5"
+              className="flex h-15 w-60 items-center justify-center rounded-full border border-black bg-teal-50 text-2xl shadow-lg hover:border-2 hover:bg-teal-200 max-lg:mb-5 max-lg:h-20 max-lg:w-80 max-lg:border-2 max-lg:text-3xl"
             >
               Explore now
             </Link>
@@ -73,7 +73,7 @@ export default function HomePage() {
           </div>
         </div>
         {/* Hottest Products Section */}
-        <div className="fade-in flex flex-col items-center">
+        <div className="fade-in flex flex-col items-center md:px-[5%]">
           <h1 className="my-25 pl-12 text-6xl max-lg:pl-0">Hottest products</h1>
           <div className="flex justify-center text-shadow-lg max-lg:flex-col">
             {/* Product card */}

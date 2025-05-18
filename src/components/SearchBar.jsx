@@ -19,7 +19,7 @@ export default function SearchBar() {
   return (
     <form
       onSubmit={handleSearch}
-      className="flex h-12 w-[25vw] justify-between rounded-4xl bg-gray-200 pl-8 max-lg:w-1/2 max-md:hidden"
+      className="flex h-12 w-[25vw] justify-between rounded-4xl bg-gray-200 pl-8 max-lg:hidden max-lg:w-1/2"
     >
       <input
         type="text"
