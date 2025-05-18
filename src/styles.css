@@ -51,9 +51,3 @@ html {
     font-size: 22px;
   }
 }
-
-@media (max-width: 1025px) {
-  .Toastify__toast-body {
-    font-size: 22px !important;
-  }
-}

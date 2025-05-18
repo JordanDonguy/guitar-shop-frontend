@@ -29,7 +29,7 @@ const Layout = () => {
       </Suspense>
 
       <Footer />
-      <ToastContainer />
+      <ToastContainer className="max-lg:text-2xl" />
     </div>
   );
 };
