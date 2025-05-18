@@ -93,19 +93,19 @@ const CheckoutForm = () => {
   }, [user, total_price, navigate, loadingAuth]);
 
   return (
-    <div className="fade-in flex min-h-screen items-center justify-center bg-gray-100 p-4 pt-[100px]">
+    <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:min-h-fit max-lg:mt-[20%] max-lg:mb-0 max-lg:pt-0">
       <Helmet>
         <title>Checkout | Guitar Shop</title>
       </Helmet>
       <form
-        className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg"
+        className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg max-lg:max-w-[90%]"
         onSubmit={handleCheckout}
       >
-        <h2 className="mb-6 text-center text-2xl font-semibold text-gray-900">
+        <h2 className="mb-6 text-center text-3xl font-semibold text-gray-900">
           Payment Details
         </h2>
 
-        <div className="mb-4 text-right text-sm text-gray-400">
+        <div className="mb-4 text-right text-sm text-gray-400 max-lg:text-lg">
           Accepted: 💳 💰 🧾
         </div>
 
@@ -115,7 +115,7 @@ const CheckoutForm = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="cardNumber" className="mb-2 block text-gray-700">
+          <label htmlFor="cardNumber" className="mb-2 block text-gray-700 max-lg:text-lg">
             Card Number
           </label>
           <input
@@ -126,12 +126,12 @@ const CheckoutForm = () => {
             required
             value={cardNumber}
             onChange={handleCardNumberChange}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
           />
         </div>
 
         <div className="mb-4">
-          <label htmlFor="expiry" className="mb-2 block text-gray-700">
+          <label htmlFor="expiry" className="mb-2 block text-gray-700 max-lg:text-lg">
             Expiry Date
           </label>
           <input
@@ -143,12 +143,12 @@ const CheckoutForm = () => {
             value={expiry}
             onChange={handleExpiryChange}
             onBlur={handleExpiryBlur}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
           />
         </div>
 
         <div className="mb-6">
-          <label htmlFor="cvv" className="mb-2 block text-gray-700">
+          <label htmlFor="cvv" className="mb-2 block text-gray-700 max-lg:text-lg">
             CVV
           </label>
           <input
@@ -159,7 +159,7 @@ const CheckoutForm = () => {
             required
             value={cvv}
             onChange={handleCvvChange}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
           />
         </div>
 
@@ -168,7 +168,7 @@ const CheckoutForm = () => {
         <button
           type="submit"
           disabled={loadingPaiement}
-          className="w-full rounded bg-blue-600 py-3 text-white transition hover:cursor-pointer hover:bg-blue-700"
+          className="w-full rounded bg-blue-600 py-3 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:rounded-xl max-lg:py-4 max-lg:text-2xl"
         >
           Pay Now
         </button>

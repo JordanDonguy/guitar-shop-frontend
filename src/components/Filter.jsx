@@ -70,7 +70,7 @@ export default function Filter({
             {/* Categories Section */}
             <div className="max-xl:w-fit">
               <h4
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600"
+                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
                 onClick={() => setCategoriesVisible(!isCategoriesVisible)}
               >
                 {isCategoriesVisible ? "↓" : "→"} Categories
@@ -93,7 +93,7 @@ export default function Filter({
                       checked={categoryIds.includes(category.id)}
                     />
                     <div className="h-5 w-5 rounded border border-gray-400 transition-colors group-hover:bg-teal-200 peer-checked:bg-teal-400"></div>
-                    <span className="pl-2 text-lg">{category.name}</span>
+                    <span className="pl-2 text-lg max-lg:text-2xl max-lg:pl-4">{category.name}</span>
                   </label>
                 ))}
               </div>
@@ -102,7 +102,7 @@ export default function Filter({
             {/* Brands Section */}
             <div className="max-xl:w-fit">
               <h4
-                className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600"
+                className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
                 onClick={() => setBrandsVisible(!isBrandsVisible)}
               >
                 {isBrandsVisible ? "↓" : "→"} Brands
@@ -125,7 +125,7 @@ export default function Filter({
                       checked={brandIds.includes(brand.id)}
                     />
                     <div className="h-5 w-5 rounded border border-gray-400 transition-colors group-hover:bg-teal-200 peer-checked:bg-teal-400"></div>
-                    <span className="pl-2 text-lg">{brand.name}</span>
+                    <span className="pl-2 text-lg max-lg:text-2xl max-lg:pl-4">{brand.name}</span>
                   </label>
                 ))}
               </div>
@@ -133,7 +133,7 @@ export default function Filter({
 
             {/* Price Range */}
             <h4
-              className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit"
+              className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit max-lg:text-3xl"
               onClick={() => setPriceVisible(!isPriceVisible)}
             >
               {isPriceVisible ? "↓" : "→"} Price

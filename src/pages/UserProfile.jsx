@@ -89,14 +89,14 @@ export default function UserProfile() {
         </h1>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <h2 className="mb-4 text-xl font-semibold text-gray-700">
+            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
               Personal Information
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
                 <label
                   htmlFor="first_name"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   First Name
                 </label>
@@ -112,7 +112,7 @@ export default function UserProfile() {
               <div>
                 <label
                   htmlFor="last_name"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Last Name
                 </label>
@@ -128,7 +128,7 @@ export default function UserProfile() {
               <div className="sm:col-span-1">
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Email
                 </label>
@@ -144,7 +144,7 @@ export default function UserProfile() {
               <div className="sm:col-span-1">
                 <label
                   htmlFor="phone_number"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Phone Number
                 </label>
@@ -159,14 +159,14 @@ export default function UserProfile() {
             </div>
           </div>
           <div>
-            <h2 className="mb-4 text-xl font-semibold text-gray-700">
+            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
               Address
             </h2>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <label
                   htmlFor="street"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Street
                 </label>
@@ -181,7 +181,7 @@ export default function UserProfile() {
               <div>
                 <label
                   htmlFor="city"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   City
                 </label>
@@ -196,7 +196,7 @@ export default function UserProfile() {
               <div>
                 <label
                   htmlFor="state"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   State
                 </label>
@@ -211,7 +211,7 @@ export default function UserProfile() {
               <div>
                 <label
                   htmlFor="postal_code"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Postal Code
                 </label>
@@ -226,7 +226,7 @@ export default function UserProfile() {
               <div>
                 <label
                   htmlFor="country"
-                  className="block text-sm font-medium text-gray-700"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
                 >
                   Country
                 </label>
@@ -257,7 +257,7 @@ export default function UserProfile() {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700"
+              className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:text-xl max-lg:py-4 max-lg:rounded-xl"
             >
               Update Info
             </button>
