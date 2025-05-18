@@ -110,10 +110,10 @@ export default function Navbar() {
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100" : "border-transparent"}`
+              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100 max-lg:mr-8" : "border-transparent max-lg:mr-8"}`
             }
           >
-            <ShoppingCart className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mr-8 max-lg:mb-1 max-lg:h-[60px] max-lg:w-[60px]" />
+            <ShoppingCart className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mb-1 max-lg:h-[60px] max-lg:w-[60px]" />
           </NavLink>
           <button
             onClick={toggleMenuVisibility}
@@ -128,11 +128,11 @@ export default function Navbar() {
               to="/user/profile"
               className={
                 location.pathname.startsWith("/user")
-                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter"
-                  : "border-y-2 border-transparent p-2 filter"
+                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter max-lg:mr-8"
+                  : "border-2 border-transparent p-2 filter max-lg:mr-8"
               }
             >
-              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:mr-8 max-lg:h-[60px] max-lg:w-[60px]" />
+              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:h-[60px] max-lg:w-[60px]" />
             </NavLink>
           ) : (
             <NavLink
