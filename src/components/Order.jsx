@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
+import loadingGif from "../assets/img/loading.gif";
 
 export default function Order({
   order_id,
@@ -14,6 +15,7 @@ export default function Order({
   const date = new Date(created_at);
   const [itemsVisible, setItemsVisible] = useState(false);
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
@@ -49,18 +51,21 @@ export default function Order({
   }
 
   async function toggleItemsVisible() {
-    try {
-      if(!itemsVisible) {
-        const response = await fetchWithCsrf(`${BASE_URL}/orders/items?userId=${user.id}&order_id=${order_id}`);
+    if (!itemsVisible) {
+      setLoading(true);
+      try {
+        const response = await fetchWithCsrf(`${BASE_URL}/orders/items?order_id=${order_id}`);
         const data = await response.json();
-
         setItems(data.items);
-      };
-      setItemsVisible((prev) => !prev);
-    } catch (err) {
-      console.error('Error fetching items:', err);
+      } catch (err) {
+        console.error("Error fetching items:", err);
+      } finally {
+        setLoading(false);
+      }
     }
-  };
+    setItemsVisible((prev) => !prev);
+  }
+
 
 
   return (
@@ -88,6 +93,7 @@ export default function Order({
           </span>
         </div>
       </div>
+      <div>{loading && <div className="flex w-full justify-center"><img src={loadingGif} /></div>}</div>
       <div>{itemsVisible && renderItems()}</div>
     </div>
   );
