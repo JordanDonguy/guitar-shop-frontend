@@ -6,6 +6,7 @@ import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { BASE_URL } from "../components/utils/api";
 import { toast } from "react-toastify";
 import Order from "../components/Order";
+import loadingGif from "../assets/img/loading.gif";
 
 export default function Orders() {
   const { user, loadingAuth } = useAuth();
@@ -72,6 +73,7 @@ export default function Orders() {
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Orders
         </h1>
+        {loading && <div className="flex w-full justify-center"><img src={loadingGif} /></div>}
         <div>{!loading && renderOrders()}</div>
       </div>
     </div>
