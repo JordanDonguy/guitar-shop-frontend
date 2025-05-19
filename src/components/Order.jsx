@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 import { BASE_URL } from "./utils/api";
-import { useAuth } from "./utils/AuthContext";
 import loadingGif from "../assets/img/loading.gif";
 
 export default function Order({
@@ -16,7 +15,6 @@ export default function Order({
   const [itemsVisible, setItemsVisible] = useState(false);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
 
   const formattedDate = new Intl.DateTimeFormat("en-US", {
     month: "short", // May
