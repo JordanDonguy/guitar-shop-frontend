@@ -33,6 +33,8 @@ A responsive, modern frontend for an online guitar store. This application is bu
 - **React Router** – Declarative routing
 - **React Markdown** – Render Markdown in React
 - **React Toastify** – Toast pop-up informations
+- **Prettier** – Code formatter for consistent styling
+- **ESLint** – Linting tool to catch bugs and enforce code quality
 - **Netlify** – Hosting platform
 
 ---
