@@ -28,7 +28,7 @@ export default function SingleProduct() {
 
   return (
     <DelayedMount>
-      {loading ? <div className="flex w-full justify-center"><img src={loadingGif} /></div> :
+      {loading ? <div className="flex w-full h-screen justify-center items-center"><img src={loadingGif} /></div> :
         <div className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%]">
           <Helmet>
             <title>{`${productInfos.name}`} | Guitar Shop</title>
