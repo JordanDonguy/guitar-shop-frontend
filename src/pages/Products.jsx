@@ -5,7 +5,7 @@ import { useSearch } from "../components/utils/SearchContext";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
 import { Link } from "react-router-dom";
-import loadingGif from "../assets/img/loading-gif";
+import loadingGif from "../assets/img/loading.gif";
 
 export default function Products() {
   const { searchTerm } = useSearch();
