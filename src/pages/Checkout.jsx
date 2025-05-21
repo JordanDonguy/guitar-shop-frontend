@@ -79,10 +79,6 @@ const CheckoutForm = () => {
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     if (loadingAuth) return;
     if (!user) {
       navigate("/auth/login");

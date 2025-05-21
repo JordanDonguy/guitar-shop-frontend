@@ -1,7 +1,7 @@
 // utils/DelayedMount.jsx
 import { useState, useEffect } from "react";
 
-const DelayedMount = ({ delay = 50, children }) => {
+const DelayedMount = ({ delay = 300, children }) => {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {

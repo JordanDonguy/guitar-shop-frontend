@@ -17,7 +17,6 @@ const Login = () => {
   const { fetchUser, user } = useAuth();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     const cart = localStorage.getItem("cart") || "[]";
     setTemporaryCart(cart);
   }, []);

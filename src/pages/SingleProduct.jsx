@@ -16,9 +16,6 @@ export default function SingleProduct() {
   const [loadingImage1, setLoadingImage1] = useState(true);
   const [loadingImage2, setLoadingImage2] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [id]);
 
   useEffect(() => {
     setLoading(true);
@@ -38,12 +35,13 @@ export default function SingleProduct() {
   }, [id]);
 
   return (
-    <DelayedMount>
+    <div>
       {loading ? (
         <div className="flex w-full h-screen justify-center items-center">
           <img src={loadingGif} alt="Loading..." />
         </div>
       ) : (
+        <DelayedMount>
         <div className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%]">
           <Helmet>
             <title>{`${productInfos.name}`} | Guitar Shop</title>
@@ -131,7 +129,8 @@ export default function SingleProduct() {
             <div className="flex w-full justify-center border-x border-teal-400 bg-teal-50 shadow-lg"></div>
           </div>
         </div>
+        </DelayedMount>
       )}
-    </DelayedMount>
+    </div>
   );
 }

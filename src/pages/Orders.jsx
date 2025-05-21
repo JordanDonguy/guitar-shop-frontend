@@ -24,7 +24,6 @@ export default function Orders() {
 
   useEffect(() => {
     if (loadingAuth) return;
-    window.scrollTo(0, 0);
     fetchWithCsrf(`${BASE_URL}/orders/`)
       .then((res) => res.json())
       .then((data) => {

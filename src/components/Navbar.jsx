@@ -62,6 +62,7 @@ export default function Navbar() {
       >
         <NavLink
           to="/"
+          onClick={(e) => {if (location.pathname === "/") {window.scrollTo({ top: 0 });}}}
           className="flex w-[110px] items-center justify-between max-xl:w-[60px] max-lg:w-[80px]"
         >
           <img
@@ -76,6 +77,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/"
+              onClick={(e) => {if (location.pathname === "/") {window.scrollTo({ top: 0 });}}}
               className={({ isActive }) =>
                 `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
               }
@@ -85,6 +87,7 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
+              onClick={(e) => {if (location.pathname === "/products") {window.scrollTo({ top: 0 });}}}
               to="/products"
               className={({ isActive }) =>
                 `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`

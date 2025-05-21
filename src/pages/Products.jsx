@@ -30,7 +30,6 @@ export default function Products() {
 
   // Fetch the max price of all products and set the filters
   useEffect(() => {
-    window.scrollTo(0, 0);
     fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
       .then((data) => {

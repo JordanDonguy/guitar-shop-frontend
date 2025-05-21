@@ -19,7 +19,6 @@ export default function UserProfile() {
   }, [user, loadingAuth, navigate]);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     fetchWithCsrf(`${BASE_URL}/user`)
       .then((res) => {
         if (!res.ok) throw new Error("Not authenticated");

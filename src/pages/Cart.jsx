@@ -14,10 +14,6 @@ export default function Cart() {
   const [cartId, setCartId] = useState(0);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     if (loadingAuth) return;
     if (!user) {
       const storedCart = JSON.parse(localStorage.getItem("cart")) || [];

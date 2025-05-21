@@ -14,10 +14,6 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     if (location.state?.toastMessage) {
       toast.success(location.state.toastMessage, {
         position: "bottom-center",
@@ -28,7 +24,6 @@ export default function HomePage() {
   }, [location]);
 
   return (
-    <DelayedMount>
       <div className="flex w-full flex-col items-center">
         <Helmet>
           <title>Homepage | Guitar Shop</title>
@@ -237,6 +232,5 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    </DelayedMount>
   );
 }

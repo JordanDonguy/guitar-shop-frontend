@@ -1,6 +1,7 @@
 import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import ScrollToTop from "./components/utils/ScrollToTop";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const Products = lazy(() => import("./pages/Products"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
@@ -17,25 +18,28 @@ import { SearchProvider } from "./components/utils/SearchContext";
 
 export default function App() {
   return (
-    <AuthProvider>
-      <SearchProvider>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-            <Route path="/auth/login" element={<Login />}></Route>
-            <Route path="/auth/register" element={<Register />}></Route>
-            <Route path="/user" element={<UserLayout />}>
-              <Route path="profile" element={<UserProfile />}></Route>
-              <Route path="orders" element={<Orders />}></Route>
+    <>
+      <ScrollToTop />
+      <AuthProvider>
+        <SearchProvider>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route index element={<HomePage />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/:id" element={<SingleProduct />} />
+              <Route path="/auth/login" element={<Login />}></Route>
+              <Route path="/auth/register" element={<Register />}></Route>
+              <Route path="/user" element={<UserLayout />}>
+                <Route path="profile" element={<UserProfile />}></Route>
+                <Route path="orders" element={<Orders />}></Route>
+              </Route>
+              <Route path="/cart" element={<Cart />}></Route>
+              <Route path="/checkout" element={<CheckoutForm />}></Route>
+              <Route path="*" element={<NotFound />} />
             </Route>
-            <Route path="/cart" element={<Cart />}></Route>
-            <Route path="/checkout" element={<CheckoutForm />}></Route>
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </SearchProvider>
-    </AuthProvider>
+          </Routes>
+        </SearchProvider>
+      </AuthProvider>
+    </>
   );
 }
