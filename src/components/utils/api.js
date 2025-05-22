@@ -1,1 +1,1 @@
-export const BASE_URL = "https://guitar-shop-backend.onrender.com";
+export const BASE_URL = "https://guitar-shop-backend-production.up.railway.app"; // https://localhost:3000  to use with local backend
