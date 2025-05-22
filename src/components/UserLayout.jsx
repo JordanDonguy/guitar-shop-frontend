@@ -17,7 +17,7 @@ const UserLayout = () => {
 
   if (isMobile) {
     return (
-      <div className="fade-in mb-20 flex flex-col px-[5%] pt-[140px]">
+      <div className="fade-in mb-20 flex flex-col px-[5%] pt-[140px] max-lg:pt-60">
         <div className="mb-10 flex overflow-hidden rounded-xl border-2 border-teal-600 shadow-md">
           <NavLink
             to="/user/profile"

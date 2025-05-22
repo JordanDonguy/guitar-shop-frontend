@@ -13,7 +13,7 @@ export default function SearchBar() {
     console.log(location.pathname);
     if (location.pathname !== "/products") {
       navigate("/products");
-    };
+    }
     if (location.pathname === "/products") {
       window.scrollTo({ top: 0 });
     }

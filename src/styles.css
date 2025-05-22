@@ -47,8 +47,8 @@ html {
   box-shadow: 4px 0px 4px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 1025px) {
+@media (max-width: 639px) {
   html {
-    font-size: 22px;
+    font-size: 10px;
   }
 }

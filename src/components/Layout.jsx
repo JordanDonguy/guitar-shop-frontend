@@ -9,7 +9,7 @@ import loadingGif from "../assets/img/loading.gif";
 const Layout = () => {
   return (
     <div className="flex min-h-screen flex-col justify-between">
-      <header className="max-lg:pb-[95px]">
+      <header>
         <Navbar />
       </header>
 
@@ -23,8 +23,10 @@ const Layout = () => {
           </div>
         }
       >
-        <main className="min-h-screen flex-grow max-lg:min-h-fit">
-          <Outlet />
+        <main className="flex flex-1 items-center justify-center">
+          <div className="w-full flex-grow max-lg:max-w-screen">
+            <Outlet />
+          </div>
         </main>
       </Suspense>
 

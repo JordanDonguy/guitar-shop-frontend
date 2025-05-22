@@ -93,7 +93,9 @@ export default function Filter({
                       checked={categoryIds.includes(category.id)}
                     />
                     <div className="h-5 w-5 rounded border border-gray-400 transition-colors group-hover:bg-teal-200 peer-checked:bg-teal-400"></div>
-                    <span className="pl-2 text-lg max-lg:text-2xl max-lg:pl-4">{category.name}</span>
+                    <span className="pl-2 text-lg max-lg:pl-4 max-lg:text-2xl">
+                      {category.name}
+                    </span>
                   </label>
                 ))}
               </div>
@@ -125,7 +127,9 @@ export default function Filter({
                       checked={brandIds.includes(brand.id)}
                     />
                     <div className="h-5 w-5 rounded border border-gray-400 transition-colors group-hover:bg-teal-200 peer-checked:bg-teal-400"></div>
-                    <span className="pl-2 text-lg max-lg:text-2xl max-lg:pl-4">{brand.name}</span>
+                    <span className="pl-2 text-lg max-lg:pl-4 max-lg:text-2xl">
+                      {brand.name}
+                    </span>
                   </label>
                 ))}
               </div>

@@ -5,6 +5,7 @@ import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
+import DelayedMount from "../components/utils/DelayedMount";
 
 export default function Cart() {
   const { user, loadingAuth } = useAuth();
@@ -71,21 +72,26 @@ export default function Cart() {
   const guestTotalFormatted = Number(guestTotal || 0).toFixed(2);
 
   return (
-    <div className="fade-in mx-auto w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%]">
+    <div className="fade-in mx-auto min-h-screen w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%] max-lg:pt-55">
+      <h1 className="mb-8 w-full border-b border-neutral-400 pb-3 text-center text-4xl">
+        My Cart
+      </h1>
       <Helmet>
         <title>Cart | Guitar Shop</title>
       </Helmet>
       {user ? (
         <>
-          {products.map((product) => (
-            <CartProduct
-              key={product.id}
-              product={product}
-              cartId={cartId}
-              updateFinalPrice={updateFinalPrice}
-              handleQuantityChange={handleQuantityChange}
-            />
-          ))}
+          <DelayedMount delay={300}>
+            {products.map((product) => (
+              <CartProduct
+                key={product.id}
+                product={product}
+                cartId={cartId}
+                updateFinalPrice={updateFinalPrice}
+                handleQuantityChange={handleQuantityChange}
+              />
+            ))}
+          </DelayedMount>
           <div className="my-12 flex w-full items-center justify-between">
             <div className="text-2xl font-light">
               Total price :{" "}

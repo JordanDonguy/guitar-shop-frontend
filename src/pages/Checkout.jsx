@@ -89,7 +89,7 @@ const CheckoutForm = () => {
   }, [user, total_price, navigate, loadingAuth]);
 
   return (
-    <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:min-h-fit max-lg:mt-[20%] max-lg:mb-0 max-lg:pt-0">
+    <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:mb-0 max-lg:min-h-fit max-lg:pt-65 max-lg:pb-20">
       <Helmet>
         <title>Checkout | Guitar Shop</title>
       </Helmet>
@@ -111,7 +111,10 @@ const CheckoutForm = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="cardNumber" className="mb-2 block text-gray-700 max-lg:text-lg">
+          <label
+            htmlFor="cardNumber"
+            className="mb-2 block text-gray-700 max-lg:text-lg"
+          >
             Card Number
           </label>
           <input
@@ -127,7 +130,10 @@ const CheckoutForm = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="expiry" className="mb-2 block text-gray-700 max-lg:text-lg">
+          <label
+            htmlFor="expiry"
+            className="mb-2 block text-gray-700 max-lg:text-lg"
+          >
             Expiry Date
           </label>
           <input
@@ -144,7 +150,10 @@ const CheckoutForm = () => {
         </div>
 
         <div className="mb-6">
-          <label htmlFor="cvv" className="mb-2 block text-gray-700 max-lg:text-lg">
+          <label
+            htmlFor="cvv"
+            className="mb-2 block text-gray-700 max-lg:text-lg"
+          >
             CVV
           </label>
           <input

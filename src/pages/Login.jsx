@@ -66,7 +66,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="fade-in mb-30 flex min-h-screen items-center justify-center p-6 max-lg:mt-[20%] max-lg:mb-0 max-lg:min-h-fit">
+    <div className="fade-in mb-30 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-0 max-lg:min-h-fit max-lg:p-0 max-lg:pb-10 max-md:mt-50 max-md:py-10">
       <Helmet>
         <title>Login | Guitar Shop</title>
       </Helmet>

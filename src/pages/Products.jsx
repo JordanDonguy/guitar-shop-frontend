@@ -117,7 +117,7 @@ export default function Products() {
         <img
           src={product.image_url}
           alt="product image"
-          className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-5 max-lg:py-5"
+          className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0"
         />
         <div className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
           <Link
@@ -126,11 +126,13 @@ export default function Products() {
           >
             <div>
               <h3 className="pb-4 text-3xl max-lg:pb-2">{product.brand}</h3>
-              <h4 className="text-2xl font-light">{product.name}</h4>
+              <h4 className="max-w-[90%] text-2xl font-light max-md:text-xl">
+                {product.name}
+              </h4>
             </div>
           </Link>
-          <div className="flex items-end pr-15">
-            <div className="flex flex-col pr-10">
+          <div className="flex items-end pr-15 max-md:pr-0">
+            <div className="flex flex-col pr-10 max-md:pr-5">
               {product.stock > 0 ? (
                 <span className="text-2xl text-green-600">● Available</span>
               ) : (
@@ -154,8 +156,8 @@ export default function Products() {
   };
 
   return (
-    <div className="max-xl:pt-[140px]">
-      <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden">
+    <div className="max-xl:pt-[140px] max-lg:pt-60">
+      <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden max-lg:mx-0">
         <h3 className="text-4xl">Filters</h3>
         <button
           onClick={handleSort}
@@ -195,7 +197,11 @@ export default function Products() {
           <div
             className={`flex w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && `blur`} xl:blur-none`}
           >
-            {loadingProducts && <div className="flex w-full justify-center"><img src={loadingGif} /></div>}
+            {loadingProducts && (
+              <div className="flex w-full justify-center">
+                <img src={loadingGif} />
+              </div>
+            )}
             {!loadingProducts && renderProducts()}
           </div>
         </div>

@@ -79,7 +79,7 @@ export default function Register() {
   }, []);
 
   return (
-    <div className="fade-in flex justify-center pt-[140px]">
+    <div className="fade-in flex justify-center pt-[140px] max-lg:pt-60">
       <Helmet>
         <title>Register | Guitar Shop</title>
       </Helmet>

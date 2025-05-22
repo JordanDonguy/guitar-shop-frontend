@@ -82,7 +82,7 @@ export default function UserProfile() {
       <Helmet>
         <title>User Profile | Guitar Shop</title>
       </Helmet>
-      <div className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
+      <div className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-5">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Profile
         </h1>
@@ -256,7 +256,7 @@ export default function UserProfile() {
           <div className="pt-4">
             <button
               type="submit"
-              className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:text-xl max-lg:py-4 max-lg:rounded-xl"
+              className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:rounded-xl max-lg:py-4 max-lg:text-xl"
             >
               Update Info
             </button>

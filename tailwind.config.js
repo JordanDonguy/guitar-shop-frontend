@@ -11,10 +11,10 @@ export default {
       },
       screens: {
         "max-2xl": { raw: "(max-width: 1537px)" },
-        "max-xl": { raw: "(max-width: 1281px)" },
+        "max-xl": { raw: "(max-width: 1279px)" },
         "max-lg": { raw: "(max-width: 1025px)" },
-        "max-md": { raw: "(max-width: 769px)" },
-        "max-sm": { raw: "(max-width: 641px)" },
+        "max-md": { raw: "(max-width: 767px)" },
+        "max-sm": { raw: "(max-width: 639px)" },
       },
     },
   },

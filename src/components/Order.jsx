@@ -26,7 +26,7 @@ export default function Order({
     return items.map((item) => (
       <div
         key={item.id}
-        className="my-5 flex h-40 rounded-lg border border-teal-300 bg-teal-50"
+        className="fade-in my-5 flex h-40 rounded-lg border border-teal-300 bg-teal-50"
       >
         <img
           src={item.image_url}
@@ -35,7 +35,9 @@ export default function Order({
         <div className="flex flex-col justify-between py-2 pl-4">
           <Link to={`/products/${item.id}`} className="hover:underline">
             <div className="text-xl font-medium">{item.brand_name}</div>
-            <div className="font-regular text-lg">{item.name}</div>
+            <div className="font-regular text-lg max-md:text-base">
+              {item.name}
+            </div>
           </Link>
           <div>
             <div>Quantity : {item.quantity}</div>
@@ -52,7 +54,9 @@ export default function Order({
     if (!itemsVisible) {
       setLoading(true);
       try {
-        const response = await fetchWithCsrf(`${BASE_URL}/orders/items?order_id=${order_id}`);
+        const response = await fetchWithCsrf(
+          `${BASE_URL}/orders/items?order_id=${order_id}`,
+        );
         const data = await response.json();
         setItems(data.items);
       } catch (err) {
@@ -64,10 +68,8 @@ export default function Order({
     setItemsVisible((prev) => !prev);
   }
 
-
-
   return (
-    <div className="mb-10 rounded-lg border-2 border-neutral-300 p-4 shadow-lg">
+    <div className="fade-in mb-10 rounded-lg border-2 border-neutral-300 p-4 shadow-lg">
       <div className="flex justify-between">
         <div>
           <div className="text-lg">
@@ -91,7 +93,13 @@ export default function Order({
           </span>
         </div>
       </div>
-      <div>{loading && <div className="flex w-full justify-center"><img src={loadingGif} /></div>}</div>
+      <div>
+        {loading && (
+          <div className="flex w-full justify-center">
+            <img src={loadingGif} />
+          </div>
+        )}
+      </div>
       <div>{itemsVisible && renderItems()}</div>
     </div>
   );

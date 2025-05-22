@@ -58,26 +58,34 @@ export default function Navbar() {
   return (
     <div>
       <nav
-        className={`fixed z-20 flex h-[100px] w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
+        className={`fixed z-20 flex h-24 w-screen items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
       >
         <NavLink
           to="/"
-          onClick={(e) => {if (location.pathname === "/") {window.scrollTo({ top: 0 });}}}
-          className="flex w-[110px] items-center justify-between max-xl:w-[60px] max-lg:w-[80px]"
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({ top: 0 });
+            }
+          }}
+          className="flex w-28 items-center justify-between max-xl:w-16"
         >
           <img
             src={logo}
-            className="h-[50px] w-[50px] max-lg:h-[70px] max-lg:w-[80px]"
+            className="h-12 w-12 max-md:h-15 max-md:w-15"
             alt="shop logo"
           />
-          <h1 className="w-[50px] text-lg max-xl:hidden">Guitar Shop</h1>
+          <h1 className="w-12 text-lg max-xl:hidden">Guitar Shop</h1>
         </NavLink>
 
         <ul className="flex w-1/3 justify-between px-[1vw] text-xl font-light max-xl:w-2/5 max-lg:hidden">
           <li>
             <NavLink
               to="/"
-              onClick={(e) => {if (location.pathname === "/") {window.scrollTo({ top: 0 });}}}
+              onClick={() => {
+                if (location.pathname === "/") {
+                  window.scrollTo({ top: 0 });
+                }
+              }}
               className={({ isActive }) =>
                 `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
               }
@@ -87,7 +95,11 @@ export default function Navbar() {
           </li>
           <li>
             <NavLink
-              onClick={(e) => {if (location.pathname === "/products") {window.scrollTo({ top: 0 });}}}
+              onClick={() => {
+                if (location.pathname === "/products") {
+                  window.scrollTo({ top: 0 });
+                }
+              }}
               to="/products"
               className={({ isActive }) =>
                 `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
@@ -109,20 +121,20 @@ export default function Navbar() {
         </ul>
 
         <SearchBar />
-        <div className="flex w-50 items-center justify-between max-lg:w-60 md:w-fit">
+        <div className="flex w-50 items-center justify-between max-lg:w-fit md:w-fit">
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100 max-lg:mr-8" : "border-transparent max-lg:mr-8"}`
+              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100 max-lg:mr-4" : "border-transparent max-lg:mr-4"}`
             }
           >
-            <ShoppingCart className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mb-1 max-lg:h-[60px] max-lg:w-[60px]" />
+            <ShoppingCart className="duration:100 h-10 w-10 transition hover:text-teal-600 max-lg:mb-1" />
           </NavLink>
           <button
             onClick={toggleMenuVisibility}
             className="hidden p-2 filter hover:cursor-pointer max-lg:block"
           >
-            <Menu className="duration:100 h-[45px] w-[45px] transition hover:text-teal-600 max-lg:mr-8 max-lg:h-[60px] max-lg:w-[60px]" />
+            <Menu className="duration:100 h-11 w-11 transition hover:text-teal-600 max-lg:mr-4" />
           </button>
 
           {/* Conditionally render Login, My Profile, and Logout NavLinks */}
@@ -131,17 +143,17 @@ export default function Navbar() {
               to="/user/profile"
               className={
                 location.pathname.startsWith("/user")
-                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter max-lg:mr-8"
-                  : "border-2 border-transparent p-2 filter max-lg:mr-8"
+                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter max-lg:mr-4"
+                  : "border-2 border-transparent p-2 filter max-lg:mr-4"
               }
             >
-              <User className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:h-[60px] max-lg:w-[60px]" />
+              <User className="duration:100 h-10 w-10 transition hover:text-teal-600" />
             </NavLink>
           ) : (
             <NavLink
               to="/auth/login"
               className={({ isActive }) =>
-                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""} max-lg:border-2 max-lg:font-medium`
+                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""} max-lg:h-12 max-lg:w-30 max-lg:border-2 max-lg:font-medium max-md:border-1`
               }
             >
               Login
@@ -149,7 +161,7 @@ export default function Navbar() {
           )}
           {user ? (
             <button onClick={handleLogout} className="p-2 hover:cursor-pointer">
-              <LogOut className="duration:100 h-[40px] w-[40px] transition hover:text-teal-600 max-lg:h-[60px] max-lg:w-[60px]" />
+              <LogOut className="duration:100 h-10 w-10 transition hover:text-teal-600" />
             </button>
           ) : (
             <div></div>
@@ -159,7 +171,7 @@ export default function Navbar() {
       <SearchBarMobile />
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-[100px] left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
+        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
           menuVisibility
             ? "max-h-1/2 opacity-100"
             : "max-h-0 overflow-hidden opacity-0"

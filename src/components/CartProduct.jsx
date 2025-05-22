@@ -51,14 +51,14 @@ export default function CartProduct({
   return (
     <div
       key={product.id}
-      className="my-5 flex items-center rounded-xl border-2 border-neutral-300 shadow-md"
+      className="fade-in my-5 flex items-center rounded-xl border-2 border-neutral-300 shadow-md"
     >
       <img
         src={product.image_url}
         alt={product.name}
         className="h-full w-60 rounded-l-xl bg-white object-cover p-5"
       />
-      <div className="ml-6 flex h-56 flex-col justify-between py-2">
+      <div className="ml-6 flex flex-col justify-between py-2">
         <Link
           to={`/products/${product.product_id}`}
           className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50"

@@ -20,7 +20,7 @@ export default function SearchBarMobile() {
   };
 
   return (
-    <div className="absolute z-10 mt-[95px] flex h-[95px] w-full items-center justify-center bg-teal-50 shadow-md lg:hidden">
+    <div className="absolute z-10 mt-24 flex h-24 w-full items-center justify-center bg-teal-50 shadow-md lg:hidden">
       <form
         onSubmit={handleSearch}
         className="flex h-12 w-[90%] justify-between rounded-4xl bg-gray-200 pl-8"

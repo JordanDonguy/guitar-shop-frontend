@@ -68,11 +68,15 @@ export default function Orders() {
       <Helmet>
         <title>Orders | Guitar Shop</title>
       </Helmet>
-      <div className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0">
+      <div className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-3">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Orders
         </h1>
-        {loading && <div className="flex w-full justify-center"><img src={loadingGif} /></div>}
+        {loading && (
+          <div className="flex w-full justify-center">
+            <img src={loadingGif} />
+          </div>
+        )}
         <div>{!loading && renderOrders()}</div>
       </div>
     </div>
