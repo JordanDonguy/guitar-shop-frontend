@@ -56,15 +56,15 @@ export default function CartProduct({
       <img
         src={product.image_url}
         alt={product.name}
-        className="h-full w-60 rounded-l-xl bg-white object-cover p-5"
+        className="h-fit w-60 rounded-l-xl bg-white object-cover p-5"
       />
-      <div className="ml-6 flex flex-col justify-between py-2">
+      <div className="min-h-60 ml-6 flex flex-col justify-between py-2">
         <Link
           to={`/products/${product.product_id}`}
           className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
         >
           <h1 className="pb-2 text-2xl font-medium">{product.brand}</h1>
-          <h1 className="text-xl font-light">{product.name}</h1>
+          <h1 className="text-xl font-light max-md:text-lg max-md:font-normal">{product.name}</h1>
         </Link>
         <div>
           <div className="flex w-30 items-center justify-between gap-2 rounded-xl border bg-white text-xl">

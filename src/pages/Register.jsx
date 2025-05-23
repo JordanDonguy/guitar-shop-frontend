@@ -72,11 +72,11 @@ export default function Register() {
   }, []);
 
   return (
-    <div className="fade-in flex justify-center pt-[140px] max-lg:pt-60">
+    <div className="fade-in flex min-h-screen items-center justify-center pt-[140px] max-lg:min-h-fit max-lg:pt-60">
       <Helmet>
         <title>Register | Guitar Shop</title>
       </Helmet>
-      <div className="mb-20 w-full max-w-xl rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]">
+      <div className="mb-20 h-fit w-full max-w-xl rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           Create an Account
         </h1>
