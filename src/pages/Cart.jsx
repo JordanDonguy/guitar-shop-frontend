@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 import { BASE_URL } from "../components/utils/api";
+import { LayoutContext } from "../components/Layout";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import CartProduct from "../components/CartProduct";
-import { Link } from "react-router-dom";
 import DelayedMount from "../components/utils/DelayedMount";
 
 export default function Cart() {
   const { user, loadingAuth } = useAuth();
+  const navigate = useNavigate();
+  const { handleAddressButton } = useContext(LayoutContext);
   const [guestCart, setGuestCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
@@ -71,6 +75,19 @@ export default function Cart() {
   const finalPriceFormatted = Number(finalPrice || 0).toFixed(2);
   const guestTotalFormatted = Number(guestTotal || 0).toFixed(2);
 
+  function handleCheckoutClick() {
+    if (!user) return navigate("/auth/login");
+    if (!user.street) return handleAddressButton();
+    if (finalPrice === 0) {
+      toast("🛒 Your cart is empty !", {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
+      return;
+    }
+    return navigate("/checkout", { state: { total_price: finalPrice } });
+  }
+
   return (
     <div className="fade-in mx-auto min-h-screen w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%] max-lg:pt-55">
       <h1 className="mb-8 w-full border-b border-neutral-400 pb-3 text-center text-4xl">
@@ -99,17 +116,26 @@ export default function Cart() {
             </div>
           </div>
           <div className="mb-12">
-            <Link
-              to={user ? "/checkout" : "/auth/login"}
-              state={{ total_price: finalPrice }}
+            {!user.street && (
+              <div className="mb-10 text-lg">
+                → You don&apos;t have a shipping address yet, please create one
+                before checking out by clicking&nbsp;
+                <button
+                  type="button"
+                  onClick={handleAddressButton}
+                  className="text-blue-600 hover:cursor-pointer hover:text-blue-800"
+                >
+                  here
+                </button>
+              </div>
+            )}
+            <button
+              type="button"
+              onClick={handleCheckoutClick}
+              className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
             >
-              <button
-                type="button"
-                className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
-              >
-                Checkout
-              </button>
-            </Link>
+              Checkout
+            </button>
           </div>
         </>
       ) : (
@@ -134,14 +160,13 @@ export default function Cart() {
             </div>
           </div>
           <div className="mb-12">
-            <Link to={user ? "/checkout" : "/auth/login"}>
-              <button
-                type="button"
-                className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
-              >
-                Checkout
-              </button>
-            </Link>
+            <button
+              type="button"
+              onClick={handleCheckoutClick}
+              className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
+            >
+              Checkout
+            </button>
           </div>
         </>
       )}

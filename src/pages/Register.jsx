@@ -11,16 +11,10 @@ export default function Register() {
     last_name: "",
     email: "",
     phone_number: "",
-    street: "",
-    city: "",
-    state: "",
-    postal_code: "",
-    country: "",
     password: "",
   });
   const [error, setError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
-  const [countries, setCountries] = useState();
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -74,7 +68,6 @@ export default function Register() {
   useEffect(() => {
     fetch(`${BASE_URL}/auth/register`)
       .then((res) => res.json())
-      .then((data) => setCountries(data.countries))
       .catch((err) => console.log(err));
   }, []);
 
@@ -166,98 +159,6 @@ export default function Register() {
             {fieldErrors.phone_number && (
               <p className="text-sm text-red-500">{fieldErrors.phone_number}</p>
             )}
-          </div>
-          <div className="sm:col-span-2">
-            <label
-              htmlFor="street"
-              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-            >
-              Street
-            </label>
-            <input
-              type="text"
-              id="street"
-              name="street"
-              required
-              value={formData.street}
-              onChange={handleInputChange}
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="city"
-              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-            >
-              City
-            </label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              required
-              value={formData.city}
-              onChange={handleInputChange}
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="state"
-              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-            >
-              State
-            </label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              required
-              value={formData.state}
-              onChange={handleInputChange}
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="postal_code"
-              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-            >
-              Postal Code
-            </label>
-            <input
-              type="text"
-              id="postal_code"
-              name="postal_code"
-              required
-              value={formData.postal_code}
-              onChange={handleInputChange}
-              className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="country"
-              className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-            >
-              Country
-            </label>
-            <select
-              id="country"
-              name="country"
-              required
-              value={formData.country}
-              onChange={handleInputChange}
-              className="mt-1 w-full rounded-lg border bg-white px-4 py-2 hover:cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
-            >
-              <option value="">-- Select a country --</option>
-              {countries &&
-                countries.map((country) => (
-                  <option key={country.code} value={country.code}>
-                    {country.name}
-                  </option>
-                ))}
-            </select>
           </div>
           <div className="sm:col-span-2">
             <label

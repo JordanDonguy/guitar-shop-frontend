@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { LayoutContext } from "../components/Layout";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
@@ -9,6 +10,7 @@ import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 export default function UserProfile() {
   const { user, setUser, loadingAuth } = useAuth();
   const [countries, setCountries] = useState([]);
+  const { handleAddressButton } = useContext(LayoutContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export default function UserProfile() {
       .catch((err) => {
         console.error("Auth error:", err);
       });
-  }, []);
+  }, [user]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -152,6 +154,7 @@ export default function UserProfile() {
                   id="phone_number"
                   name="phone_number"
                   defaultValue={user.phone_number}
+                  required
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
@@ -161,97 +164,114 @@ export default function UserProfile() {
             <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
               Address
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="sm:col-span-2">
-                <label
-                  htmlFor="street"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+            {!user.street ? (
+              <div className="max-lg:my-10 max-lg:text-lg">
+                → You don&apos;t have an address yet, but you can create one by clicking&nbsp;
+                <button
+                  type="button"
+                  onClick={handleAddressButton}
+                  className="text-blue-600 hover:cursor-pointer hover:text-blue-800"
                 >
-                  Street
-                </label>
-                <input
-                  type="text"
-                  id="street"
-                  name="street"
-                  defaultValue={user.street}
-                  className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
+                  here
+                </button>
               </div>
-              <div>
-                <label
-                  htmlFor="city"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="city"
-                  name="city"
-                  defaultValue={user.city}
-                  className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
+            ) : (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="sm:col-span-2">
+                  <label
+                    htmlFor="street"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
+                    Street
+                  </label>
+                  <input
+                    type="text"
+                    id="street"
+                    name="street"
+                    defaultValue={user.street}
+                    required
+                    className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="city"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    defaultValue={user.city}
+                    required
+                    className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="state"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    defaultValue={user.state}
+                    required
+                    className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="postal_code"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
+                    Postal Code
+                  </label>
+                  <input
+                    type="text"
+                    id="postal_code"
+                    name="postal_code"
+                    defaultValue={user.postal_code}
+                    required
+                    className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="country"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
+                    Country
+                  </label>
+                  <select
+                    id="country"
+                    name="country"
+                    required
+                    value={user.country || ""}
+                    onChange={(e) =>
+                      setUser({ ...user, country: e.target.value })
+                    }
+                    className="mt-1 w-full rounded-lg border bg-white px-4 py-2 hover:cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  >
+                    {!user.country && (
+                      <option value="" disabled>
+                        -- Select a country --
+                      </option>
+                    )}
+                    {countries.map((country) => (
+                      <option key={country.code} value={country.code}>
+                        {country.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              <div>
-                <label
-                  htmlFor="state"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
-                  State
-                </label>
-                <input
-                  type="text"
-                  id="state"
-                  name="state"
-                  defaultValue={user.state}
-                  className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="postal_code"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
-                  Postal Code
-                </label>
-                <input
-                  type="text"
-                  id="postal_code"
-                  name="postal_code"
-                  defaultValue={user.postal_code}
-                  className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="country"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
-                  Country
-                </label>
-                <select
-                  id="country"
-                  name="country"
-                  required
-                  value={user.country || ""}
-                  onChange={(e) =>
-                    setUser({ ...user, country: e.target.value })
-                  }
-                  className="mt-1 w-full rounded-lg border bg-white px-4 py-2 hover:cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                >
-                  {!user.country && (
-                    <option value="" disabled>
-                      -- Select a country --
-                    </option>
-                  )}
-                  {countries.map((country) => (
-                    <option key={country.code} value={country.code}>
-                      {country.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
+            )}
           </div>
           <div className="pt-4">
             <button

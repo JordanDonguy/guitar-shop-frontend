@@ -82,11 +82,19 @@ const CheckoutForm = () => {
     if (loadingAuth) return;
     if (!user) {
       navigate("/auth/login");
+      return;
     }
     if (!total_price) {
+      toast("🛒 Your cart is empty !", {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
       navigate("/cart");
+      return;
     }
   }, [user, total_price, navigate, loadingAuth]);
+
+  if (loadingAuth || !user || typeof total_price !== "number") return null;
 
   return (
     <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:mb-0 max-lg:min-h-fit max-lg:pt-65 max-lg:pb-20">
