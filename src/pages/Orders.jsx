@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { BASE_URL } from "../components/utils/api";
@@ -11,9 +11,10 @@ import loadingGif from "../assets/img/loading.gif";
 export default function Orders() {
   const { user, loadingAuth } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
-  const location = useLocation();
 
   useEffect(() => {
     if (loadingAuth) return;

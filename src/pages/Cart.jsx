@@ -3,16 +3,17 @@ import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../components/utils/api";
-import { LayoutContext } from "../components/Layout";
+import DelayedMount from "../components/utils/DelayedMount";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { LayoutContext } from "../components/Layout";
 import CartProduct from "../components/CartProduct";
-import DelayedMount from "../components/utils/DelayedMount";
 
 export default function Cart() {
   const { user, loadingAuth } = useAuth();
   const navigate = useNavigate();
   const { handleAddressButton } = useContext(LayoutContext);
+
   const [guestCart, setGuestCart] = useState([]);
   const [products, setProducts] = useState([]);
   const [finalPrice, setFinalPrice] = useState(0);
@@ -109,6 +110,9 @@ export default function Cart() {
               />
             ))}
           </DelayedMount>
+          {products.length < 1 && (
+            <h2 className="text-xl">Your cart is empty.</h2>
+          )}
           <div className="my-12 flex w-full items-center justify-between">
             <div className="text-2xl font-light">
               Total price :{" "}

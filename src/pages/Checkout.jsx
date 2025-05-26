@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { useAuth } from "../components/utils/AuthContext";
-import { useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "../components/utils/api";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { toast } from "react-toastify";
@@ -17,6 +17,22 @@ const CheckoutForm = () => {
   const [cvv, setCvv] = useState("");
 
   const [loadingPaiement, setLoadingPaiement] = useState(false);
+
+  useEffect(() => {
+    if (loadingAuth) return;
+    if (!user) {
+      navigate("/auth/login");
+      return;
+    }
+    if (!total_price) {
+      toast("🛒 Your cart is empty !", {
+        position: "bottom-center",
+        autoClose: 3000,
+      });
+      navigate("/cart");
+      return;
+    }
+  }, [user, total_price, navigate, loadingAuth]);
 
   const handleCardNumberChange = (e) => {
     let value = e.target.value.replace(/\D/g, "").slice(0, 16);
@@ -77,22 +93,6 @@ const CheckoutForm = () => {
       setLoadingPaiement(false);
     }
   };
-
-  useEffect(() => {
-    if (loadingAuth) return;
-    if (!user) {
-      navigate("/auth/login");
-      return;
-    }
-    if (!total_price) {
-      toast("🛒 Your cart is empty !", {
-        position: "bottom-center",
-        autoClose: 3000,
-      });
-      navigate("/cart");
-      return;
-    }
-  }, [user, total_price, navigate, loadingAuth]);
 
   if (loadingAuth || !user || typeof total_price !== "number") return null;
 

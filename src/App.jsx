@@ -2,6 +2,8 @@ import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import ScrollToTop from "./components/utils/ScrollToTop";
+import { AuthProvider } from "./components/utils/AuthContext";
+import { SearchProvider } from "./components/utils/SearchContext";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const Products = lazy(() => import("./pages/Products"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));
@@ -13,8 +15,6 @@ const Orders = lazy(() => import("./pages/Orders"));
 const Cart = lazy(() => import("./pages/Cart"));
 const CheckoutForm = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-import { AuthProvider } from "./components/utils/AuthContext";
-import { SearchProvider } from "./components/utils/SearchContext";
 
 export default function App() {
   return (

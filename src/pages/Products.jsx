@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import { useSearch } from "../components/utils/SearchContext";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
-import { Link } from "react-router-dom";
 import loadingGif from "../assets/img/loading.gif";
 
 export default function Products() {
@@ -70,6 +70,16 @@ export default function Products() {
       .catch((err) => console.log(err));
   }, [filter, priceMax]);
 
+  useEffect(() => {
+    const term = searchTerm.toLowerCase();
+    const filtered = products.filter(
+      (p) =>
+        p.name.toLowerCase().includes(term) ||
+        p.brand.toLowerCase().includes(term),
+    );
+    setSearchedProducts(filtered);
+  }, [searchTerm, products]);
+
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
@@ -83,16 +93,6 @@ export default function Products() {
       setBlurBackground(true);
     }
   };
-
-  useEffect(() => {
-    const term = searchTerm.toLowerCase();
-    const filtered = products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(term) ||
-        p.brand.toLowerCase().includes(term),
-    );
-    setSearchedProducts(filtered);
-  }, [searchTerm, products]);
 
   const handleSort = () => {
     const newOrder = sortOrder === "desc" ? "asc" : "desc";

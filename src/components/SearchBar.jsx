@@ -3,9 +3,9 @@ import { useSearch } from "./utils/SearchContext";
 import { Search } from "lucide-react";
 
 export default function SearchBar() {
-  const { searchTerm, setSearchTerm } = useSearch();
   const navigate = useNavigate();
   const location = useLocation();
+  const { searchTerm, setSearchTerm } = useSearch();
 
   const handleSearch = (e) => {
     e.preventDefault();

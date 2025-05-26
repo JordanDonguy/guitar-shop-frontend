@@ -1,14 +1,15 @@
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import DelayedMount from "../components/utils/DelayedMount";
-import Markdown from "react-markdown";
 import AddToCart from "../components/AddToCart";
+import Markdown from "react-markdown";
 import loadingGif from "../assets/img/loading.gif";
 
 export default function SingleProduct() {
   const { id } = useParams();
+
   const [productInfos, setProductInfos] = useState({});
   const [loading, setLoading] = useState(true);
 

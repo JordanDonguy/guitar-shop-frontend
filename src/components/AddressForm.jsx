@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 
 export default function AddressForm({ handleAddressButton }) {
   const { setUser } = useAuth();
+
   const [countries, setCountries] = useState([]);
   const [addressData, setAddressData] = useState({
     street: "",

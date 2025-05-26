@@ -1,20 +1,21 @@
 import { useState, useEffect } from "react";
-import logo from "../assets/img/logo.png";
-import { ShoppingCart } from "lucide-react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import SearchBar from "./SearchBar";
+import SearchBarMobile from "./SearchBarMobile";
 import { User } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
-import SearchBar from "./SearchBar";
-import SearchBarMobile from "./SearchBarMobile";
+import { ShoppingCart } from "lucide-react";
+import logo from "../assets/img/logo.png";
 
 export default function Navbar() {
   const { user, setUser } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
   const [hasShadow, setHasShadow] = useState(false);
   const [menuVisibility, setMenuVisibility] = useState(false);
 

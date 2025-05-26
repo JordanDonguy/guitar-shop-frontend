@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [hasPassword, setHasPassword] = useState(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
 
   const fetchUser = async () => {
@@ -13,6 +14,7 @@ export const AuthProvider = ({ children }) => {
       if (res.ok) {
         const data = await res.json();
         setUser(data.user);
+        setHasPassword(data.hasPwd);
       } else {
         setUser(null);
       }
@@ -29,7 +31,9 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser, fetchUser, loadingAuth }}>
+    <AuthContext.Provider
+      value={{ user, setUser, fetchUser, hasPassword, loadingAuth }}
+    >
       {children}
     </AuthContext.Provider>
   );

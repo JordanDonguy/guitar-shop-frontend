@@ -1,4 +1,3 @@
-// utils/DelayedMount.jsx
 import { useState, useEffect } from "react";
 import loadingGif from "../../assets/img/loading.gif";
 
