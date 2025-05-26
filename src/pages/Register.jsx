@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import googleLogo from "../assets/img/google-logo.png";
 
 export default function Register() {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -15,8 +19,18 @@ export default function Register() {
   });
   const [error, setError] = useState(null);
   const [fieldErrors, setFieldErrors] = useState({});
-  const navigate = useNavigate();
-  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/auth/register`)
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +42,6 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await fetchWithCsrf(`${BASE_URL}/auth/register`, {
         method: "POST",
@@ -58,18 +71,6 @@ export default function Register() {
       console.error("Register error:", err);
     }
   };
-
-  useEffect(() => {
-    if (user) {
-      navigate("/");
-    }
-  }, [user, navigate]);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/auth/register`)
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
-  }, []);
 
   return (
     <div className="fade-in flex min-h-screen items-center justify-center pt-[140px] max-lg:min-h-fit max-lg:pt-60">
@@ -180,10 +181,19 @@ export default function Register() {
           <div className="sm:col-span-2">
             <button
               type="submit"
-              className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:rounded-xl max-lg:py-4 max-lg:text-2xl"
+              className="h-14 w-full rounded-full bg-blue-600 px-4 font-medium text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:h-16 max-lg:text-2xl"
             >
               Register
             </button>
+          </div>
+          <div className="mt-1 flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl sm:col-span-2">
+            <img src={googleLogo} className="w-10"></img>
+            <a
+              href="http://localhost:3000/auth/google"
+              className="mr-10 w-full text-center font-semibold text-gray-700"
+            >
+              Continue with Google
+            </a>
           </div>
         </form>
         <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">

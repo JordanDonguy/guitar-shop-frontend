@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate, Link, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { saveTemporaryCartAndRedirect } from "../components/utils/saveTemporaryCartAndRedirect";
+import googleLogo from "../assets/img/google-logo.png";
 
 const Login = () => {
+  const { fetchUser, user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const [temporaryCart, setTemporaryCart] = useState("");
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const { fetchUser, user } = useAuth();
 
   useEffect(() => {
     const cart = localStorage.getItem("cart") || "[]";
@@ -26,6 +28,29 @@ const Login = () => {
       navigate("/");
     }
   }, [user, navigate]);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const status = params.get("status");
+
+    if (status === "error") {
+      toast.error(
+        "Oops! We couldn’t log you in with Google. Please use the login or register form instead.",
+        {
+          position: "bottom-center",
+          autoClose: 7000,
+        },
+      );
+    }
+
+    if (location.state?.toastMessage) {
+      toast.success(location.state.toastMessage, {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
+      navigate(location.pathname, { replace: true });
+    }
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,16 +79,6 @@ const Login = () => {
       setErrorMessage("An unexpected error occurred");
     }
   };
-
-  useEffect(() => {
-    if (location.state?.toastMessage) {
-      toast.success(location.state.toastMessage, {
-        position: "bottom-center",
-        autoClose: 5000,
-      });
-      navigate(location.pathname, { replace: true });
-    }
-  }, []);
 
   return (
     <div className="fade-in mb-30 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-0 max-lg:min-h-fit max-lg:p-0 max-lg:pb-10 max-md:mt-50 max-md:py-10">
@@ -131,10 +146,26 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full rounded bg-blue-600 px-4 py-2 text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:rounded-xl max-lg:py-4 max-lg:text-2xl"
+            className="h-14 w-full rounded-full bg-blue-600 px-4 font-semibold text-white transition hover:cursor-pointer hover:bg-blue-700 max-lg:h-16 max-lg:text-2xl"
           >
             Login
           </button>
+
+          <div className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl">
+            <img src={googleLogo} className="w-10"></img>
+            <button
+              type="button"
+              onClick={() =>
+                saveTemporaryCartAndRedirect(
+                  temporaryCart,
+                  `${BASE_URL}/auth/google`,
+                )
+              }
+              className="mr-10 w-full text-center font-semibold text-gray-700 hover:cursor-pointer"
+            >
+              Continue with Google
+            </button>
+          </div>
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">
