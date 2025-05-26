@@ -7,13 +7,20 @@ import AddressForm from "./AddressForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loadingGif from "../assets/img/loading.gif";
+import PasswordForm from "./PasswordForm";
 
 const Layout = () => {
   const [showAddressForm, setShowAddressForm] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [blur, setBlur] = useState(false);
 
   function handleAddressButton() {
     setShowAddressForm((prev) => !prev);
+    setBlur((prev) => !prev);
+  }
+
+  function handlePasswordButton() {
+    setShowPasswordForm((prev) => !prev);
     setBlur((prev) => !prev);
   }
 
@@ -26,9 +33,21 @@ const Layout = () => {
     );
   }
 
+  function getPasswordForm() {
+    window.scrollTo(0, 0);
+    return (
+      <div className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center">
+        <PasswordForm handlePasswordButton={handlePasswordButton} />
+      </div>
+    );
+  }
+
   return (
-    <LayoutContext.Provider value={{ handleAddressButton }}>
+    <LayoutContext.Provider
+      value={{ handleAddressButton, handlePasswordButton }}
+    >
       {showAddressForm && getAddressForm()}
+      {showPasswordForm && getPasswordForm()}
 
       <div
         className={`flex min-h-screen flex-col justify-between ${blur ? "blur-md" : ""}`}

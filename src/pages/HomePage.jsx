@@ -13,6 +13,23 @@ export default function HomePage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const status = params.get("status");
+    const type = params.get("type");
+
+    if (status === "success" && type === "register") {
+      toast.success("🎉 Welcome! Your account has been created.", {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
+    }
+    if (status === "success" && type === "login") {
+      toast.success("Hey there, you're back! Great to see you again 🎸", {
+        position: "bottom-center",
+        autoClose: 5000,
+      });
+    }
+
     if (location.state?.toastMessage) {
       toast.success(location.state.toastMessage, {
         position: "bottom-center",

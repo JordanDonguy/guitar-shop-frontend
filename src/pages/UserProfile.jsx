@@ -1,17 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { Helmet } from "react-helmet";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
-import { LayoutContext } from "../components/Layout";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { LayoutContext } from "../components/Layout";
 
 export default function UserProfile() {
-  const { user, setUser, loadingAuth } = useAuth();
-  const [countries, setCountries] = useState([]);
-  const { handleAddressButton } = useContext(LayoutContext);
+  const { user, setUser, hasPassword, loadingAuth } = useAuth();
+  const { handleAddressButton, handlePasswordButton } =
+    useContext(LayoutContext);
   const navigate = useNavigate();
+
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     if (loadingAuth) return;
@@ -21,23 +23,16 @@ export default function UserProfile() {
   }, [user, loadingAuth, navigate]);
 
   useEffect(() => {
-    fetchWithCsrf(`${BASE_URL}/user`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Not authenticated");
-        return res.json();
-      })
-      .then((data) => {
-        setUser(data.user);
-        setCountries(data.countries);
-      })
+    fetch(`${BASE_URL}/countries`)
+      .then((res) => res.json())
+      .then((data) => setCountries(data.countries))
       .catch((err) => {
-        console.error("Auth error:", err);
+        console.error(err);
       });
-  }, [user]);
+  }, []);
 
   async function handleSubmit(e) {
     e.preventDefault();
-
     const formData = new FormData(e.target);
 
     const updatedUser = {
@@ -162,11 +157,29 @@ export default function UserProfile() {
           </div>
           <div>
             <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
+              User Password
+            </h2>
+            <div>
+              {hasPassword
+                ? "→ You can change your password by clicking "
+                : "→ You don't have a password yet, but you can create one by clicking "}
+              <button
+                type="button"
+                onClick={handlePasswordButton}
+                className="text-blue-600 hover:cursor-pointer hover:text-blue-800"
+              >
+                here
+              </button>
+            </div>
+          </div>
+          <div>
+            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
               Address
             </h2>
             {!user.street ? (
               <div className="max-lg:my-10 max-lg:text-lg">
-                → You don&apos;t have an address yet, but you can create one by clicking&nbsp;
+                → You don&apos;t have an address yet, but you can create one by
+                clicking&nbsp;
                 <button
                   type="button"
                   onClick={handleAddressButton}
