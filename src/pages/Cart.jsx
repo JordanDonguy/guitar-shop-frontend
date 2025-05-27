@@ -91,89 +91,110 @@ export default function Cart() {
 
   return (
     <div className="fade-in mx-auto min-h-screen w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%] max-lg:pt-55">
-      <h1 className="mb-8 w-full border-b border-neutral-400 pb-3 text-center text-4xl">
-        My Cart
-      </h1>
       <Helmet>
         <title>Cart | Guitar Shop</title>
       </Helmet>
-      {user ? (
-        <>
-          <DelayedMount delay={300}>
-            {products.map((product) => (
-              <CartProduct
-                key={product.id}
-                product={product}
-                cartId={cartId}
-                updateFinalPrice={updateFinalPrice}
-                handleQuantityChange={handleQuantityChange}
-              />
-            ))}
-          </DelayedMount>
-          {products.length < 1 && (
-            <h2 className="text-xl">Your cart is empty.</h2>
-          )}
-          <div className="my-12 flex w-full items-center justify-between">
-            <div className="text-2xl font-light">
-              Total price :{" "}
-              <span className="font-semibold">$ {finalPriceFormatted}</span>
-            </div>
-          </div>
-          <div className="mb-12">
-            {!user.street && (
-              <div className="mb-10 text-lg">
-                → You don&apos;t have a shipping address yet, please create one
-                before checking out by clicking&nbsp;
-                <button
-                  type="button"
-                  onClick={handleAddressButton}
-                  className="text-blue-600 hover:cursor-pointer hover:text-blue-800"
-                >
-                  here
-                </button>
-              </div>
-            )}
-            <button
-              type="button"
-              onClick={handleCheckoutClick}
-              className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
-            >
-              Checkout
-            </button>
-          </div>
-        </>
-      ) : (
-        <>
-          <div>
-            {guestCart.length > 0 ? (
-              guestCart.map((product) => (
+
+      <section aria-labelledby="cart-heading">
+        <h1
+          id="cart-heading"
+          className="mb-8 w-full border-b border-neutral-400 pb-3 text-center text-4xl"
+        >
+          My Cart
+        </h1>
+
+        {user ? (
+          <>
+            <DelayedMount delay={300}>
+              {products.map((product) => (
                 <CartProduct
                   key={product.id}
                   product={product}
-                  updateLocalCart={updateLocalCart}
+                  cartId={cartId}
+                  updateFinalPrice={updateFinalPrice}
+                  handleQuantityChange={handleQuantityChange}
                 />
-              ))
-            ) : (
-              <h2 className="text-xl">Your cart is empty.</h2>
+              ))}
+            </DelayedMount>
+
+            {products.length < 1 && (
+              <p className="text-xl" role="status">
+                Your cart is empty.
+              </p>
             )}
-          </div>
-          <div className="my-12 flex items-center justify-between">
-            <div className="text-3xl font-light">
-              Total price :{" "}
-              <span className="font-semibold">$ {guestTotalFormatted}</span>
+
+            <div className="my-12 flex w-full items-center justify-between">
+              <div className="text-2xl font-light">
+                Total price:{" "}
+                <span className="font-semibold">
+                  ${" "}{finalPriceFormatted}
+                </span>
+              </div>
             </div>
-          </div>
-          <div className="mb-12">
-            <button
-              type="button"
-              onClick={handleCheckoutClick}
-              className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white hover:cursor-pointer hover:bg-green-500"
-            >
-              Checkout
-            </button>
-          </div>
-        </>
-      )}
+
+            <div className="mb-12">
+              {!user.street && (
+                <div className="mb-10 text-lg">
+                  → You don&apos;t have a shipping address yet. Please create one
+                  before checking out by clicking{" "}
+                  <button
+                    type="button"
+                    onClick={handleAddressButton}
+                    className="text-blue-600 hover:cursor-pointer hover:text-blue-800"
+                  >
+                    here
+                  </button>
+                  .
+                </div>
+              )}
+              <button
+                type="button"
+                onClick={handleCheckoutClick}
+                className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white transition hover:cursor-pointer hover:bg-green-500"
+              >
+                Checkout
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div>
+              {guestCart.length > 0 ? (
+                guestCart.map((product) => (
+                  <CartProduct
+                    key={product.id}
+                    product={product}
+                    updateLocalCart={updateLocalCart}
+                  />
+                ))
+              ) : (
+                <p className="text-xl" role="status">
+                  Your cart is empty.
+                </p>
+              )}
+            </div>
+
+            <div className="my-12 flex items-center justify-between">
+              <div className="text-3xl font-light">
+                Total price:{" "}
+                <span className="font-semibold">
+                  ${" "}{guestTotalFormatted}
+                </span>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <button
+                type="button"
+                onClick={handleCheckoutClick}
+                className="w-full rounded-lg bg-green-700 px-6 py-3 text-lg text-white transition hover:cursor-pointer hover:bg-green-500"
+              >
+                Checkout
+              </button>
+            </div>
+          </>
+        )}
+      </section>
     </div>
   );
 }

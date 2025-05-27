@@ -79,7 +79,11 @@ export default function PasswordForm({ handlePasswordButton }) {
       </h2>
 
       {error && (
-        <div className="mb-4 rounded bg-red-100 p-2 text-sm text-red-700">
+        <div
+          className="mb-4 rounded bg-red-100 p-2 text-sm text-red-700"
+          role="alert"
+          aria-live="assertive"
+        >
           {error}
         </div>
       )}
@@ -95,6 +99,7 @@ export default function PasswordForm({ handlePasswordButton }) {
           <input
             type="password"
             id="currentPassword"
+            autoComplete="current-password"
             required
             className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             value={currentPassword}
@@ -113,7 +118,9 @@ export default function PasswordForm({ handlePasswordButton }) {
         <input
           type="password"
           id="newPassword"
+          autoComplete="new-password"
           required
+          minLength={8}
           className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
@@ -130,7 +137,9 @@ export default function PasswordForm({ handlePasswordButton }) {
         <input
           type="password"
           id="confirmPassword"
+          autoComplete="new-password"
           required
+          minLength={8}
           className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}

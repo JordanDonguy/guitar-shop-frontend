@@ -19,16 +19,17 @@ const UserLayout = () => {
     <>
       {isMobile ? (
         // Mobile Version
-
         <div className="fade-in mb-20 flex flex-col px-[5%] pt-[140px] max-lg:pt-60">
-          <div className="mb-10 flex overflow-hidden rounded-xl border-2 border-teal-600 shadow-md">
+          <nav
+            aria-label="User account navigation"
+            className="mb-10 flex overflow-hidden rounded-xl border-2 border-teal-600 shadow-md"
+          >
             <NavLink
               to="/user/profile"
               className={({ isActive }) =>
-                `w-1/2 py-3 text-center text-xl font-medium transition ${
-                  isActive
-                    ? "bg-teal-600 text-white"
-                    : "bg-white hover:bg-teal-100"
+                `w-1/2 py-3 text-center text-xl font-medium transition ${isActive
+                  ? "bg-teal-600 text-white"
+                  : "bg-white hover:bg-teal-100"
                 }`
               }
             >
@@ -37,23 +38,24 @@ const UserLayout = () => {
             <NavLink
               to="/user/orders"
               className={({ isActive }) =>
-                `w-1/2 py-3 text-center text-xl font-medium transition ${
-                  isActive
-                    ? "bg-teal-600 text-white"
-                    : "bg-white hover:bg-teal-100"
+                `w-1/2 py-3 text-center text-xl font-medium transition ${isActive
+                  ? "bg-teal-600 text-white"
+                  : "bg-white hover:bg-teal-100"
                 }`
               }
             >
               Orders
             </NavLink>
-          </div>
+          </nav>
           <Outlet />
         </div>
       ) : (
         // Desktop version
-
         <div className="fade-in mb-30 flex min-h-screen px-[10%] pt-[140px]">
-          <div className="sticky top-[140px] flex h-[80vh] w-1/6 flex-col border-r-2 border-neutral-400 max-2xl:w-1/4">
+          <nav
+            aria-label="User account navigation"
+            className="sticky top-[140px] flex h-[80vh] w-1/6 flex-col border-r-2 border-neutral-400 max-2xl:w-1/4"
+          >
             <NavLink
               to="/user/profile"
               className={({ isActive }) =>
@@ -70,7 +72,7 @@ const UserLayout = () => {
             >
               → Orders
             </NavLink>
-          </div>
+          </nav>
           <Outlet />
         </div>
       )}

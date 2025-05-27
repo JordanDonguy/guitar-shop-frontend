@@ -8,15 +8,17 @@ import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { saveTemporaryCartAndRedirect } from "../components/utils/saveTemporaryCartAndRedirect";
 import googleLogo from "../assets/img/google-logo.png";
 
-const Login = () => {
+export default function Login() {
   const { fetchUser, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
   const [temporaryCart, setTemporaryCart] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [fieldErrors, setFieldErrors] = useState({});
 
   useEffect(() => {
     const cart = localStorage.getItem("cart") || "[]";
@@ -72,7 +74,15 @@ const Login = () => {
         localStorage.removeItem("cart");
         setTemporaryCart("");
       } else {
-        setErrorMessage(data.error || "Something went wrong");
+        if (data.errors) {
+          const formattedErrors = {};
+          data.errors.forEach((err) => {
+            formattedErrors[err.field] = err.msg;
+          });
+          setFieldErrors(formattedErrors);
+        } else {
+          setErrorMessage(data.error || "Something went wrong");
+        }
       }
     } catch (error) {
       console.error("Login error", error);
@@ -85,13 +95,20 @@ const Login = () => {
       <Helmet>
         <title>Login | Guitar Shop</title>
       </Helmet>
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]">
-        <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
+
+      <section
+        className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]"
+        aria-labelledby="login-heading"
+      >
+        <h1
+          id="login-heading"
+          className="mb-6 text-center text-3xl font-bold text-gray-800"
+        >
           Login
         </h1>
 
         {errorMessage && (
-          <div className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700 max-lg:text-lg">
+          <div role="alert" className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700 max-lg:text-lg">
             {errorMessage}
           </div>
         )}
@@ -100,6 +117,7 @@ const Login = () => {
           onSubmit={handleSubmit}
           id="login-form"
           className="space-y-4 max-lg:space-y-8"
+          noValidate
         >
           <div>
             <label
@@ -115,8 +133,15 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              aria-required="true"
+              aria-describedby={fieldErrors.email ? "email-error" : undefined}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
             />
+            {fieldErrors.email && (
+              <p id="email-error" className="text-sm text-red-500" role="alert">
+                {fieldErrors.email}
+              </p>
+            )}
           </div>
 
           <div>
@@ -133,8 +158,15 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              aria-required="true"
+              aria-describedby={fieldErrors.password ? "password-error" : undefined}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
             />
+            {fieldErrors.password && (
+              <p id="password-error" className="text-sm text-red-500" role="alert">
+                {fieldErrors.password}
+              </p>
+            )}
           </div>
 
           <input
@@ -151,32 +183,40 @@ const Login = () => {
             Login
           </button>
 
-          <div className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl">
-            <img src={googleLogo} className="w-10"></img>
-            <button
-              type="button"
-              onClick={() =>
+          <div
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
                 saveTemporaryCartAndRedirect(
                   temporaryCart,
-                  `${BASE_URL}/auth/google`,
-                )
+                  `${BASE_URL}/auth/google`
+                );
               }
-              className="mr-10 w-full text-center font-semibold text-gray-700 hover:cursor-pointer"
-            >
+            }}
+            onClick={() =>
+              saveTemporaryCartAndRedirect(
+                temporaryCart,
+                `${BASE_URL}/auth/google`
+              )
+            }
+            className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl"
+            aria-label="Continue with Google"
+          >
+            <img src={googleLogo} alt="" className="w-10" aria-hidden="true" />
+            <span className="mr-10 w-full text-center font-semibold text-gray-700">
               Continue with Google
-            </button>
+            </span>
           </div>
         </form>
 
         <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">
-          Don’t have an account ?&nbsp;
+          Don’t have an account?&nbsp;
           <Link to="/auth/register" className="text-blue-600 hover:underline">
             Register
           </Link>
         </p>
-      </div>
+      </section>
     </div>
   );
-};
-
-export default Login;
+}

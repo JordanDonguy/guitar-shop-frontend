@@ -64,25 +64,31 @@ export default function CartProduct({
           to={`/products/${product.product_id}`}
           className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
         >
-          <h1 className="pb-2 text-2xl font-medium">{product.brand}</h1>
-          <h1 className="text-xl font-light max-md:text-lg max-md:font-normal">
+          <h2 className="pb-2 text-2xl font-medium">{product.brand}</h2>
+          <h3 className="text-xl font-light max-md:text-lg max-md:font-normal">
             {product.name}
-          </h1>
+          </h3>
         </Link>
         <div>
           <div className="flex w-30 items-center justify-between gap-2 rounded-xl border bg-white text-xl">
             {!user ? (
               <>
                 <button
+                  type="button"
                   className="rounded-l-xl border-r px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
                   onClick={() => handleOnClick(product.product_id, -1)}
+                  aria-label={`Decrease quantity of ${product.name}`}
                 >
                   -
                 </button>
-                <span className="w-1/3 text-center">{productQuantity}</span>
+                <span className="w-1/3 text-center" aria-live="polite">
+                  {productQuantity}
+                </span>
                 <button
+                  type="button"
                   className="rounded-r-xl border-l px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
                   onClick={() => handleOnClick(product.product_id, 1)}
+                  aria-label={`Increase quantity of ${product.name}`}
                 >
                   +
                 </button>
@@ -90,32 +96,28 @@ export default function CartProduct({
             ) : (
               <>
                 <form onSubmit={handleSubmit} id={`remove-one-${product.id}`}>
-                  <input
-                    type="hidden"
-                    name="product_id"
-                    value={product.product_id}
-                  />
+                  <input type="hidden" name="product_id" value={product.product_id} />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="-1" />
                   <button
                     type="submit"
                     className="rounded-l-xl border-r px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
+                    aria-label={`Remove one ${product.name} from cart`}
                   >
                     -
                   </button>
                 </form>
-                <span className="w-1/3 text-center">{productQuantity}</span>
+                <span className="w-1/3 text-center" aria-live="polite">
+                  {productQuantity}
+                </span>
                 <form onSubmit={handleSubmit} id={`add-one-${product.id}`}>
-                  <input
-                    type="hidden"
-                    name="product_id"
-                    value={product.product_id}
-                  />
+                  <input type="hidden" name="product_id" value={product.product_id} />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="1" />
                   <button
                     type="submit"
                     className="rounded-r-xl border-l px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
+                    aria-label={`Add one ${product.name} to cart`}
                   >
                     +
                   </button>
@@ -123,7 +125,9 @@ export default function CartProduct({
               </>
             )}
           </div>
-          <div className="mt-4 text-3xl font-medium">$ {price.toFixed(2)}</div>
+          <div className="mt-4 text-3xl font-medium" aria-live="polite">
+            $ {price.toFixed(2)}
+          </div>
         </div>
       </div>
     </div>

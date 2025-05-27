@@ -37,68 +37,73 @@ export default function SingleProduct() {
   return (
     <div>
       {loading ? (
-        <div className="flex h-screen w-full items-center justify-center">
+        <main
+          role="status"
+          aria-live="polite"
+          className="flex h-screen w-full items-center justify-center"
+        >
           <img src={loadingGif} alt="Loading..." />
-        </div>
+        </main>
       ) : (
-        <div className="min-h-screen">
-          <div className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%] max-lg:pt-60">
+        <main className="min-h-screen">
+          <section className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%] max-lg:pt-60">
             <DelayedMount>
               <Helmet>
                 <title>{`${productInfos.name}`} | Guitar Shop</title>
               </Helmet>
-              {/* SECTION 1 */}
-              <div className="fade-in mb-10 flex rounded-xl shadow-lg">
+
+              {/* SECTION 1: Product overview */}
+              <article
+                aria-label={`Overview of ${productInfos.name} guitar`}
+                className="fade-in mb-10 flex rounded-xl shadow-lg"
+              >
                 <div className="flex w-full justify-center rounded-xl bg-teal-50 max-lg:flex-col">
-                  {/*  Desktop view image */}
+                  {/* Desktop image */}
                   {loadingImage2 && (
-                    <div className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden">
-                      <img src={loadingGif} alt="Loading..." />
+                    <div className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden" aria-busy="true">
+                      <img src={loadingGif} alt="Loading product image..." />
                     </div>
                   )}
                   <img
                     src={productInfos.image_url2}
                     alt={productInfos.name}
-                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${loadingImage2 ? "hidden" : ""}`}
+                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${loadingImage2 ? "hidden" : ""
+                      }`}
                     onLoad={() => setLoadingImage2(false)}
                     onError={() => setLoadingImage2(false)}
                   />
-                  {/* Mobile view image */}
+
+                  {/* Mobile image */}
                   {loadingImage1 && (
-                    <div className="hidden h-110 w-full items-center justify-center rounded-l-xl bg-white px-[2%] py-5 max-lg:block">
-                      <img src={loadingGif} alt="Loading..." />
+                    <div className="hidden h-110 w-full items-center justify-center rounded-l-xl bg-white px-[2%] py-5 max-lg:block" aria-busy="true">
+                      <img src={loadingGif} alt="Loading product image..." />
                     </div>
                   )}
                   <img
                     src={productInfos.image_url}
                     alt={productInfos.name}
-                    className={`hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block ${loadingImage1 ? "hidden" : ""}`}
+                    className={`hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block ${loadingImage1 ? "hidden" : ""
+                      }`}
                     onLoad={() => setLoadingImage1(false)}
                     onError={() => setLoadingImage1(false)}
                   />
+
+                  {/* Product details */}
                   <div className="w-[30%] flex-1 border-l border-teal-200 pt-15 pl-5 max-lg:w-full max-lg:border-t max-lg:border-l-0 max-lg:pt-10">
-                    <h1 className="pb-5 text-4xl font-bold">
-                      {productInfos.brand}
-                    </h1>
-                    <h1 className="pb-10 text-2xl max-xl:pb-5">
-                      {productInfos.name}
-                    </h1>
+                    <h1 className="pb-5 text-4xl font-bold">{productInfos.brand}</h1>
+                    <h2 className="pb-10 text-2xl max-xl:pb-5">{productInfos.name}</h2>
                     <div className="items-end justify-between pr-5 max-lg:mb-10 max-lg:flex">
                       <div>
-                        <div
-                          className={`my-2 pb-5 text-xl ${
-                            productInfos.stock > 0
-                              ? "text-green-600"
-                              : "text-red-600"
-                          }`}
+                        <p
+                          className={`my-2 pb-5 text-xl ${productInfos.stock > 0 ? "text-green-600" : "text-red-600"
+                            }`}
+                          aria-live="polite"
                         >
-                          {productInfos.stock > 0
-                            ? "● Available"
-                            : "● Out of Stock"}
-                        </div>
-                        <div className="my-2 pb-7 text-4xl max-xl:pb-5 max-lg:my-0 max-lg:mr-15 max-lg:pb-0">
+                          {productInfos.stock > 0 ? "● Available" : "● Out of Stock"}
+                        </p>
+                        <p className="my-2 pb-7 text-4xl max-xl:pb-5 max-lg:my-0 max-lg:mr-15 max-lg:pb-0">
                           ${Number(productInfos.price).toFixed(2)}
-                        </div>
+                        </p>
                       </div>
                       <AddToCart
                         product_id={productInfos.id}
@@ -110,30 +115,38 @@ export default function SingleProduct() {
                     </div>
                   </div>
                 </div>
-              </div>
-              {/* SECTION 2 */}
+              </article>
+
+              {/* SECTION 2: Description and video */}
               <DelayedMount delay={100} isGif={false}>
-                <div className="fade-in mx-auto my-24 mb-10 flex flex-col items-center rounded-xl bg-teal-50 leading-relaxed shadow-lg">
-                  <h2 className="p-10 text-center text-4xl font-semibold">
+                <section
+                  aria-labelledby="product-description-title"
+                  className="fade-in mx-auto my-24 mb-10 flex flex-col items-center rounded-xl bg-teal-50 leading-relaxed shadow-lg"
+                >
+                  <h3 id="product-description-title" className="p-10 text-center text-4xl font-semibold">
                     Description
-                  </h2>
-                  <div className="prose-lg px-[5%] py-5">
+                  </h3>
+                  <article className="prose-lg px-[5%] py-5">
                     <Markdown>{productInfos.description}</Markdown>
-                  </div>
-                  {productInfos.video_url ? (
-                    <iframe
-                      src={productInfos.video_url}
-                      frameBorder="0"
-                      allowFullScreen
-                      title={`${productInfos.name} video`}
-                      className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl"
-                    ></iframe>
-                  ) : null}
-                </div>
+                  </article>
+
+                  {productInfos.video_url && (
+                    <figure className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl">
+                      <iframe
+                        src={productInfos.video_url}
+                        frameBorder="0"
+                        allowFullScreen
+                        title={`${productInfos.name} video`}
+                        className="w-full h-full rounded-xl"
+                      ></iframe>
+                      <figcaption className="sr-only">{`Video showcasing the ${productInfos.name}`}</figcaption>
+                    </figure>
+                  )}
+                </section>
               </DelayedMount>
             </DelayedMount>
-          </div>
-        </div>
+          </section>
+        </main>
       )}
     </div>
   );

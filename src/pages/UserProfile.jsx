@@ -73,27 +73,29 @@ export default function UserProfile() {
   if (user === null) {
     return <div>Loading...</div>;
   }
-
   return (
     <div className="flex h-fit w-full justify-center">
       <Helmet>
         <title>User Profile | Guitar Shop</title>
       </Helmet>
-      <div className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-5">
+
+      <main className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-5">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Profile
         </h1>
+
         <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
+          {/* Personal Information */}
+          <section aria-labelledby="personal-info-heading">
+            <h2
+              id="personal-info-heading"
+              className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl"
+            >
               Personal Information
             </h2>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <fieldset className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label
-                  htmlFor="first_name"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
+                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                   First Name
                 </label>
                 <input
@@ -105,11 +107,9 @@ export default function UserProfile() {
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
+
               <div>
-                <label
-                  htmlFor="last_name"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
+                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                   Last Name
                 </label>
                 <input
@@ -121,11 +121,9 @@ export default function UserProfile() {
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                   Email
                 </label>
                 <input
@@ -137,11 +135,9 @@ export default function UserProfile() {
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-              <div className="sm:col-span-1">
-                <label
-                  htmlFor="phone_number"
-                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                >
+
+              <div>
+                <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                   Phone Number
                 </label>
                 <input
@@ -153,13 +149,18 @@ export default function UserProfile() {
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
               </div>
-            </div>
-          </div>
-          <div>
-            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
+            </fieldset>
+          </section>
+
+          {/* Password */}
+          <section aria-labelledby="password-heading">
+            <h2
+              id="password-heading"
+              className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl"
+            >
               User Password
             </h2>
-            <div>
+            <p>
               {hasPassword
                 ? "→ You can change your password by clicking "
                 : "→ You don't have a password yet, but you can create one by clicking "}
@@ -170,16 +171,21 @@ export default function UserProfile() {
               >
                 here
               </button>
-            </div>
-          </div>
-          <div>
-            <h2 className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl">
+            </p>
+          </section>
+
+          {/* Address */}
+          <section aria-labelledby="address-heading">
+            <h2
+              id="address-heading"
+              className="mb-4 text-xl font-semibold text-gray-700 max-lg:text-2xl"
+            >
               Address
             </h2>
+
             {!user.street ? (
-              <div className="max-lg:my-10 max-lg:text-lg">
-                → You don&apos;t have an address yet, but you can create one by
-                clicking&nbsp;
+              <p className="max-lg:my-10 max-lg:text-lg">
+                → You don&apos;t have an address yet, but you can create one by clicking{" "}
                 <button
                   type="button"
                   onClick={handleAddressButton}
@@ -187,14 +193,11 @@ export default function UserProfile() {
                 >
                   here
                 </button>
-              </div>
+              </p>
             ) : (
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <fieldset className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
-                  <label
-                    htmlFor="street"
-                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                  >
+                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                     Street
                   </label>
                   <input
@@ -206,11 +209,9 @@ export default function UserProfile() {
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
+
                 <div>
-                  <label
-                    htmlFor="city"
-                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                  >
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                     City
                   </label>
                   <input
@@ -222,11 +223,9 @@ export default function UserProfile() {
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
+
                 <div>
-                  <label
-                    htmlFor="state"
-                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                  >
+                  <label htmlFor="state" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                     State
                   </label>
                   <input
@@ -238,11 +237,9 @@ export default function UserProfile() {
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
+
                 <div>
-                  <label
-                    htmlFor="postal_code"
-                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                  >
+                  <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                     Postal Code
                   </label>
                   <input
@@ -254,11 +251,9 @@ export default function UserProfile() {
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
                 </div>
+
                 <div>
-                  <label
-                    htmlFor="country"
-                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
-                  >
+                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
                     Country
                   </label>
                   <select
@@ -283,9 +278,11 @@ export default function UserProfile() {
                     ))}
                   </select>
                 </div>
-              </div>
+              </fieldset>
             )}
-          </div>
+          </section>
+
+          {/* Submit */}
           <div className="pt-4">
             <button
               type="submit"
@@ -295,7 +292,7 @@ export default function UserProfile() {
             </button>
           </div>
         </form>
-      </div>
+      </main>
     </div>
   );
 }

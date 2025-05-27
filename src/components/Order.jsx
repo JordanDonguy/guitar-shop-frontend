@@ -82,6 +82,7 @@ export default function Order({
           </div>
           <button
             onClick={toggleItemsVisible}
+            aria-expanded={itemsVisible}
             className="mt-5 rounded-2xl px-2 py-1 text-lg shadow-md outline outline-teal-600 hover:cursor-pointer hover:bg-neutral-100 hover:outline-2"
           >
             {!itemsVisible ? "→" : "↓"} Items
@@ -97,7 +98,7 @@ export default function Order({
       <div>
         {loading && (
           <div className="flex w-full justify-center">
-            <img src={loadingGif} />
+            <img src={loadingGif} alt="Loading..." />
           </div>
         )}
       </div>

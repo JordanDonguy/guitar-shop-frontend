@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import loadingGif from "../assets/img/loading.gif";
 import PasswordForm from "./PasswordForm";
 
-const Layout = () => {
+export default function Layout() {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [showPasswordForm, setShowPasswordForm] = useState(false);
   const [blur, setBlur] = useState(false);
@@ -50,24 +50,23 @@ const Layout = () => {
       {showPasswordForm && getPasswordForm()}
 
       <div
-        className={`flex min-h-screen flex-col justify-between ${blur ? "blur-md" : ""}`}
+        className={`flex min-h-screen flex-col justify-between ${blur ? "blur-md" : ""
+          }`}
       >
-        <header>
-          <Navbar />
-        </header>
+
+        <Navbar />
 
         <Suspense
           fallback={
-            <div className="flex h-screen items-center justify-center">
-              <img src={loadingGif}></img>
-              <img src={loadingGif}></img>
-              <img src={loadingGif}></img>
-              <img src={loadingGif}></img>
+            <div className="flex h-screen items-center justify-center" role="alert" aria-live="assertive">
+              <img src={loadingGif} alt="Loading animation 1" />
+              <img src={loadingGif} alt="Loading animation 2" />
+              <img src={loadingGif} alt="Loading animation 3" />
             </div>
           }
         >
           <main className="flex flex-1 items-center justify-center">
-            <div className={`w-full flex-grow max-lg:max-w-screen`}>
+            <div className="w-full flex-grow max-lg:max-w-screen">
               <Outlet />
             </div>
           </main>
@@ -79,5 +78,3 @@ const Layout = () => {
     </LayoutContext.Provider>
   );
 };
-
-export default Layout;

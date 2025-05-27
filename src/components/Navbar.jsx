@@ -57,7 +57,7 @@ export default function Navbar() {
   };
 
   return (
-    <div>
+    <header role="banner" aria-label="Primary site navigation">
       <nav
         className={`fixed z-20 flex h-24 w-screen items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
       >
@@ -126,7 +126,8 @@ export default function Navbar() {
           <NavLink
             to="/cart"
             className={({ isActive }) =>
-              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100 max-lg:mr-4" : "border-transparent max-lg:mr-4"}`
+              `rounded-xl border-2 p-2 filter ${isActive ? "border-teal-400 bg-teal-100 max-lg:mr-4" : "border-transparent max-lg:mr-4"
+              }`
             }
           >
             <ShoppingCart className="duration:100 h-10 w-10 transition hover:text-teal-600 max-lg:mb-1" />
@@ -134,11 +135,12 @@ export default function Navbar() {
           <button
             onClick={toggleMenuVisibility}
             className="hidden p-2 filter hover:cursor-pointer max-lg:block"
+            aria-label="Toggle mobile menu"
+            aria-expanded={menuVisibility}
           >
             <Menu className="duration:100 h-11 w-11 transition hover:text-teal-600 max-lg:mr-4" />
           </button>
 
-          {/* Conditionally render Login, My Profile, and Logout NavLinks */}
           {user ? (
             <NavLink
               to="/user/profile"
@@ -147,6 +149,7 @@ export default function Navbar() {
                   ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter max-lg:mr-4"
                   : "border-2 border-transparent p-2 filter max-lg:mr-4"
               }
+              aria-current={location.pathname.startsWith("/user") ? "page" : undefined}
             >
               <User className="duration:100 h-10 w-10 transition hover:text-teal-600" />
             </NavLink>
@@ -154,33 +157,35 @@ export default function Navbar() {
             <NavLink
               to="/auth/login"
               className={({ isActive }) =>
-                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""} max-lg:h-12 max-lg:w-30 max-lg:border-2 max-lg:font-medium max-md:border-1`
+                `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${isActive ? "border-2 bg-teal-200" : ""
+                } max-lg:h-12 max-lg:w-30 max-lg:border-2 max-lg:font-medium max-md:border-1`
               }
             >
               Login
             </NavLink>
           )}
           {user ? (
-            <button onClick={handleLogout} className="p-2 hover:cursor-pointer">
+            <button onClick={handleLogout} className="p-2 hover:cursor-pointer" aria-label="Log out">
               <LogOut className="duration:100 h-10 w-10 transition hover:text-teal-600" />
             </button>
           ) : (
-            <div></div>
+            <div />
           )}
         </div>
       </nav>
+
       <SearchBarMobile />
+
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
-          menuVisibility
-            ? "max-h-1/2 opacity-100"
-            : "max-h-0 overflow-hidden opacity-0"
-        }`}
+        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${menuVisibility ? "max-h-1/2 opacity-100" : "max-h-0 overflow-hidden opacity-0"
+          }`}
+        aria-hidden={!menuVisibility}
       >
         <button
           onClick={toggleMenuVisibility}
           className="absolute top-6 right-6 rounded-full border px-4 py-2 text-2xl font-semibold hover:bg-teal-200"
+          aria-label="Close mobile menu"
         >
           ✕
         </button>
@@ -227,6 +232,6 @@ export default function Navbar() {
           </li>
         </ul>
       </div>
-    </div>
+    </header>
   );
 }

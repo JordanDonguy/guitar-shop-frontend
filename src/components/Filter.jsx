@@ -52,15 +52,18 @@ export default function Filter({
   };
 
   return (
-    <div
-      className={`w-1/5 max-xl:w-[90%] ${filterVisibility ? `max-xl:fixed` : `max-xl:hidden`} z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
+    <aside
+      className={`w-1/5 max-xl:w-[90%] ${filterVisibility ? `max-xl:fixed` : `max-xl:hidden`
+        } z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
+      aria-label="Product filters"
     >
       <div className="sticky top-[140px] h-[80vh] rounded-r-xl border-neutral-300 p-2 max-xl:h-[50vh] max-xl:border-none xl:border-2 xl:bg-white xl:shadow-sm">
-        <div className="flex h-full flex-col overflow-hidden">
+        <div className="flex h-full flex-col overflow-hidden relative">
           <div className="absolute top-0 right-0 hidden items-center justify-between max-xl:flex">
             <button
               onClick={toggleFilterVisibility}
               className="rounded-full border px-3 py-1 text-xl font-semibold hover:bg-neutral-300"
+              aria-label="Close filters"
             >
               X
             </button>
@@ -68,25 +71,30 @@ export default function Filter({
 
           <div className="fade-in scrollbar-hide mr-10 flex-1 overflow-y-auto">
             {/* Categories Section */}
-            <div className="max-xl:w-fit">
-              <h4
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
+            <section className="max-xl:w-fit" aria-expanded={isCategoriesVisible}>
+              <button
+                type="button"
                 onClick={() => setCategoriesVisible(!isCategoriesVisible)}
+                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl flex items-center gap-2"
+                aria-expanded={isCategoriesVisible}
+                aria-controls="categories-list"
               >
                 {isCategoriesVisible ? "↓" : "→"} Categories
-              </h4>
-              <div
+              </button>
+              <fieldset
+                id="categories-list"
                 className="pt-2"
                 style={{ display: isCategoriesVisible ? "block" : "none" }}
               >
                 {categories.map((category) => (
                   <label
                     key={category.id}
+                    htmlFor={`category-${category.id}`}
                     className="group flex items-center pb-2 hover:cursor-pointer hover:text-teal-600"
                   >
                     <input
                       type="checkbox"
-                      id={category.id}
+                      id={`category-${category.id}`}
                       name={category.name}
                       className="peer hidden"
                       onChange={(e) => categoryCheckboxChange(e, category.id)}
@@ -98,29 +106,34 @@ export default function Filter({
                     </span>
                   </label>
                 ))}
-              </div>
-            </div>
+              </fieldset>
+            </section>
 
             {/* Brands Section */}
-            <div className="max-xl:w-fit">
-              <h4
-                className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
+            <section className="max-xl:w-fit mt-8" aria-expanded={isBrandsVisible}>
+              <button
+                type="button"
                 onClick={() => setBrandsVisible(!isBrandsVisible)}
+                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl flex items-center gap-2"
+                aria-expanded={isBrandsVisible}
+                aria-controls="brands-list"
               >
                 {isBrandsVisible ? "↓" : "→"} Brands
-              </h4>
-              <div
+              </button>
+              <fieldset
+                id="brands-list"
                 className="pt-2"
                 style={{ display: isBrandsVisible ? "block" : "none" }}
               >
                 {brands.map((brand) => (
                   <label
                     key={brand.id}
+                    htmlFor={`brand-${brand.id}`}
                     className="group flex items-center pb-2 hover:cursor-pointer hover:text-teal-600"
                   >
                     <input
                       type="checkbox"
-                      id={brand.id}
+                      id={`brand-${brand.id}`}
                       name={brand.name}
                       className="peer hidden"
                       onChange={(e) => brandCheckboxChange(e, brand.id)}
@@ -132,30 +145,36 @@ export default function Filter({
                     </span>
                   </label>
                 ))}
-              </div>
-            </div>
+              </fieldset>
+            </section>
 
-            {/* Price Range */}
-            <h4
-              className="pt-10 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit max-lg:text-3xl"
-              onClick={() => setPriceVisible(!isPriceVisible)}
-            >
-              {isPriceVisible ? "↓" : "→"} Price
-            </h4>
-            <div
-              className="w-full pt-2"
-              style={{ display: isPriceVisible ? "block" : "none" }}
-            >
-              <PriceRangeSlider
-                min={0}
-                max={priceMax}
-                value={priceRange}
-                onChange={setPriceRange}
-              />
-            </div>
+            {/* Price Range Section */}
+            <section className="mt-8" aria-expanded={isPriceVisible}>
+              <button
+                type="button"
+                onClick={() => setPriceVisible(!isPriceVisible)}
+                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit max-lg:text-3xl flex items-center gap-2"
+                aria-expanded={isPriceVisible}
+                aria-controls="price-range"
+              >
+                {isPriceVisible ? "↓" : "→"} Price
+              </button>
+              <div
+                id="price-range"
+                className="w-full pt-2"
+                style={{ display: isPriceVisible ? "block" : "none" }}
+              >
+                <PriceRangeSlider
+                  min={0}
+                  max={priceMax}
+                  value={priceRange}
+                  onChange={setPriceRange}
+                />
+              </div>
+            </section>
           </div>
         </div>
       </div>
-    </div>
+    </aside>
   );
 }

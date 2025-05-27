@@ -6,7 +6,7 @@ import { BASE_URL } from "../components/utils/api";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
-const CheckoutForm = () => {
+export default function CheckoutForm() {
   const { user, loadingAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
@@ -101,6 +101,10 @@ const CheckoutForm = () => {
       <Helmet>
         <title>Checkout | Guitar Shop</title>
       </Helmet>
+
+      {/* Hidden main heading for accessibility */}
+      <h1 className="sr-only">Checkout Page</h1>
+
       <form
         className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg max-lg:max-w-[90%]"
         onSubmit={handleCheckout}
@@ -118,63 +122,70 @@ const CheckoutForm = () => {
           <span className="font-semibold">$ {total_price.toFixed(2)}</span>
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="cardNumber"
-            className="mb-2 block text-gray-700 max-lg:text-lg"
-          >
-            Card Number
-          </label>
-          <input
-            type="text"
-            id="cardNumber"
-            name="cardNumber"
-            placeholder="4242 4242 4242 4242"
-            required
-            value={cardNumber}
-            onChange={handleCardNumberChange}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
-          />
-        </div>
+        <fieldset className="mb-6">
+          <legend className="sr-only">Card Payment Information</legend>
 
-        <div className="mb-4">
-          <label
-            htmlFor="expiry"
-            className="mb-2 block text-gray-700 max-lg:text-lg"
-          >
-            Expiry Date
-          </label>
-          <input
-            type="text"
-            id="expiry"
-            name="expiry"
-            placeholder="MM/YY"
-            required
-            value={expiry}
-            onChange={handleExpiryChange}
-            onBlur={handleExpiryBlur}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
-          />
-        </div>
+          <div className="mb-4">
+            <label
+              htmlFor="cardNumber"
+              className="mb-2 block text-gray-700 max-lg:text-lg"
+            >
+              Card Number
+            </label>
+            <input
+              type="tel"
+              id="cardNumber"
+              name="cardNumber"
+              placeholder="4242 4242 4242 4242"
+              required
+              aria-required="true"
+              value={cardNumber}
+              onChange={handleCardNumberChange}
+              className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
+            />
+          </div>
 
-        <div className="mb-6">
-          <label
-            htmlFor="cvv"
-            className="mb-2 block text-gray-700 max-lg:text-lg"
-          >
-            CVV
-          </label>
-          <input
-            type="text"
-            id="cvv"
-            name="cvv"
-            placeholder="123"
-            required
-            value={cvv}
-            onChange={handleCvvChange}
-            className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
-          />
-        </div>
+          <div className="mb-4">
+            <label
+              htmlFor="expiry"
+              className="mb-2 block text-gray-700 max-lg:text-lg"
+            >
+              Expiry Date
+            </label>
+            <input
+              type="text"
+              id="expiry"
+              name="expiry"
+              placeholder="MM/YY"
+              required
+              aria-required="true"
+              value={expiry}
+              onChange={handleExpiryChange}
+              onBlur={handleExpiryBlur}
+              className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
+            />
+          </div>
+
+          <div className="mb-6">
+            <label
+              htmlFor="cvv"
+              className="mb-2 block text-gray-700 max-lg:text-lg"
+            >
+              CVV
+            </label>
+            <input
+              type="tel"
+              id="cvv"
+              name="cvv"
+              placeholder="123"
+              required
+              aria-required="true"
+              value={cvv}
+              onChange={handleCvvChange}
+              className="w-full rounded border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-blue-400 focus:outline-none max-lg:text-lg"
+            />
+          </div>
+        </fieldset>
 
         <input type="hidden" name="total_price" value={total_price} />
 
@@ -189,5 +200,3 @@ const CheckoutForm = () => {
     </div>
   );
 };
-
-export default CheckoutForm;

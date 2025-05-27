@@ -23,18 +23,25 @@ export default function SearchBarMobile() {
     <div className="absolute z-10 mt-24 flex h-24 w-full items-center justify-center bg-teal-50 shadow-md lg:hidden">
       <form
         onSubmit={handleSearch}
+        role="search"
         className="flex h-12 w-[90%] justify-between rounded-4xl bg-gray-200 pl-8"
       >
+        <label htmlFor="mobile-search-input" className="sr-only">
+          Search products or services
+        </label>
         <input
+          id="mobile-search-input"
           type="text"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full text-xl font-light focus:outline-none"
           placeholder="Search..."
+          aria-label="Search products or services"
         />
         <button
           type="submit"
           className="flex h-12 w-16 items-center justify-center rounded-4xl hover:cursor-pointer hover:bg-teal-100"
+          aria-label="Submit search"
         >
           <Search className="h-6 w-6" />
         </button>

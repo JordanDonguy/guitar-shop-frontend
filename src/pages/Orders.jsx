@@ -63,23 +63,28 @@ export default function Orders() {
       />
     ));
   }
-
   return (
     <div className="flex w-full justify-center">
       <Helmet>
         <title>Orders | Guitar Shop</title>
       </Helmet>
-      <div className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-3">
+
+      <section
+        className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-3"
+        aria-label="User Orders Section"
+      >
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Orders
         </h1>
+
         {loading && (
-          <div className="flex w-full justify-center">
-            <img src={loadingGif} />
+          <div className="flex w-full justify-center" aria-live="polite" aria-busy="true">
+            <img src={loadingGif} alt="Loading orders" />
           </div>
         )}
+
         <div>{!loading && renderOrders()}</div>
-      </div>
+      </section>
     </div>
   );
 }

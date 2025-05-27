@@ -103,34 +103,37 @@ export default function Products() {
     setSearchedProducts(sorted);
   };
 
-  const renderProducts = () => {
-    if (searchedProducts.length == 0)
+  const renderProductList = () => {
+    if (searchedProducts.length === 0) {
       return (
-        <div className="w-full text-2xl">No products match your search...</div>
+        <p className="w-full text-2xl text-center text-gray-600">
+          No products match your search...
+        </p>
       );
+    }
 
     return searchedProducts.map((product) => (
-      <div
+      <article
         key={product.id}
         className="fade-in mb-10 flex rounded-xl border-2 border-neutral-300 shadow-sm"
       >
         <img
           src={product.image_url}
-          alt="product image"
+          alt={`${product.brand} ${product.name}`}
           className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0"
         />
-        <div className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
+
+        <section className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
           <Link
-            className="mr-5 border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
             to={`/products/${product.id}`}
+            className="mr-5 border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
           >
-            <div>
-              <h3 className="pb-4 text-3xl max-lg:pb-2">{product.brand}</h3>
-              <h4 className="max-w-[90%] text-2xl font-light max-md:text-xl">
-                {product.name}
-              </h4>
-            </div>
+            <h3 className="pb-4 text-3xl max-lg:pb-2">{product.brand}</h3>
+            <h4 className="max-w-[90%] text-2xl font-light max-md:text-xl">
+              {product.name}
+            </h4>
           </Link>
+
           <div className="flex items-end pr-15 max-md:pr-0">
             <div className="flex flex-col pr-10 max-md:pr-5">
               {product.stock > 0 ? (
@@ -138,10 +141,9 @@ export default function Products() {
               ) : (
                 <span className="text-xl text-red-600">● Out of Stock</span>
               )}
-              <span className="pt-4 text-3xl font-medium">
-                $ {product.price}
-              </span>
+              <span className="pt-4 text-3xl font-medium">${product.price}</span>
             </div>
+
             <AddToCart
               product_id={product.id}
               brand={product.brand}
@@ -150,42 +152,53 @@ export default function Products() {
               price={product.price}
             />
           </div>
-        </div>
-      </div>
+        </section>
+      </article>
     ));
   };
 
   return (
-    <div className="max-xl:pt-[140px] max-lg:pt-60">
+    <section
+      aria-labelledby="products-title"
+      className="max-xl:pt-[140px] max-lg:pt-60"
+    >
+      <Helmet>
+        <title>Products | Guitar Shop</title>
+      </Helmet>
+
+      {/* Hidden main title for accessibility */}
+      <h1 id="products-title" className="sr-only">Product Catalog</h1>
+
+      {/* Desktop filter header */}
       <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden max-lg:mx-0">
-        <h3 className="text-4xl">Filters</h3>
+        <h2 className="text-4xl">Filters</h2>
         <button
           onClick={handleSort}
           className="text-2xl font-light hover:cursor-pointer hover:text-neutral-500"
         >
-          Order by : {sortOrder === "desc" ? "↓" : "↑"}
+          Order by: {sortOrder === "desc" ? "↓" : "↑"}
         </button>
       </div>
+
       <div className="fade-in mb-20 flex-col items-center max-xl:flex">
-        <Helmet>
-          <title>Products | Guitar Shop</title>
-        </Helmet>
+        {/* Mobile filter & sort controls */}
         <div className="mb-10 flex h-fit w-[90%] rounded-lg border-2 border-teal-600 p-1 xl:hidden">
           <button
             onClick={toggleFilterVisibility}
-            className="w-1/2 border-r-2 border-teal-400 text-center text-2xl hover:cursor-pointer hover:text-neutral-500"
+            className="w-1/2 border-r-2 border-teal-400 text-center text-2xl hover:text-neutral-500"
           >
             Filter
           </button>
           <button
             onClick={handleSort}
-            className="w-1/2 text-center text-2xl hover:cursor-pointer hover:text-neutral-500"
+            className="w-1/2 text-center text-2xl hover:text-neutral-500"
           >
-            Order by : {sortOrder === "desc" ? "↓" : "↑"}
+            Order by: {sortOrder === "desc" ? "↓" : "↑"}
           </button>
         </div>
+
         <div className="flex min-h-[100vh] justify-between px-[10%] max-2xl:px-[5%]">
-          {/* Render Filter component only after priceMax is loaded */}
+          {/* Filter Sidebar */}
           {!loading && (
             <Filter
               priceMax={priceMax}
@@ -194,18 +207,22 @@ export default function Products() {
               toggleFilterVisibility={toggleFilterVisibility}
             />
           )}
-          <div
-            className={`flex w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && `blur`} xl:blur-none`}
+
+          {/* Product List Section */}
+          <section
+            aria-label="Product Results"
+            className={`flex w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && "blur"} xl:blur-none`}
           >
-            {loadingProducts && (
+            {loadingProducts ? (
               <div className="flex w-full justify-center">
-                <img src={loadingGif} />
+                <img src={loadingGif} alt="Loading products..." />
               </div>
+            ) : (
+              renderProductList()
             )}
-            {!loadingProducts && renderProducts()}
-          </div>
+          </section>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

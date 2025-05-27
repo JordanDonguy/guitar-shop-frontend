@@ -62,9 +62,10 @@ export default function AddToCart({
     <form onSubmit={handleSubmit} id={`add-to-cart-${product_id}`}>
       <button
         type="submit"
+        aria-label={`Add product ${product_id} to cart`}
         className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:h-17 max-lg:w-17"
       >
-        <img src={addToCart} className="w-10" alt="Add to cart" />
+        <img src={addToCart} className="w-10" alt="" aria-hidden="true" />
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
     </form>
