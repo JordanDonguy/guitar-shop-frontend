@@ -1,7 +1,9 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
+import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { BASE_URL } from "../components/utils/api";
 import guitar from "../assets/img/guitar-homepage.png";
 import eGuitar from "../assets/img/e-guitar.png";
 import aGuitar from "../assets/img/a-guitar.png";
@@ -11,6 +13,8 @@ import newsletter from "../assets/img/newsletter.png";
 export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -38,6 +42,41 @@ export default function HomePage() {
       navigate(location.pathname, { replace: true });
     }
   }, [location]);
+
+  const handleNewsletterForm = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetchWithCsrf(`${BASE_URL}/newsletter/subscribe`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        const emailError = data.errors.find((e) => e.field === "email");
+        toast.error(
+          emailError.msg,
+          {
+            position: "bottom-center",
+            autoClose: 4000,
+          }
+        );
+        throw new Error("Network response was not ok");
+      }
+
+      toast.success("Thanks for subscribing to our newsletter! 😎", {
+        position: "bottom-center",
+        autoClose: 4000,
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   return (
     <div className="flex w-full flex-col items-center">
@@ -76,6 +115,7 @@ export default function HomePage() {
         <div className="flex w-[80%] items-center justify-center bg-neutral-200 max-lg:hidden">
           <img
             src={guitar}
+            
             alt="guitar"
             className="h-full py-10 max-xl:h-5/6"
             style={{
@@ -216,11 +256,13 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
               pros. No spam — just great tone in your inbox.
             </p>
           </div>
-          <form className="flex h-40 flex-col justify-between">
+          <form onSubmit={handleNewsletterForm} className="flex h-40 flex-col justify-between">
             <input
               id="email"
               name="email"
               type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Email address"
               className="h-12 rounded-lg border pl-5 text-2xl"
             />
