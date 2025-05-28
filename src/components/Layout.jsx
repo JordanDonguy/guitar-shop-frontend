@@ -4,14 +4,16 @@ export const LayoutContext = createContext();
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import AddressForm from "./AddressForm";
+import PasswordForm from "./PasswordForm";
+import EmailForm from "./EmailForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import loadingGif from "../assets/img/loading.gif";
-import PasswordForm from "./PasswordForm";
 
 export default function Layout() {
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [showEmailForm, setShowEmailForm] = useState(false);
   const [blur, setBlur] = useState(false);
 
   function handleAddressButton() {
@@ -21,6 +23,11 @@ export default function Layout() {
 
   function handlePasswordButton() {
     setShowPasswordForm((prev) => !prev);
+    setBlur((prev) => !prev);
+  }
+
+  function handleEmailButton() {
+    setShowEmailForm((prev) => !prev);
     setBlur((prev) => !prev);
   }
 
@@ -42,23 +49,37 @@ export default function Layout() {
     );
   }
 
+  function getEmailForm() {
+    window.scrollTo(0, 0);
+    return (
+      <div className="absolute top-0 left-0 z-10 flex h-full w-full items-center justify-center">
+        <EmailForm handleEmailButton={handleEmailButton} />
+      </div>
+    );
+  }
+
   return (
     <LayoutContext.Provider
-      value={{ handleAddressButton, handlePasswordButton }}
+      value={{ handleAddressButton, handlePasswordButton, handleEmailButton }}
     >
       {showAddressForm && getAddressForm()}
       {showPasswordForm && getPasswordForm()}
+      {showEmailForm && getEmailForm()}
 
       <div
-        className={`flex min-h-screen flex-col justify-between ${blur ? "blur-md" : ""
-          }`}
+        className={`flex min-h-screen flex-col justify-between ${
+          blur ? "blur-md" : ""
+        }`}
       >
-
         <Navbar />
 
         <Suspense
           fallback={
-            <div className="flex h-screen items-center justify-center" role="alert" aria-live="assertive">
+            <div
+              className="flex h-screen items-center justify-center"
+              role="alert"
+              aria-live="assertive"
+            >
               <img src={loadingGif} alt="Loading animation 1" />
               <img src={loadingGif} alt="Loading animation 2" />
               <img src={loadingGif} alt="Loading animation 3" />
@@ -77,4 +98,4 @@ export default function Layout() {
       </div>
     </LayoutContext.Provider>
   );
-};
+}

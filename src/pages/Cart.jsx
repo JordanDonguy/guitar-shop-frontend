@@ -126,17 +126,15 @@ export default function Cart() {
             <div className="my-12 flex w-full items-center justify-between">
               <div className="text-2xl font-light">
                 Total price:{" "}
-                <span className="font-semibold">
-                  ${" "}{finalPriceFormatted}
-                </span>
+                <span className="font-semibold">$ {finalPriceFormatted}</span>
               </div>
             </div>
 
             <div className="mb-12">
               {!user.street && (
                 <div className="mb-10 text-lg">
-                  → You don&apos;t have a shipping address yet. Please create one
-                  before checking out by clicking{" "}
+                  → You don&apos;t have a shipping address yet. Please create
+                  one before checking out by clicking{" "}
                   <button
                     type="button"
                     onClick={handleAddressButton}
@@ -177,9 +175,7 @@ export default function Cart() {
             <div className="my-12 flex items-center justify-between">
               <div className="text-3xl font-light">
                 Total price:{" "}
-                <span className="font-semibold">
-                  ${" "}{guestTotalFormatted}
-                </span>
+                <span className="font-semibold">$ {guestTotalFormatted}</span>
               </div>
             </div>
 

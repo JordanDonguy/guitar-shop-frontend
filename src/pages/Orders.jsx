@@ -78,7 +78,11 @@ export default function Orders() {
         </h1>
 
         {loading && (
-          <div className="flex w-full justify-center" aria-live="polite" aria-busy="true">
+          <div
+            className="flex w-full justify-center"
+            aria-live="polite"
+            aria-busy="true"
+          >
             <img src={loadingGif} alt="Loading orders" />
           </div>
         )}

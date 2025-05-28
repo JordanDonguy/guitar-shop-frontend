@@ -19,6 +19,9 @@ A responsive, modern frontend for an online guitar store. This application is bu
 - 🛍️ Add products to your cart and update quantities
 - ✅ Complete a checkout process with shipping and contact info
 - 🔐 Authentication support with persistent login via cookies
+- 🔓 Google Oauth2.0 authentication method
+- 📪 Password reset via email
+- ✉️ Newsletter subscription
 - 📱 Mobile-friendly and responsive design
 - 📝 Markdown rendering for product descriptions
 - ▶️ Embedded YouTube video support for products (if available)

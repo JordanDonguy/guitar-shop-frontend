@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
+import { LayoutContext } from "../components/Layout";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
@@ -12,6 +13,7 @@ export default function Login() {
   const { fetchUser, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const { handleEmailButton } = useContext(LayoutContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -108,7 +110,10 @@ export default function Login() {
         </h1>
 
         {errorMessage && (
-          <div role="alert" className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700 max-lg:text-lg">
+          <div
+            role="alert"
+            className="mb-4 rounded bg-red-100 p-3 text-sm text-red-700 max-lg:text-lg"
+          >
             {errorMessage}
           </div>
         )}
@@ -159,11 +164,17 @@ export default function Login() {
               onChange={(e) => setPassword(e.target.value)}
               required
               aria-required="true"
-              aria-describedby={fieldErrors.password ? "password-error" : undefined}
+              aria-describedby={
+                fieldErrors.password ? "password-error" : undefined
+              }
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
             />
             {fieldErrors.password && (
-              <p id="password-error" className="text-sm text-red-500" role="alert">
+              <p
+                id="password-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {fieldErrors.password}
               </p>
             )}
@@ -190,14 +201,14 @@ export default function Login() {
               if (e.key === "Enter" || e.key === " ") {
                 saveTemporaryCartAndRedirect(
                   temporaryCart,
-                  `${BASE_URL}/auth/google`
+                  `${BASE_URL}/auth/google`,
                 );
               }
             }}
             onClick={() =>
               saveTemporaryCartAndRedirect(
                 temporaryCart,
-                `${BASE_URL}/auth/google`
+                `${BASE_URL}/auth/google`,
               )
             }
             className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl"
@@ -210,7 +221,16 @@ export default function Login() {
           </div>
         </form>
 
-        <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">
+        <p className="my-4 pt-2 text-center text-sm text-gray-600 max-lg:my-6 max-lg:text-lg">
+          <button
+            onClick={handleEmailButton}
+            className="text-blue-600 hover:cursor-pointer hover:underline"
+          >
+            Forgot password?
+          </button>
+        </p>
+
+        <p className="text-center text-sm text-gray-600 max-lg:text-lg">
           Don’t have an account?&nbsp;
           <Link to="/auth/register" className="text-blue-600 hover:underline">
             Register

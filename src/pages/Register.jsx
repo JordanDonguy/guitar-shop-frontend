@@ -118,10 +118,16 @@ export default function Register() {
               onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
               aria-required="true"
-              aria-describedby={fieldErrors.first_name ? "first-name-error" : undefined}
+              aria-describedby={
+                fieldErrors.first_name ? "first-name-error" : undefined
+              }
             />
             {fieldErrors.first_name && (
-              <p id="first-name-error" className="text-sm text-red-500" role="alert">
+              <p
+                id="first-name-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {fieldErrors.first_name}
               </p>
             )}
@@ -143,10 +149,16 @@ export default function Register() {
               onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
               aria-required="true"
-              aria-describedby={fieldErrors.last_name ? "last-name-error" : undefined}
+              aria-describedby={
+                fieldErrors.last_name ? "last-name-error" : undefined
+              }
             />
             {fieldErrors.last_name && (
-              <p id="last-name-error" className="text-sm text-red-500" role="alert">
+              <p
+                id="last-name-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {fieldErrors.last_name}
               </p>
             )}
@@ -199,11 +211,7 @@ export default function Register() {
               pattern="^[0-9+\-\s()]*$"
             />
             {fieldErrors.phone_number && (
-              <p
-                id="phone-error"
-                className="text-sm text-red-500"
-                role="alert"
-              >
+              <p id="phone-error" className="text-sm text-red-500" role="alert">
                 {fieldErrors.phone_number}
               </p>
             )}
@@ -225,10 +233,16 @@ export default function Register() {
               onChange={handleInputChange}
               className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
               aria-required="true"
-              aria-describedby={fieldErrors.password ? "password-error" : undefined}
+              aria-describedby={
+                fieldErrors.password ? "password-error" : undefined
+              }
             />
             {fieldErrors.password && (
-              <p id="password-error" className="text-sm text-red-500" role="alert">
+              <p
+                id="password-error"
+                className="text-sm text-red-500"
+                role="alert"
+              >
                 {fieldErrors.password}
               </p>
             )}
@@ -252,7 +266,9 @@ export default function Register() {
                 window.location.href = "http://localhost:3000/auth/google";
               }
             }}
-            onClick={() => window.location.href = "http://localhost:3000/auth/google"}
+            onClick={() =>
+              (window.location.href = "http://localhost:3000/auth/google")
+            }
             aria-label="Continue with Google"
           >
             <img src={googleLogo} alt="" className="w-10" aria-hidden="true" />

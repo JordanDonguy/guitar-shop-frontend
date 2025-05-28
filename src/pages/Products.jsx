@@ -106,7 +106,7 @@ export default function Products() {
   const renderProductList = () => {
     if (searchedProducts.length === 0) {
       return (
-        <p className="w-full text-2xl text-center text-gray-600">
+        <p className="w-full text-center text-2xl text-gray-600">
           No products match your search...
         </p>
       );
@@ -141,7 +141,9 @@ export default function Products() {
               ) : (
                 <span className="text-xl text-red-600">● Out of Stock</span>
               )}
-              <span className="pt-4 text-3xl font-medium">${product.price}</span>
+              <span className="pt-4 text-3xl font-medium">
+                ${product.price}
+              </span>
             </div>
 
             <AddToCart
@@ -167,7 +169,9 @@ export default function Products() {
       </Helmet>
 
       {/* Hidden main title for accessibility */}
-      <h1 id="products-title" className="sr-only">Product Catalog</h1>
+      <h1 id="products-title" className="sr-only">
+        Product Catalog
+      </h1>
 
       {/* Desktop filter header */}
       <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden max-lg:mx-0">

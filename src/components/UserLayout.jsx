@@ -27,9 +27,10 @@ const UserLayout = () => {
             <NavLink
               to="/user/profile"
               className={({ isActive }) =>
-                `w-1/2 py-3 text-center text-xl font-medium transition ${isActive
-                  ? "bg-teal-600 text-white"
-                  : "bg-white hover:bg-teal-100"
+                `w-1/2 py-3 text-center text-xl font-medium transition ${
+                  isActive
+                    ? "bg-teal-600 text-white"
+                    : "bg-white hover:bg-teal-100"
                 }`
               }
             >
@@ -38,9 +39,10 @@ const UserLayout = () => {
             <NavLink
               to="/user/orders"
               className={({ isActive }) =>
-                `w-1/2 py-3 text-center text-xl font-medium transition ${isActive
-                  ? "bg-teal-600 text-white"
-                  : "bg-white hover:bg-teal-100"
+                `w-1/2 py-3 text-center text-xl font-medium transition ${
+                  isActive
+                    ? "bg-teal-600 text-white"
+                    : "bg-white hover:bg-teal-100"
                 }`
               }
             >

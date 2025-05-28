@@ -80,9 +80,9 @@ export default function AddressForm({ handleAddressButton }) {
         X
       </button>
 
-      <h2 className="text-2xl text-neutral-700 mb-6">Enter address details:</h2>
+      <h2 className="mb-6 text-2xl text-neutral-700">Enter address details:</h2>
 
-      <fieldset className="grid grid-cols-1 gap-4 space-y-6 border-0 p-0 m-0">
+      <fieldset className="m-0 grid grid-cols-1 gap-4 space-y-6 border-0 p-0">
         <legend className="sr-only">Address Details</legend>
 
         <div>
@@ -175,7 +175,11 @@ export default function AddressForm({ handleAddressButton }) {
             <option value="">-- Select a country --</option>
             {countries &&
               countries.map((country) => (
-                <option key={country.code} value={country.code} className="text-xl">
+                <option
+                  key={country.code}
+                  value={country.code}
+                  className="text-xl"
+                >
                   {country.name}
                 </option>
               ))}

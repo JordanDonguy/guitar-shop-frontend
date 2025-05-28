@@ -53,12 +53,13 @@ export default function Filter({
 
   return (
     <aside
-      className={`w-1/5 max-xl:w-[90%] ${filterVisibility ? `max-xl:fixed` : `max-xl:hidden`
-        } z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
+      className={`w-1/5 max-xl:w-[90%] ${
+        filterVisibility ? `max-xl:fixed` : `max-xl:hidden`
+      } z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
       aria-label="Product filters"
     >
       <div className="sticky top-[140px] h-[80vh] rounded-r-xl border-neutral-300 p-2 max-xl:h-[50vh] max-xl:border-none xl:border-2 xl:bg-white xl:shadow-sm">
-        <div className="flex h-full flex-col overflow-hidden relative">
+        <div className="relative flex h-full flex-col overflow-hidden">
           <div className="absolute top-0 right-0 hidden items-center justify-between max-xl:flex">
             <button
               onClick={toggleFilterVisibility}
@@ -71,11 +72,14 @@ export default function Filter({
 
           <div className="fade-in scrollbar-hide mr-10 flex-1 overflow-y-auto">
             {/* Categories Section */}
-            <section className="max-xl:w-fit" aria-expanded={isCategoriesVisible}>
+            <section
+              className="max-xl:w-fit"
+              aria-expanded={isCategoriesVisible}
+            >
               <button
                 type="button"
                 onClick={() => setCategoriesVisible(!isCategoriesVisible)}
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl flex items-center gap-2"
+                className="flex items-center gap-2 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
                 aria-expanded={isCategoriesVisible}
                 aria-controls="categories-list"
               >
@@ -110,11 +114,14 @@ export default function Filter({
             </section>
 
             {/* Brands Section */}
-            <section className="max-xl:w-fit mt-8" aria-expanded={isBrandsVisible}>
+            <section
+              className="mt-8 max-xl:w-fit"
+              aria-expanded={isBrandsVisible}
+            >
               <button
                 type="button"
                 onClick={() => setBrandsVisible(!isBrandsVisible)}
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl flex items-center gap-2"
+                className="flex items-center gap-2 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-lg:text-3xl"
                 aria-expanded={isBrandsVisible}
                 aria-controls="brands-list"
               >
@@ -153,7 +160,7 @@ export default function Filter({
               <button
                 type="button"
                 onClick={() => setPriceVisible(!isPriceVisible)}
-                className="text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit max-lg:text-3xl flex items-center gap-2"
+                className="flex items-center gap-2 text-xl font-light hover:cursor-pointer hover:text-teal-600 max-xl:w-fit max-lg:text-3xl"
                 aria-expanded={isPriceVisible}
                 aria-controls="price-range"
               >

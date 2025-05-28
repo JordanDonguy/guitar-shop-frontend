@@ -95,7 +95,10 @@ export default function UserProfile() {
             </h2>
             <fieldset className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div>
-                <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                <label
+                  htmlFor="first_name"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                >
                   First Name
                 </label>
                 <input
@@ -109,7 +112,10 @@ export default function UserProfile() {
               </div>
 
               <div>
-                <label htmlFor="last_name" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                <label
+                  htmlFor="last_name"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                >
                   Last Name
                 </label>
                 <input
@@ -123,7 +129,10 @@ export default function UserProfile() {
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                >
                   Email
                 </label>
                 <input
@@ -137,7 +146,10 @@ export default function UserProfile() {
               </div>
 
               <div>
-                <label htmlFor="phone_number" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                <label
+                  htmlFor="phone_number"
+                  className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                >
                   Phone Number
                 </label>
                 <input
@@ -185,7 +197,8 @@ export default function UserProfile() {
 
             {!user.street ? (
               <p className="max-lg:my-10 max-lg:text-lg">
-                → You don&apos;t have an address yet, but you can create one by clicking{" "}
+                → You don&apos;t have an address yet, but you can create one by
+                clicking{" "}
                 <button
                   type="button"
                   onClick={handleAddressButton}
@@ -197,7 +210,10 @@ export default function UserProfile() {
             ) : (
               <fieldset className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div className="sm:col-span-2">
-                  <label htmlFor="street" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                  <label
+                    htmlFor="street"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
                     Street
                   </label>
                   <input
@@ -211,7 +227,10 @@ export default function UserProfile() {
                 </div>
 
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                  <label
+                    htmlFor="city"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
                     City
                   </label>
                   <input
@@ -225,7 +244,10 @@ export default function UserProfile() {
                 </div>
 
                 <div>
-                  <label htmlFor="state" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                  <label
+                    htmlFor="state"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
                     State
                   </label>
                   <input
@@ -239,7 +261,10 @@ export default function UserProfile() {
                 </div>
 
                 <div>
-                  <label htmlFor="postal_code" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                  <label
+                    htmlFor="postal_code"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
                     Postal Code
                   </label>
                   <input
@@ -253,7 +278,10 @@ export default function UserProfile() {
                 </div>
 
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 max-lg:text-lg">
+                  <label
+                    htmlFor="country"
+                    className="block text-sm font-medium text-gray-700 max-lg:text-lg"
+                  >
                     Country
                   </label>
                   <select

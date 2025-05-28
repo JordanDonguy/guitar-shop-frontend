@@ -60,46 +60,63 @@ export default function SingleProduct() {
                 <div className="flex w-full justify-center rounded-xl bg-teal-50 max-lg:flex-col">
                   {/* Desktop image */}
                   {loadingImage2 && (
-                    <div className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden" aria-busy="true">
+                    <div
+                      className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden"
+                      aria-busy="true"
+                    >
                       <img src={loadingGif} alt="Loading product image..." />
                     </div>
                   )}
                   <img
                     src={productInfos.image_url2}
                     alt={productInfos.name}
-                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${loadingImage2 ? "hidden" : ""
-                      }`}
+                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${
+                      loadingImage2 ? "hidden" : ""
+                    }`}
                     onLoad={() => setLoadingImage2(false)}
                     onError={() => setLoadingImage2(false)}
                   />
 
                   {/* Mobile image */}
                   {loadingImage1 && (
-                    <div className="hidden h-110 w-full items-center justify-center rounded-l-xl bg-white px-[2%] py-5 max-lg:block" aria-busy="true">
+                    <div
+                      className="hidden h-110 w-full items-center justify-center rounded-l-xl bg-white px-[2%] py-5 max-lg:block"
+                      aria-busy="true"
+                    >
                       <img src={loadingGif} alt="Loading product image..." />
                     </div>
                   )}
                   <img
                     src={productInfos.image_url}
                     alt={productInfos.name}
-                    className={`hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block ${loadingImage1 ? "hidden" : ""
-                      }`}
+                    className={`hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block ${
+                      loadingImage1 ? "hidden" : ""
+                    }`}
                     onLoad={() => setLoadingImage1(false)}
                     onError={() => setLoadingImage1(false)}
                   />
 
                   {/* Product details */}
                   <div className="w-[30%] flex-1 border-l border-teal-200 pt-15 pl-5 max-lg:w-full max-lg:border-t max-lg:border-l-0 max-lg:pt-10">
-                    <h1 className="pb-5 text-4xl font-bold">{productInfos.brand}</h1>
-                    <h2 className="pb-10 text-2xl max-xl:pb-5">{productInfos.name}</h2>
+                    <h1 className="pb-5 text-4xl font-bold">
+                      {productInfos.brand}
+                    </h1>
+                    <h2 className="pb-10 text-2xl max-xl:pb-5">
+                      {productInfos.name}
+                    </h2>
                     <div className="items-end justify-between pr-5 max-lg:mb-10 max-lg:flex">
                       <div>
                         <p
-                          className={`my-2 pb-5 text-xl ${productInfos.stock > 0 ? "text-green-600" : "text-red-600"
-                            }`}
+                          className={`my-2 pb-5 text-xl ${
+                            productInfos.stock > 0
+                              ? "text-green-600"
+                              : "text-red-600"
+                          }`}
                           aria-live="polite"
                         >
-                          {productInfos.stock > 0 ? "● Available" : "● Out of Stock"}
+                          {productInfos.stock > 0
+                            ? "● Available"
+                            : "● Out of Stock"}
                         </p>
                         <p className="my-2 pb-7 text-4xl max-xl:pb-5 max-lg:my-0 max-lg:mr-15 max-lg:pb-0">
                           ${Number(productInfos.price).toFixed(2)}
@@ -123,7 +140,10 @@ export default function SingleProduct() {
                   aria-labelledby="product-description-title"
                   className="fade-in mx-auto my-24 mb-10 flex flex-col items-center rounded-xl bg-teal-50 leading-relaxed shadow-lg"
                 >
-                  <h3 id="product-description-title" className="p-10 text-center text-4xl font-semibold">
+                  <h3
+                    id="product-description-title"
+                    className="p-10 text-center text-4xl font-semibold"
+                  >
                     Description
                   </h3>
                   <article className="prose-lg px-[5%] py-5">
@@ -137,7 +157,7 @@ export default function SingleProduct() {
                         frameBorder="0"
                         allowFullScreen
                         title={`${productInfos.name} video`}
-                        className="w-full h-full rounded-xl"
+                        className="h-full w-full rounded-xl"
                       ></iframe>
                       <figcaption className="sr-only">{`Video showcasing the ${productInfos.name}`}</figcaption>
                     </figure>

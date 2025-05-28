@@ -96,7 +96,11 @@ export default function CartProduct({
             ) : (
               <>
                 <form onSubmit={handleSubmit} id={`remove-one-${product.id}`}>
-                  <input type="hidden" name="product_id" value={product.product_id} />
+                  <input
+                    type="hidden"
+                    name="product_id"
+                    value={product.product_id}
+                  />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="-1" />
                   <button
@@ -111,7 +115,11 @@ export default function CartProduct({
                   {productQuantity}
                 </span>
                 <form onSubmit={handleSubmit} id={`add-one-${product.id}`}>
-                  <input type="hidden" name="product_id" value={product.product_id} />
+                  <input
+                    type="hidden"
+                    name="product_id"
+                    value={product.product_id}
+                  />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="1" />
                   <button
