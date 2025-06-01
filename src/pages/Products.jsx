@@ -11,7 +11,6 @@ export default function Products() {
   const { searchTerm } = useSearch();
 
   const [products, setProducts] = useState([]);
-  const [searchedProducts, setSearchedProducts] = useState([]);
   const [priceMax, setPriceMax] = useState(null);
 
   const [loading, setLoading] = useState(true);
@@ -28,7 +27,11 @@ export default function Products() {
     priceRange: [0, priceMax],
   });
 
-  // Fetch the max price of all products and set the filters
+  const [page, setPage] = useState(1);
+  const limit = 10;
+  const [totalPages, setTotalPages] = useState(1);
+
+  // Get max price to init filter
   useEffect(() => {
     fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
@@ -43,10 +46,17 @@ export default function Products() {
       .catch((err) => console.log(err));
   }, []);
 
-  // Fetch products based on filter changes
+  // Scroll to top when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [page]);
+
+  // Fetch products based on filters, search, and pagination
   useEffect(() => {
     if (!filter || !priceMax) return;
+
     const params = new URLSearchParams();
+
     if (filter.categoryIds.length > 0) {
       filter.categoryIds.forEach((id) => params.append("categoryId", id));
     }
@@ -59,52 +69,48 @@ export default function Products() {
     if (filter.priceRange[1] < priceMax) {
       params.append("maxPrice", filter.priceRange[1]);
     }
+    if (searchTerm.trim() !== "") {
+      params.append("search", searchTerm.trim());
+    }
+
+    params.append("sort", sortOrder);
+    params.append("page", page);
+    params.append("limit", limit);
 
     fetch(`${BASE_URL}/products?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data.products);
-        setSearchedProducts(data.products);
+        setTotalPages(data.totalPages);
         setLoadingProducts(false);
       })
       .catch((err) => console.log(err));
-  }, [filter, priceMax]);
+  }, [filter, priceMax, page, searchTerm, sortOrder]);
 
+  // Reset to page 1 when filter changes
   useEffect(() => {
-    const term = searchTerm.toLowerCase();
-    const filtered = products.filter(
-      (p) =>
-        p.name.toLowerCase().includes(term) ||
-        p.brand.toLowerCase().includes(term),
-    );
-    setSearchedProducts(filtered);
-  }, [searchTerm, products]);
+    if (loadingProducts) return;
+    if (products.length === 0) return setPage(0);
+    setPage(1);
+  }, [filter, searchTerm, sortOrder]);
+
+  // Change the sort order and reset to page 1
+  const handleSort = () => {
+    const newOrder = sortOrder === "desc" ? "asc" : "desc";
+    setSortOrder(newOrder);
+  };
 
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
 
   const toggleFilterVisibility = () => {
-    if (filterVisibility) {
-      setFilterVisibility(false);
-      setBlurBackground(false);
-    } else {
-      setFilterVisibility(true);
-      setBlurBackground(true);
-    }
-  };
-
-  const handleSort = () => {
-    const newOrder = sortOrder === "desc" ? "asc" : "desc";
-    setSortOrder(newOrder);
-    const sorted = [...searchedProducts].sort((a, b) => {
-      return sortOrder === "desc" ? a.price - b.price : b.price - a.price;
-    });
-    setSearchedProducts(sorted);
+    setFilterVisibility((prev) => !prev);
+    setBlurBackground((prev) => !prev);
   };
 
   const renderProductList = () => {
-    if (searchedProducts.length === 0) {
+    if (products.length === 0) {
       return (
         <p className="w-full text-center text-2xl text-gray-600">
           No products match your search...
@@ -112,7 +118,7 @@ export default function Products() {
       );
     }
 
-    return searchedProducts.map((product) => (
+    return products.map((product) => (
       <article
         key={product.id}
         className="fade-in mb-10 flex rounded-xl border-2 border-neutral-300 shadow-sm"
@@ -162,7 +168,7 @@ export default function Products() {
   return (
     <section
       aria-labelledby="products-title"
-      className="max-xl:pt-[140px] max-lg:pt-60"
+      className="fade-in min-h-screen max-xl:pt-[140px] max-lg:pt-60"
     >
       <Helmet>
         <title>Products | Guitar Shop</title>
@@ -174,7 +180,7 @@ export default function Products() {
       </h1>
 
       {/* Desktop filter header */}
-      <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-[140px] pb-2 max-2xl:mx-[5%] max-xl:hidden max-lg:mx-0">
+      <div className="mx-[10%] mb-10 flex justify-between border-b-2 border-neutral-300 pt-30 pb-2 max-2xl:mx-[5%] max-xl:hidden max-lg:mx-0">
         <h2 className="text-4xl">Filters</h2>
         <button
           onClick={handleSort}
@@ -184,9 +190,9 @@ export default function Products() {
         </button>
       </div>
 
-      <div className="fade-in mb-20 flex-col items-center max-xl:flex">
+      <div className="fade-in mb-20 flex-col items-center px-[10%] max-2xl:px-[5%] max-xl:flex max-lg:px-4">
         {/* Mobile filter & sort controls */}
-        <div className="mb-10 flex h-fit w-[90%] rounded-lg border-2 border-teal-600 p-1 xl:hidden">
+        <div className="mb-10 flex h-fit w-full rounded-lg border-2 border-teal-600 p-1 xl:hidden">
           <button
             onClick={toggleFilterVisibility}
             className="w-1/2 border-r-2 border-teal-400 text-center text-2xl hover:text-neutral-500"
@@ -201,7 +207,7 @@ export default function Products() {
           </button>
         </div>
 
-        <div className="flex min-h-[100vh] justify-between px-[10%] max-2xl:px-[5%]">
+        <div className="flex min-h-[100vh] justify-between">
           {/* Filter Sidebar */}
           {!loading && (
             <Filter
@@ -215,7 +221,7 @@ export default function Products() {
           {/* Product List Section */}
           <section
             aria-label="Product Results"
-            className={`flex w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && "blur"} xl:blur-none`}
+            className={`flex min-h-screen w-full flex-col pl-20 filter max-xl:pl-0 ${blurBackground && "blur"} xl:blur-none`}
           >
             {loadingProducts ? (
               <div className="flex w-full justify-center">
@@ -223,6 +229,29 @@ export default function Products() {
               </div>
             ) : (
               renderProductList()
+            )}
+
+            {/* Pagination buttons */}
+            {!loadingProducts && (
+              <div className="mt-8 flex justify-center gap-2">
+                <button
+                  onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                  disabled={page === 1}
+                  className={`rounded border px-4 py-2 ${page > 1 && "hover:cursor-pointer hover:bg-teal-200"} disabled:opacity-50`}
+                >
+                  Prev
+                </button>
+                <span className="px-4 py-2">
+                  {page} / {totalPages}
+                </span>
+                <button
+                  onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+                  disabled={page === totalPages}
+                  className={`rounded border px-4 py-2 ${page < totalPages && "hover:cursor-pointer hover:bg-teal-200"} disabled:opacity-50`}
+                >
+                  Next
+                </button>
+              </div>
             )}
           </section>
         </div>
