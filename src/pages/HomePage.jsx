@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
-import { BASE_URL } from "../components/utils/api";
+import NewsletterForm from "../components/NewsletterForm";
 import guitar from "../assets/img/guitar-homepage.png";
 import eGuitar from "../assets/img/e-guitar.png";
 import aGuitar from "../assets/img/a-guitar.png";
@@ -13,8 +12,6 @@ import newsletter from "../assets/img/newsletter.png";
 export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -43,37 +40,6 @@ export default function HomePage() {
     }
   }, [location]);
 
-  const handleNewsletterForm = async (e) => {
-    e.preventDefault();
-
-    try {
-      const res = await fetchWithCsrf(`${BASE_URL}/newsletter/subscribe`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        const emailError = data.errors.find((e) => e.field === "email");
-        toast.error(emailError.msg, {
-          position: "bottom-center",
-          autoClose: 4000,
-        });
-        throw new Error("Network response was not ok");
-      }
-
-      toast.success("Thanks for subscribing to our newsletter! 😎", {
-        position: "bottom-center",
-        autoClose: 4000,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <div className="flex w-full flex-col items-center">
       <Helmet>
@@ -81,12 +47,12 @@ export default function HomePage() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="fade-in flex h-screen pt-[80px] shadow-lg max-lg:h-fit max-lg:pt-45">
-        <div className="flex w-full flex-col justify-between pt-5 pb-10 pl-[10%] max-2xl:pl-[5%] max-xl:w-4/6 max-xl:justify-around max-lg:w-full max-lg:items-center max-lg:pl-0">
-          <h1 className="text-8xl/30 text-shadow-lg max-2xl:text-8xl/25 max-xl:w-[90%] max-xl:text-6xl/18 max-lg:text-center">
+      <section className="fade-in flex h-screen pt-24 shadow-lg max-lg:h-fit max-lg:pt-55 max-lg:pb-10 max-md:max-h-screen">
+        <div className="flex w-full flex-col justify-between pt-5 pb-10 pl-[10%] max-2xl:pl-[9%] max-xl:w-4/6 max-xl:justify-around max-xl:px-[5%] max-lg:w-full max-lg:items-center max-lg:p-0">
+          <h1 className="text-8xl/30 text-shadow-lg max-2xl:w-[90%] max-2xl:text-7xl/24 max-xl:text-6xl/18 max-lg:text-center">
             Find the guitar you’ve always wanted
           </h1>
-          <div className="hidden w-[80%] items-center justify-center bg-neutral-200 max-lg:flex max-lg:h-2/5 max-lg:w-full max-md:h-1/3">
+          <div className="hidden w-[80%] items-center justify-center bg-neutral-200 max-lg:flex max-lg:h-2/5 max-lg:w-full max-md:mb-5 max-md:h-1/3">
             <img
               src={guitar}
               alt="guitar"
@@ -96,23 +62,23 @@ export default function HomePage() {
               }}
             />
           </div>
-          <p className="w-170 text-4xl/15 font-light text-shadow-lg max-xl:w-140 max-lg:w-auto max-lg:px-[5%] max-lg:text-center max-md:text-3xl/10">
+          <p className="text-4xl/15 font-light text-shadow-lg max-2xl:w-140 max-2xl:text-3xl/13 max-lg:w-auto max-lg:px-[5%] max-lg:text-center max-md:text-3xl/10">
             Explore our selection of electric and acoustic guitars, amps,
             effects and all the accessories and home-studio gear that you’re
             dreaming of!
           </p>
           <Link
             to="/products"
-            className="flex h-15 w-60 items-center justify-center rounded-full border border-black bg-teal-50 text-2xl shadow-lg hover:border-2 hover:bg-teal-200 max-lg:mb-5 max-lg:h-20 max-lg:w-80 max-lg:border-2 max-lg:text-3xl"
+            className="flex h-20 w-80 items-center justify-center rounded-full border border-black bg-teal-50 text-3xl shadow-md hover:border-2 hover:bg-teal-200 max-2xl:h-15 max-xl:h-20 max-md:mt-7 xl:mt-4"
           >
             Explore now
           </Link>
         </div>
-        <div className="flex w-[80%] items-center justify-center bg-neutral-200 max-lg:hidden">
+        <div className="flex w-[90%] items-center justify-center bg-neutral-200 max-xl:w-full max-lg:hidden">
           <img
             src={guitar}
             alt="guitar"
-            className="h-full py-10 max-xl:h-5/6"
+            className="h-full py-10 pr-24 max-2xl:pr-0 max-xl:h-[95%]"
             style={{
               filter: "drop-shadow(30px 20px 5px rgba(139, 143, 143, 0.5))",
             }}
@@ -122,7 +88,9 @@ export default function HomePage() {
 
       {/* Hottest Products Section */}
       <section className="fade-in flex flex-col items-center md:px-[5%]">
-        <h2 className="my-25 pl-12 text-6xl max-lg:pl-0">Hottest products</h2>
+        <h2 className="mt-20 mb-25 pl-12 text-6xl max-lg:mt-15 max-lg:pl-0 max-md:mt-10 2xl:mt-15">
+          Hottest products
+        </h2>
         <div className="flex justify-center text-shadow-lg max-lg:flex-col">
           {/* Product Card 1 */}
           <article className="flex h-160 w-1/3 flex-col items-center justify-between border-r-2 border-teal-200 max-lg:mb-10 max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-none">
@@ -220,7 +188,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
         ].map(({ quote, text, author }, i) => (
           <blockquote
             key={i}
-            className={`w-[75%] text-center text-2xl ${i < 2 ? "border-b-2 border-teal-200 pb-8" : "py-8"}`}
+            className={`w-[75%] text-center text-2xl max-lg:w-[90%] max-md:w-full max-md:px-4 ${i < 2 ? "border-b-2 border-teal-200 pb-8" : "py-8"}`}
           >
             ⭐️⭐️⭐️⭐️⭐️
             <p className="font-medium">“{quote}”</p>
@@ -231,7 +199,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
       </section>
 
       {/* Newsletter Section */}
-      <section className="flex w-full flex-col items-center bg-neutral-200 px-[10%] pb-30 max-2xl:px-[5%]">
+      <section className="flex w-full flex-col items-center bg-neutral-200 px-[10%] pb-30 max-2xl:px-[5%] max-md:px-4">
         <h2 className="my-25 pl-10 text-6xl max-lg:pl-0">Newsletter</h2>
         <div className="flex w-full items-center justify-evenly max-xl:flex-col">
           <div className="flex max-xl:mb-20">
@@ -240,7 +208,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
               className="h-auto w-80 max-lg:hidden"
               alt="newsletter"
             />
-            <div className="hidden w-120 flex-col items-center justify-center pl-20 text-center max-xl:flex max-lg:mx-[10%] max-lg:w-full max-lg:pl-0">
+            <div className="hidden w-120 flex-col items-center justify-center pl-20 text-center max-xl:flex max-lg:mx-4 max-lg:w-full max-lg:pl-0">
               <p className="pb-5 text-4xl">Stay in Tune With the Latest Gear</p>
               <p className="text-2xl">
                 Subscribe to our newsletter and be the first to know about
@@ -257,26 +225,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
               pros. No spam — just great tone in your inbox.
             </p>
           </div>
-          <form
-            onSubmit={handleNewsletterForm}
-            className="flex h-40 flex-col justify-between"
-          >
-            <input
-              id="email"
-              name="email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email address"
-              className="h-12 rounded-lg border pl-5 text-2xl"
-            />
-            <button
-              type="submit"
-              className="h-15 rounded-4xl border bg-black text-2xl text-teal-50 hover:cursor-pointer hover:bg-gray-800"
-            >
-              Subscribe now
-            </button>
-          </form>
+          <NewsletterForm />
         </div>
       </section>
     </div>

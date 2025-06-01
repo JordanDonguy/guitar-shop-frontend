@@ -15,7 +15,7 @@ export default function SearchBar() {
       navigate("/products");
     }
     if (location.pathname === "/products") {
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 

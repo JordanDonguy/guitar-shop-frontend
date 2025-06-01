@@ -56,80 +56,64 @@ export default function Navbar() {
     }
   };
 
+  // Configure an array of navItems
+  const navItems = ["Products", "Services", "About", "Contact"];
+
   return (
     <header role="banner" aria-label="Primary site navigation">
       <nav
-        className={`fixed z-20 flex h-24 w-screen items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
+        className={`fixed z-20 flex h-24 w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] max-lg:px-4 lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
       >
         <NavLink
           to="/"
           onClick={() => {
             if (location.pathname === "/") {
-              window.scrollTo({ top: 0 });
+              window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
           className="flex w-28 items-center justify-between max-xl:w-16"
         >
           <img
             src={logo}
-            className="h-12 w-12 max-md:h-15 max-md:w-15"
+            className="h-12 w-12 max-lg:h-15 max-lg:w-15"
             alt="shop logo"
           />
           <h1 className="w-12 text-lg max-xl:hidden">Guitar Shop</h1>
         </NavLink>
 
         <ul className="flex w-1/3 justify-between px-[1vw] text-xl font-light max-xl:w-2/5 max-lg:hidden">
-          <li>
-            <NavLink
-              to="/"
-              onClick={() => {
-                if (location.pathname === "/") {
-                  window.scrollTo({ top: 0 });
+          {navItems.map((item) => (
+            <li>
+              <NavLink
+                onClick={() => {
+                  if (location.pathname === `/${item}`) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                to={`/${item}`}
+                className={({ isActive }) =>
+                  `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
                 }
-              }}
-              className={({ isActive }) =>
-                `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
-              }
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              onClick={() => {
-                if (location.pathname === "/products") {
-                  window.scrollTo({ top: 0 });
-                }
-              }}
-              to="/products"
-              className={({ isActive }) =>
-                `py-1 hover:text-teal-600 ${isActive ? "border-b-2 text-neutral-400" : ""} border-teal-400`
-              }
-            >
-              Products
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="#" className="py-1 hover:text-teal-600">
-              Services
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="#" className="py-1 hover:text-teal-600">
-              Contact
-            </NavLink>
-          </li>
+              >
+                {item}
+              </NavLink>
+            </li>
+          ))}
         </ul>
 
         <SearchBar />
-        <div className="flex w-50 items-center justify-between max-lg:w-fit md:w-fit">
+
+        <div className="flex items-center justify-between space-x-2">
           <NavLink
+            onClick={() => {
+              if (location.pathname === "/cart") {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
             to="/cart"
             className={({ isActive }) =>
               `rounded-xl border-2 p-2 filter ${
-                isActive
-                  ? "border-teal-400 bg-teal-100 max-lg:mr-4"
-                  : "border-transparent max-lg:mr-4"
+                isActive ? "border-teal-400 bg-teal-100" : "border-transparent"
               }`
             }
           >
@@ -141,16 +125,21 @@ export default function Navbar() {
             aria-label="Toggle mobile menu"
             aria-expanded={menuVisibility}
           >
-            <Menu className="duration:100 h-11 w-11 transition hover:text-teal-600 max-lg:mr-4" />
+            <Menu className="duration:100 h-11 w-11 transition hover:text-teal-600" />
           </button>
 
           {user ? (
             <NavLink
+              onClick={() => {
+                if (location.pathname === "/user/profile") {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
               to="/user/profile"
               className={
                 location.pathname.startsWith("/user")
-                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter max-lg:mr-4"
-                  : "border-2 border-transparent p-2 filter max-lg:mr-4"
+                  ? "rounded-xl border-2 border-teal-400 bg-teal-100 p-2 filter"
+                  : "border-2 border-transparent p-2 filter"
               }
               aria-current={
                 location.pathname.startsWith("/user") ? "page" : undefined
@@ -170,6 +159,7 @@ export default function Navbar() {
               Login
             </NavLink>
           )}
+
           {user ? (
             <button
               onClick={handleLogout}
@@ -188,13 +178,14 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(240,253,250,0.95)] shadow-md backdrop-blur-sm transition-all duration-300 ease-in-out ${
+        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(245,245,245,0.75)] backdrop-blur-sm transition-all duration-300 ease-in-out ${
           menuVisibility
-            ? "max-h-1/2 opacity-100"
+            ? "z-20 max-h-1/2 opacity-100"
             : "max-h-0 overflow-hidden opacity-0"
         }`}
         aria-hidden={!menuVisibility}
       >
+
         <button
           onClick={toggleMenuVisibility}
           className="absolute top-6 right-6 rounded-full border px-4 py-2 text-2xl font-semibold hover:bg-teal-200"
@@ -202,47 +193,21 @@ export default function Navbar() {
         >
           ✕
         </button>
+
         <ul className="flex h-[50vh] flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light max-lg:text-3xl">
-          <li>
-            <NavLink
-              to="/"
-              onClick={toggleMenuVisibility}
-              className={({ isActive }) =>
-                `border-y-2 py-1 filter ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`
-              }
-            >
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/products"
-              onClick={toggleMenuVisibility}
-              className={({ isActive }) =>
-                `border-y-2 py-1 filter ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`
-              }
-            >
-              Products
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
-              onClick={toggleMenuVisibility}
-              className="hover:text-teal-600"
-            >
-              Services
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="#"
-              onClick={toggleMenuVisibility}
-              className="hover:text-teal-600"
-            >
-              Contact
-            </NavLink>
-          </li>
+          {navItems.map((item) => (
+            <li>
+              <NavLink
+                to={`/${item}`}
+                onClick={toggleMenuVisibility}
+                className={({ isActive }) =>
+                  `border-y-2 py-1 filter ${isActive ? "border-teal-400" : "border-transparent"} hover:text-teal-600`
+                }
+              >
+                {item}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </header>

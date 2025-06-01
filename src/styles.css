@@ -6,6 +6,12 @@
 @tailwind utilities;
 @plugin "@tailwindcss/typography";
 
+input:-webkit-autofill {
+  box-shadow: 0 0 0px 1000px white inset !important;
+  -webkit-box-shadow: 0 0 0px 1000px #e5e7eb inset !important;
+  -webkit-text-fill-color: black !important;
+}
+
 @theme {
   --font-onest: "Onest", sans-serif;
 }
@@ -28,7 +34,6 @@
 html {
   font-size: 16px;
   font-family: onest, sans-serif;
-  scroll-behavior: smooth;
 }
 
 .scrollbar-hide {

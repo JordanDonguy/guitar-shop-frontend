@@ -86,7 +86,7 @@ export default function Layout() {
             </div>
           }
         >
-          <main className="flex flex-1 items-center justify-center">
+          <main className="flex min-h-screen flex-1 items-center justify-center max-lg:min-h-fit">
             <div className="w-full flex-grow max-lg:max-w-screen">
               <Outlet />
             </div>

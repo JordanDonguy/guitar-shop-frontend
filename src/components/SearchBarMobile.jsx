@@ -20,11 +20,11 @@ export default function SearchBarMobile() {
   };
 
   return (
-    <div className="absolute z-10 mt-24 flex h-24 w-full items-center justify-center bg-teal-50 shadow-md lg:hidden">
+    <div className="absolute z-10 mt-24 flex h-24 w-full items-center justify-center bg-[rgba(240,253,250,0.75)] shadow-md lg:hidden">
       <form
         onSubmit={handleSearch}
         role="search"
-        className="flex h-12 w-[90%] justify-between rounded-4xl bg-gray-200 pl-8"
+        className="mx-4 flex h-12 w-full justify-between rounded-4xl bg-gray-200 pl-8"
       >
         <label htmlFor="mobile-search-input" className="sr-only">
           Search products or services

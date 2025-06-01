@@ -19,7 +19,7 @@ const UserLayout = () => {
     <>
       {isMobile ? (
         // Mobile Version
-        <div className="fade-in mb-20 flex flex-col px-[5%] pt-[140px] max-lg:pt-60">
+        <div className="fade-in mb-20 flex min-h-screen flex-col px-4 pt-60">
           <nav
             aria-label="User account navigation"
             className="mb-10 flex overflow-hidden rounded-xl border-2 border-teal-600 shadow-md"
@@ -53,7 +53,7 @@ const UserLayout = () => {
         </div>
       ) : (
         // Desktop version
-        <div className="fade-in mb-30 flex min-h-screen px-[10%] pt-[140px]">
+        <div className="fade-in mb-30 flex min-h-screen px-[10%] pt-30 max-2xl:px-[5%]">
           <nav
             aria-label="User account navigation"
             className="sticky top-[140px] flex h-[80vh] w-1/6 flex-col border-r-2 border-neutral-400 max-2xl:w-1/4"

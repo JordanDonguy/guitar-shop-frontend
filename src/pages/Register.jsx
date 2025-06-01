@@ -78,7 +78,7 @@ export default function Register() {
         <title>Register | Guitar Shop</title>
       </Helmet>
       <section
-        className="mb-20 h-fit w-full max-w-xl rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]"
+        className="mb-15 h-fit w-full max-w-2xl rounded-2xl bg-white p-8 shadow-md max-lg:mx-4 max-lg:max-w-full"
         aria-labelledby="register-heading"
       >
         <h1

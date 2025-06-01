@@ -97,7 +97,7 @@ export default function CheckoutForm() {
   if (loadingAuth || !user || typeof total_price !== "number") return null;
 
   return (
-    <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:mb-0 max-lg:min-h-fit max-lg:pt-65 max-lg:pb-20">
+    <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:mb-0 max-lg:min-h-fit max-lg:pt-60 max-lg:pb-20">
       <Helmet>
         <title>Checkout | Guitar Shop</title>
       </Helmet>
@@ -106,7 +106,7 @@ export default function CheckoutForm() {
       <h1 className="sr-only">Checkout Page</h1>
 
       <form
-        className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg max-lg:max-w-[90%]"
+        className="w-full max-w-2xl rounded-lg bg-white p-8 shadow-lg max-lg:max-w-full"
         onSubmit={handleCheckout}
       >
         <h2 className="mb-6 text-center text-3xl font-semibold text-gray-900">

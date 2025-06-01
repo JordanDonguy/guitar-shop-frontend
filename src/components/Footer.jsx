@@ -86,7 +86,7 @@ export default function Footer() {
             </h3>
             <ul className="flex h-45 flex-col justify-between text-2xl font-light">
               <li className="hover:text-teal-400">
-                <Link to="/">About us</Link>
+                <Link to="/about">About us</Link>
               </li>
               <li className="hover:text-teal-400">
                 <Link to="/">Shipping Fees</Link>

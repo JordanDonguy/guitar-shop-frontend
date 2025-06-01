@@ -79,7 +79,7 @@ export default function UserProfile() {
         <title>User Profile | Guitar Shop</title>
       </Helmet>
 
-      <main className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-5">
+      <main className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-2xl:ml-15 max-2xl:w-full max-lg:ml-0 max-md:p-5">
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">
           My Profile
         </h1>

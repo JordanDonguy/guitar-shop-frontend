@@ -93,13 +93,13 @@ export default function Login() {
   };
 
   return (
-    <div className="fade-in mb-30 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-0 max-lg:min-h-fit max-lg:p-0 max-lg:pb-10 max-md:mt-50 max-md:py-10">
+    <div className="fade-in mt-12 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-15 max-lg:min-h-fit max-lg:p-0 max-md:mt-50 max-md:mb-5 max-md:py-10">
       <Helmet>
         <title>Login | Guitar Shop</title>
       </Helmet>
 
       <section
-        className="w-full max-w-md rounded-2xl bg-white p-8 shadow-md max-lg:max-w-[90%]"
+        className="w-full max-w-xl rounded-2xl bg-white p-8 shadow-md max-lg:mx-4 max-lg:max-w-full"
         aria-labelledby="login-heading"
       >
         <h1

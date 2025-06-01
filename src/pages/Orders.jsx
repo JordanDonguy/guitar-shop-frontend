@@ -70,7 +70,7 @@ export default function Orders() {
       </Helmet>
 
       <section
-        className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-xl:ml-15 max-xl:w-full max-lg:ml-0 max-md:p-3"
+        className="h-fit w-3/4 rounded-2xl bg-white p-10 shadow-lg max-2xl:ml-15 max-2xl:w-full max-lg:ml-0 max-md:p-3"
         aria-label="User Orders Section"
       >
         <h1 className="mb-6 text-center text-3xl font-bold text-gray-800">

@@ -37,16 +37,16 @@ export default function SingleProduct() {
   return (
     <div>
       {loading ? (
-        <main
+        <section
           role="status"
           aria-live="polite"
           className="flex h-screen w-full items-center justify-center"
         >
           <img src={loadingGif} alt="Loading..." />
-        </main>
+        </section>
       ) : (
-        <main className="min-h-screen">
-          <section className="fade-in mb-20 bg-gray-100 px-[10%] pt-[140px] max-2xl:px-[5%] max-lg:pt-60">
+        <section className="min-h-screen">
+          <div className="fade-in mb-20 bg-gray-100 px-[10%] pt-34 max-2xl:px-[5%] max-lg:px-4 max-lg:pt-60">
             <DelayedMount>
               <Helmet>
                 <title>{`${productInfos.name}`} | Guitar Shop</title>
@@ -80,7 +80,7 @@ export default function SingleProduct() {
                   {/* Mobile image */}
                   {loadingImage1 && (
                     <div
-                      className="hidden h-110 w-full items-center justify-center rounded-l-xl bg-white px-[2%] py-5 max-lg:block"
+                      className="hidden h-110 w-full items-center justify-center rounded-t-xl bg-white px-[2%] py-5 max-lg:block"
                       aria-busy="true"
                     >
                       <img src={loadingGif} alt="Loading product image..." />
@@ -89,7 +89,7 @@ export default function SingleProduct() {
                   <img
                     src={productInfos.image_url}
                     alt={productInfos.name}
-                    className={`hidden h-110 w-full rounded-l-xl bg-white object-contain px-[2%] py-5 max-lg:block ${
+                    className={`hidden h-110 w-full rounded-t-xl bg-white object-contain px-[2%] py-5 max-lg:block ${
                       loadingImage1 ? "hidden" : ""
                     }`}
                     onLoad={() => setLoadingImage1(false)}
@@ -165,8 +165,8 @@ export default function SingleProduct() {
                 </section>
               </DelayedMount>
             </DelayedMount>
-          </section>
-        </main>
+          </div>
+        </section>
       )}
     </div>
   );

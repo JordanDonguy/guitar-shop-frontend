@@ -90,7 +90,7 @@ export default function Cart() {
   }
 
   return (
-    <div className="fade-in mx-auto min-h-screen w-1/2 pt-[140px] max-xl:w-3/4 max-lg:w-[90%] max-lg:pt-55">
+    <div className="fade-in mx-auto min-h-screen w-1/2 pt-30 max-xl:w-3/4 max-lg:min-h-fit max-lg:w-full max-lg:px-4 max-lg:pt-55">
       <Helmet>
         <title>Cart | Guitar Shop</title>
       </Helmet>
@@ -98,7 +98,7 @@ export default function Cart() {
       <section aria-labelledby="cart-heading">
         <h1
           id="cart-heading"
-          className="mb-8 w-full border-b border-neutral-400 pb-3 text-center text-4xl"
+          className="mb-8 w-full border-b-2 border-neutral-300 pb-6 text-center text-4xl font-bold"
         >
           My Cart
         </h1>

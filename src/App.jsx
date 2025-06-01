@@ -17,6 +17,9 @@ const CheckoutForm = lazy(() => import("./pages/Checkout"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const Unsubscribed = lazy(() => import("./pages/Unsubscribed"));
 const ResetPassword = lazy(() => import("./pages/ResetPassword"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 export default function App() {
   return (
@@ -39,6 +42,9 @@ export default function App() {
               <Route path="/checkout" element={<CheckoutForm />}></Route>
               <Route path="/unsubscribed" element={<Unsubscribed />}></Route>
               <Route path="/reset-password" element={<ResetPassword />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/services" element={<Services />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

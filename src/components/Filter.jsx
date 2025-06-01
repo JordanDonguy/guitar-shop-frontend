@@ -53,7 +53,7 @@ export default function Filter({
 
   return (
     <aside
-      className={`w-1/5 max-xl:w-[90%] ${
+      className={`w-1/5 max-xl:w-[90%] max-lg:w-[calc(100%-2rem)] ${
         filterVisibility ? `max-xl:fixed` : `max-xl:hidden`
       } z-10 max-xl:rounded-xl max-xl:border max-xl:bg-[rgba(230,230,230,0.9)] max-xl:p-10`}
       aria-label="Product filters"
