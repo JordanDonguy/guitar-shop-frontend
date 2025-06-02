@@ -1,7 +1,7 @@
 import { BASE_URL } from "./utils/api";
 import { useAuth } from "./utils/AuthContext";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
-import addToCart from "../assets/img/add-to-cart.png";
+import addToCart from "../assets/img/add-to-cart.webp";
 import { toast } from "react-toastify";
 
 export default function AddToCart({

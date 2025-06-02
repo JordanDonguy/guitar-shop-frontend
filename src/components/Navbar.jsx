@@ -9,7 +9,7 @@ import { User } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
-import logo from "../assets/img/logo.png";
+import logo from "../assets/img/logo.webp";
 
 export default function Navbar() {
   const { user, setUser } = useAuth();
@@ -83,7 +83,7 @@ export default function Navbar() {
 
         <ul className="flex w-1/3 justify-between px-[1vw] text-xl font-light max-xl:w-2/5 max-lg:hidden">
           {navItems.map((item) => (
-            <li>
+            <li key={item}>
               <NavLink
                 onClick={() => {
                   if (location.pathname === `/${item}`) {
@@ -185,7 +185,6 @@ export default function Navbar() {
         }`}
         aria-hidden={!menuVisibility}
       >
-
         <button
           onClick={toggleMenuVisibility}
           className="absolute top-6 right-6 rounded-full border px-4 py-2 text-2xl font-semibold hover:bg-teal-200"
@@ -196,7 +195,7 @@ export default function Navbar() {
 
         <ul className="flex h-[50vh] flex-col items-center justify-evenly px-[1vw] pb-10 text-xl font-light max-lg:text-3xl">
           {navItems.map((item) => (
-            <li>
+            <li key={item}>
               <NavLink
                 to={`/${item}`}
                 onClick={toggleMenuVisibility}

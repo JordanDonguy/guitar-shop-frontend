@@ -37,7 +37,7 @@ export default function NewsletterForm({ onAboutPage }) {
   return (
     <form
       onSubmit={handleNewsletterForm}
-      className={`flex flex-col items-center justify-between gap-8 max-lg:w-full ${onAboutPage && "w-4xl flex-row max-xl:w-full max-lg:mt-6 max-lg:flex-col"}`}
+      className={`flex min-w-sm flex-col items-center justify-between gap-8 max-xl:w-3/4 max-lg:w-full ${onAboutPage && "w-4xl flex-row max-xl:w-full max-lg:mt-6 max-lg:flex-col"}`}
     >
       <input
         id="email"
@@ -46,11 +46,11 @@ export default function NewsletterForm({ onAboutPage }) {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Email address"
-        className="h-12 w-full rounded-lg border pl-5 text-2xl"
+        className="h-12 w-full rounded-lg border pl-5 text-lg"
       />
       <button
         type="submit"
-        className="h-15 w-full rounded-4xl border bg-black text-2xl text-teal-50 hover:cursor-pointer hover:bg-gray-800"
+        className="h-15 w-full rounded-4xl border bg-black text-xl text-teal-50 hover:cursor-pointer hover:bg-gray-800"
       >
         Subscribe now
       </button>

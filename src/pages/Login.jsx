@@ -7,7 +7,7 @@ import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { saveTemporaryCartAndRedirect } from "../components/utils/saveTemporaryCartAndRedirect";
-import googleLogo from "../assets/img/google-logo.png";
+import googleLogo from "../assets/img/google-logo.webp";
 
 export default function Login() {
   const { fetchUser, user } = useAuth();

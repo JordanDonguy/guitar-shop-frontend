@@ -1,7 +1,7 @@
 import { Helmet } from "react-helmet";
-import maintenanceImg from "../assets/img/maintenance.jpg";
-import electronicsImg from "../assets/img/electronics.jpg";
-import repairImg from "../assets/img/repair.jpg";
+import maintenanceImg from "../assets/img/maintenance.webp";
+import electronicsImg from "../assets/img/electronics.webp";
+import repairImg from "../assets/img/repair.webp";
 
 export default function Services() {
   return (

@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import facebookLogo from "../assets/img/facebook-logo.png";
-import instagramLogo from "../assets/img/instagram-logo.png";
-import youtubeLogo from "../assets/img/youtube-logo.png";
-import xLogo from "../assets/img/x-logo.png";
+import facebookLogo from "../assets/img/facebook-logo.webp";
+import instagramLogo from "../assets/img/instagram-logo.webp";
+import youtubeLogo from "../assets/img/youtube-logo.webp";
+import xLogo from "../assets/img/x-logo.webp";
 
 export default function Footer() {
   return (
@@ -89,13 +89,13 @@ export default function Footer() {
                 <Link to="/about">About us</Link>
               </li>
               <li className="hover:text-teal-400">
-                <Link to="/">Shipping Fees</Link>
+                <Link to="/shipping">Shipping Fees</Link>
               </li>
               <li className="hover:text-teal-400">
-                <Link to="/">Contact</Link>
+                <Link to="/contact">Contact</Link>
               </li>
               <li className="hover:text-teal-400">
-                <Link to="/">Services</Link>
+                <Link to="/services">Services</Link>
               </li>
             </ul>
           </section>

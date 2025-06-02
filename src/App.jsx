@@ -20,6 +20,7 @@ const ResetPassword = lazy(() => import("./pages/ResetPassword"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Contact = lazy(() => import("./pages/Contact"));
+const ShippingFees = lazy(() => import("./pages/ShippingFees"));
 
 export default function App() {
   return (
@@ -45,6 +46,7 @@ export default function App() {
               <Route path="/about" element={<About />}></Route>
               <Route path="/services" element={<Services />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/shipping" element={<ShippingFees />}></Route>
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

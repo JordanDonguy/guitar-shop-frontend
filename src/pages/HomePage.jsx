@@ -3,11 +3,11 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import NewsletterForm from "../components/NewsletterForm";
-import guitar from "../assets/img/guitar-homepage.png";
-import eGuitar from "../assets/img/e-guitar.png";
-import aGuitar from "../assets/img/a-guitar.png";
-import amp from "../assets/img/amp.png";
-import newsletter from "../assets/img/newsletter.png";
+import guitar from "../assets/img/guitar-homepage.webp";
+import eGuitar from "../assets/img/e-guitar.webp";
+import aGuitar from "../assets/img/a-guitar.webp";
+import amp from "../assets/img/amp.webp";
+import newsletter from "../assets/img/newsletter.webp";
 
 export default function HomePage() {
   const location = useLocation();
@@ -56,13 +56,13 @@ export default function HomePage() {
             <img
               src={guitar}
               alt="guitar"
-              className="h-full py-10 max-xl:h-5/6 max-lg:h-auto max-lg:w-2/5 max-lg:rotate-[90deg] max-lg:py-0 max-md:w-60"
+              className="h-auto w-80 rotate-[90deg] py-10 max-lg:py-0 max-md:w-60"
               style={{
                 filter: "drop-shadow(15px 8px 5px rgba(139, 143, 143, 0.5))",
               }}
             />
           </div>
-          <p className="text-4xl/15 font-light text-shadow-lg max-2xl:w-140 max-2xl:text-3xl/13 max-lg:w-auto max-lg:px-[5%] max-lg:text-center max-md:text-3xl/10">
+          <p className="w-2xl text-4xl/15 font-light text-shadow-lg max-2xl:w-140 max-2xl:text-3xl/13 max-xl:w-120 max-lg:w-auto max-lg:px-[5%] max-lg:text-center max-md:text-3xl/10">
             Explore our selection of electric and acoustic guitars, amps,
             effects and all the accessories and home-studio gear that you’re
             dreaming of!
