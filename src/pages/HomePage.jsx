@@ -3,11 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import NewsletterForm from "../components/NewsletterForm";
-import guitar from "../assets/img/guitar-homepage.webp";
-import eGuitar from "../assets/img/e-guitar.webp";
-import aGuitar from "../assets/img/a-guitar.webp";
-import amp from "../assets/img/amp.webp";
-import newsletter from "../assets/img/newsletter.webp";
 
 export default function HomePage() {
   const location = useLocation();
@@ -54,7 +49,7 @@ export default function HomePage() {
           </h1>
           <div className="hidden w-[80%] items-center justify-center bg-neutral-200 max-lg:flex max-lg:h-2/5 max-lg:w-full max-md:mb-5 max-md:h-1/3">
             <img
-              src={guitar}
+              src="/img/guitar-homepage.webp"
               alt="guitar"
               className="h-auto w-80 rotate-[90deg] py-10 max-lg:py-0 max-md:w-60"
               style={{
@@ -76,7 +71,7 @@ export default function HomePage() {
         </div>
         <div className="flex w-[90%] items-center justify-center bg-neutral-200 max-xl:w-full max-lg:hidden">
           <img
-            src={guitar}
+            src="/img/guitar-homepage.webp"
             alt="guitar"
             className="h-full py-10 pr-24 max-2xl:pr-0 max-xl:h-[95%]"
             style={{
@@ -95,7 +90,7 @@ export default function HomePage() {
           {/* Product Card 1 */}
           <article className="flex h-160 w-1/3 flex-col items-center justify-between border-r-2 border-teal-200 max-lg:mb-10 max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-none">
             <img
-              src={eGuitar}
+              src="/img/e-guitar.webp"
               alt="PRS Electric Guitar"
               className="max-w-100 max-xl:w-80 max-lg:w-70"
               style={{
@@ -117,7 +112,7 @@ export default function HomePage() {
           {/* Product Card 2 */}
           <article className="flex h-160 w-1/3 flex-col items-center justify-between border-r-2 border-teal-200 max-lg:mb-10 max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-y max-lg:border-r-0 max-lg:py-10">
             <img
-              src={amp}
+              src="/img/amp.webp"
               alt="Tone King Amp"
               className="max-w-100 px-10 pt-5 pb-5 max-xl:w-80 max-lg:w-70"
               style={{
@@ -139,7 +134,7 @@ export default function HomePage() {
           {/* Product Card 3 */}
           <article className="flex h-160 w-1/3 flex-col items-center justify-between max-lg:h-fit max-lg:w-full max-lg:flex-row max-lg:justify-start max-lg:border-b max-lg:border-teal-200 max-lg:pb-10">
             <img
-              src={aGuitar}
+              src="/img/a-guitar.webp"
               alt="Martin Acoustic Guitar"
               className="max-w-100 max-xl:w-80 max-lg:w-70"
               style={{
@@ -204,7 +199,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
         <div className="flex w-full items-center justify-evenly max-xl:flex-col">
           <div className="flex max-xl:mb-20">
             <img
-              src={newsletter}
+              src="/img/newsletter.webp"
               className="h-auto w-80 max-lg:hidden"
               alt="newsletter"
             />

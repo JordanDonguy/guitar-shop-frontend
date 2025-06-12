@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchWithCsrf } from "./utils/fetchWithCsrf";
 import { BASE_URL } from "./utils/api";
-import loadingGif from "../assets/img/loading.gif";
 
 export default function Order({
   order_id,
@@ -98,7 +97,7 @@ export default function Order({
       <div>
         {loading && (
           <div className="flex w-full justify-center">
-            <img src={loadingGif} alt="Loading..." />
+            <img src="/img/loading.gif" alt="Loading..." />
           </div>
         )}
       </div>

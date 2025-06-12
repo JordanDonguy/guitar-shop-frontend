@@ -8,7 +8,6 @@ import PasswordForm from "./PasswordForm";
 import EmailForm from "./EmailForm";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import loadingGif from "../assets/img/loading.gif";
 
 export default function Layout() {
   const [showAddressForm, setShowAddressForm] = useState(false);
@@ -80,9 +79,9 @@ export default function Layout() {
               role="alert"
               aria-live="assertive"
             >
-              <img src={loadingGif} alt="Loading animation 1" />
-              <img src={loadingGif} alt="Loading animation 2" />
-              <img src={loadingGif} alt="Loading animation 3" />
+              <img src="/img/loading.gif" alt="Loading animation 1" />
+              <img src="/img/loading.gif" alt="Loading animation 2" />
+              <img src="/img/loading.gif" alt="Loading animation 3" />
             </div>
           }
         >

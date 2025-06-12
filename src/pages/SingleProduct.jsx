@@ -5,7 +5,6 @@ import { BASE_URL } from "../components/utils/api";
 import DelayedMount from "../components/utils/DelayedMount";
 import AddToCart from "../components/AddToCart";
 import Markdown from "react-markdown";
-import loadingGif from "../assets/img/loading.gif";
 
 export default function SingleProduct() {
   const { id } = useParams();
@@ -42,7 +41,7 @@ export default function SingleProduct() {
           aria-live="polite"
           className="flex h-screen w-full items-center justify-center"
         >
-          <img src={loadingGif} alt="Loading..." />
+          <img src="/img/loading.gif" alt="Loading..." />
         </section>
       ) : (
         <section className="min-h-screen">
@@ -64,7 +63,7 @@ export default function SingleProduct() {
                       className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden"
                       aria-busy="true"
                     >
-                      <img src={loadingGif} alt="Loading product image..." />
+                      <img src="/img/loading.gif" alt="Loading product image..." />
                     </div>
                   )}
                   <img
@@ -83,7 +82,7 @@ export default function SingleProduct() {
                       className="hidden h-110 w-full items-center justify-center rounded-t-xl bg-white px-[2%] py-5 max-lg:block"
                       aria-busy="true"
                     >
-                      <img src={loadingGif} alt="Loading product image..." />
+                      <img src="/img/loading.gif" alt="Loading product image..." />
                     </div>
                   )}
                   <img

@@ -6,7 +6,6 @@ import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { BASE_URL } from "../components/utils/api";
 import { toast } from "react-toastify";
 import Order from "../components/Order";
-import loadingGif from "../assets/img/loading.gif";
 
 export default function Orders() {
   const { user, loadingAuth } = useAuth();
@@ -83,7 +82,7 @@ export default function Orders() {
             aria-live="polite"
             aria-busy="true"
           >
-            <img src={loadingGif} alt="Loading orders" />
+            <img src="/img/loading.gif" alt="Loading orders" />
           </div>
         )}
 

@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet";
 import NewsletterForm from "../components/NewsletterForm";
-import aboutImg from "../assets/img/about.webp";
 
 export default function About() {
   return (
@@ -12,7 +11,7 @@ export default function About() {
       <h1 className="mb-4 w-full text-center text-4xl font-bold">About Us</h1>
 
       <img
-        src={aboutImg}
+        src="/img/about.webp"
         className="mb-4 h-100 w-full rounded-xl object-cover saturate-50 max-2xl:mb-5 max-2xl:h-80 max-lg:mt-6 max-lg:mb-10"
       />
 

@@ -5,7 +5,6 @@ import { BASE_URL } from "../components/utils/api";
 import { useSearch } from "../components/utils/SearchContext";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
-import loadingGif from "../assets/img/loading.gif";
 
 export default function Products() {
   const { searchTerm } = useSearch();
@@ -225,7 +224,7 @@ export default function Products() {
           >
             {loadingProducts ? (
               <div className="flex w-full justify-center">
-                <img src={loadingGif} alt="Loading products..." />
+                <img src="/img/loading.gif" alt="Loading products..." />
               </div>
             ) : (
               renderProductList()

@@ -1,8 +1,4 @@
 import { Link } from "react-router-dom";
-import facebookLogo from "../assets/img/facebook-logo.webp";
-import instagramLogo from "../assets/img/instagram-logo.webp";
-import youtubeLogo from "../assets/img/youtube-logo.webp";
-import xLogo from "../assets/img/x-logo.webp";
 
 export default function Footer() {
   return (
@@ -19,7 +15,7 @@ export default function Footer() {
             aria-label="Facebook"
           >
             <img
-              src={facebookLogo}
+              src="/img/facebook-logo.webp"
               className="mr-4 h-24 w-24 hover:brightness-125"
               alt="Facebook logo"
             />
@@ -31,7 +27,7 @@ export default function Footer() {
             aria-label="Instagram"
           >
             <img
-              src={instagramLogo}
+              src="/img/instagram-logo.webp"
               className="mx-4 h-20 w-20 hover:brightness-125"
               alt="Instagram logo"
             />
@@ -43,7 +39,7 @@ export default function Footer() {
             aria-label="YouTube"
           >
             <img
-              src={youtubeLogo}
+              src="/img/youtube-logo.webp"
               className="mx-4 h-24 w-24 hover:brightness-125"
               alt="YouTube logo"
             />
@@ -55,7 +51,7 @@ export default function Footer() {
             aria-label="X (Twitter)"
           >
             <img
-              src={xLogo}
+              src="/img/x-logo.webp"
               className="h-24 w-24 hover:brightness-200"
               alt="X logo"
             />

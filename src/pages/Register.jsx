@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
-import googleLogo from "../assets/img/google-logo.webp";
 
 export default function Register() {
   const { user } = useAuth();
@@ -271,7 +270,7 @@ export default function Register() {
             }
             aria-label="Continue with Google"
           >
-            <img src={googleLogo} alt="" className="w-10" aria-hidden="true" />
+            <img src="/img/google-logo.webp" alt="" className="w-10" aria-hidden="true" />
             <a
               href="http://localhost:3000/auth/google"
               className="mr-10 w-full text-center font-semibold text-gray-700"

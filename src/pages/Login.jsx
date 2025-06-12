@@ -7,7 +7,6 @@ import { BASE_URL } from "../components/utils/api";
 import { useAuth } from "../components/utils/AuthContext";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { saveTemporaryCartAndRedirect } from "../components/utils/saveTemporaryCartAndRedirect";
-import googleLogo from "../assets/img/google-logo.webp";
 
 export default function Login() {
   const { fetchUser, user } = useAuth();
@@ -214,7 +213,7 @@ export default function Login() {
             className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl"
             aria-label="Continue with Google"
           >
-            <img src={googleLogo} alt="" className="w-10" aria-hidden="true" />
+            <img src="/img/google-logo.webp" alt="" className="w-10" aria-hidden="true" />
             <span className="mr-10 w-full text-center font-semibold text-gray-700">
               Continue with Google
             </span>

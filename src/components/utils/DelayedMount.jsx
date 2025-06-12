@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import loadingGif from "../../assets/img/loading.gif";
 
 const DelayedMount = ({ delay = 300, children, isGif = true }) => {
   const [ready, setReady] = useState(false);
@@ -16,7 +15,7 @@ const DelayedMount = ({ delay = 300, children, isGif = true }) => {
     children
   ) : isGif ? (
     <div className="flex w-full justify-center">
-      <img src={loadingGif} />
+      <img src="/img/loading.gif" />
     </div>
   ) : null;
 };

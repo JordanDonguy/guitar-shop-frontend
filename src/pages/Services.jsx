@@ -1,7 +1,4 @@
 import { Helmet } from "react-helmet";
-import maintenanceImg from "../assets/img/maintenance.webp";
-import electronicsImg from "../assets/img/electronics.webp";
-import repairImg from "../assets/img/repair.webp";
 
 export default function Services() {
   return (
@@ -16,7 +13,7 @@ export default function Services() {
           className="flex flex-col items-center gap-8 md:flex-row md:items-start"
         >
           <img
-            src={maintenanceImg}
+            src="/img/maintenance.webp"
             alt="Guitar Maintenance"
             className="h-100 w-full rounded-lg object-cover shadow-md max-md:h-80 md:w-1/2"
           />
@@ -43,7 +40,7 @@ export default function Services() {
           className="flex flex-col items-center gap-8 md:flex-row md:items-start"
         >
           <img
-            src={electronicsImg}
+            src="/img/electronics.webp"
             alt="Electronics Upgrades & Maintenance"
             className="h-80 w-full rounded-lg object-cover shadow-md md:hidden md:w-1/2"
           />
@@ -63,7 +60,7 @@ export default function Services() {
             </p>
           </div>
           <img
-            src={electronicsImg}
+            src="/img/electronics.webp"
             alt="Electronics Upgrades & Maintenance"
             className="h-100 w-full rounded-lg object-cover shadow-md max-md:hidden md:w-1/2"
           />
@@ -74,7 +71,7 @@ export default function Services() {
           className="flex flex-col items-center gap-8 md:flex-row md:items-start"
         >
           <img
-            src={repairImg}
+            src="/img/repair.webp"
             alt="Guitar Repair"
             className="h-100 w-full rounded-lg object-cover shadow-md max-md:h-80 md:w-1/2"
           />

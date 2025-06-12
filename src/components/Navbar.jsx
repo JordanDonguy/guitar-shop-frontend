@@ -9,7 +9,6 @@ import { User } from "lucide-react";
 import { LogOut } from "lucide-react";
 import { Menu } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
-import logo from "../assets/img/logo.webp";
 
 export default function Navbar() {
   const { user, setUser } = useAuth();
@@ -74,7 +73,7 @@ export default function Navbar() {
           className="flex w-28 items-center justify-between max-xl:w-16"
         >
           <img
-            src={logo}
+            src="/img/logo.webp"
             className="h-12 w-12 max-lg:h-15 max-lg:w-15"
             alt="shop logo"
           />
