@@ -1,1 +1,1 @@
-export const BASE_URL = "https://guitar-shop-backend-production.up.railway.app"; // https://localhost:3000  to use with local backend
+export const BASE_URL = "https://api.guitar-shop.store"; // https://localhost:3000  to use with local backend
