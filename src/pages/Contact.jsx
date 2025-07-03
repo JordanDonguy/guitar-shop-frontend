@@ -51,6 +51,10 @@ export default function Contact() {
     <section className="mx-auto mt-24 min-h-screen max-w-6xl p-6 max-lg:mt-55 max-lg:mb-8 max-lg:min-h-fit">
       <Helmet>
         <title>Contact | Guitar Shop</title>
+         <meta
+          name="description"
+          content="Get in touch with Guitar-Shop. We're here to help with your questions, orders, or support needs—contact us anytime."
+        />
       </Helmet>
 
       <h1 className="mb-16 text-center text-4xl font-bold max-lg:mb-8">

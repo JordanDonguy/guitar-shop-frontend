@@ -39,6 +39,10 @@ export default function HomePage() {
     <div className="flex w-full flex-col items-center">
       <Helmet>
         <title>Homepage | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Discover premium guitars, accessories, and gear at Guitar-Shop. Find your perfect instrument with expert advice. Shop today and play like a pro!"
+        />
       </Helmet>
 
       {/* Hero Section */}

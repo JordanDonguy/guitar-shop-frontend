@@ -93,6 +93,10 @@ export default function Cart() {
     <div className="fade-in mx-auto min-h-screen w-1/2 pt-30 max-xl:w-3/4 max-lg:min-h-fit max-lg:w-full max-lg:px-4 max-lg:pt-55">
       <Helmet>
         <title>Cart | Guitar Shop</title>
+         <meta
+          name="description"
+          content="View and manage the items in your cart at Guitar-Shop. Update quantities, remove products, and proceed to secure checkout."
+        />
       </Helmet>
 
       <section aria-labelledby="cart-heading">

@@ -66,6 +66,10 @@ export default function Orders() {
     <div className="flex w-full justify-center">
       <Helmet>
         <title>Orders | Guitar Shop</title>
+        <meta
+          name="description"
+          content="View and track your Guitar-Shop orders and manage your purchase history with ease and security."
+        />
       </Helmet>
 
       <section

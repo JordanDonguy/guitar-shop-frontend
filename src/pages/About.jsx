@@ -6,6 +6,10 @@ export default function About() {
     <section className="fade-in mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-between px-4 pt-30 pb-10 max-2xl:pb-5 max-xl:items-start max-lg:pt-55 max-lg:pb-14 max-md:min-h-fit">
       <Helmet>
         <title>About | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Learn more about Guitar-Shop — our passion for music, commitment to quality, and mission to bring the best guitars to musicians everywhere."
+        />
       </Helmet>
 
       <h1 className="mb-4 w-full text-center text-4xl font-bold">About Us</h1>

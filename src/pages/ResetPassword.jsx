@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
 import { BASE_URL } from "../components/utils/api";
 
@@ -49,6 +50,15 @@ export default function ResetPassword() {
 
   return (
     <div className="mx-auto mt-20 max-w-md rounded-2xl border bg-white p-6 shadow-lg max-lg:mt-60 max-lg:mb-10">
+
+    <Helmet>
+        <title>Reset Password | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Reset your Guitar-Shop account password securely and regain access to your account quickly and safely."
+        />
+      </Helmet>
+
       <h2 className="mb-4 text-center text-2xl font-semibold">
         Reset Your Password
       </h2>

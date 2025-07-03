@@ -95,6 +95,10 @@ export default function Login() {
     <div className="fade-in mt-12 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-15 max-lg:min-h-fit max-lg:p-0 max-md:mt-50 max-md:mb-5 max-md:py-10">
       <Helmet>
         <title>Login | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Log in to your Guitar-Shop account to view orders, manage your profile, and enjoy a personalized shopping experience."
+        />
       </Helmet>
 
       <section

@@ -75,6 +75,10 @@ export default function Register() {
     <div className="fade-in flex min-h-screen items-center justify-center pt-[140px] max-lg:min-h-fit max-lg:pt-60">
       <Helmet>
         <title>Register | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Create your Guitar-Shop account to enjoy faster checkout, track your orders, and access exclusive member benefits. Sign up in seconds!"
+        />
       </Helmet>
       <section
         className="mb-15 h-fit w-full max-w-2xl rounded-2xl bg-white p-8 shadow-md max-lg:mx-4 max-lg:max-w-full"

@@ -5,7 +5,12 @@ export default function Services() {
     <section className="fade-in mx-auto mt-30 max-w-6xl px-4 pb-10 max-lg:mt-55">
       <Helmet>
         <title>Services | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Discover the range of services offered by Guitar-Shop, including repairs, custom setups, and expert advice to keep your guitar in top shape."
+        />
       </Helmet>
+
       <h1 className="mb-12 text-center text-4xl font-bold">Our Services</h1>
       <div className="space-y-24 max-lg:space-y-16">
         <article

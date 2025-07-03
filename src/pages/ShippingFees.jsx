@@ -1,6 +1,16 @@
+import { Helmet } from "react-helmet";
+
 export default function ShippingFees() {
   return (
     <div className="mx-auto max-w-4xl p-6 pt-30 max-lg:pt-55">
+      <Helmet>
+        <title>Shipping Fees | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Learn about our shipping fees, delivery options, and estimated times. Get your guitar delivered quickly and securely with Guitar-Shop."
+        />
+      </Helmet>
+
       <h1 className="mb-6 text-center text-4xl font-bold">Shipping Fees</h1>
 
       {/* Domestic Shipping */}

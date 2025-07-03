@@ -77,6 +77,10 @@ export default function UserProfile() {
     <div className="flex h-fit w-full justify-center">
       <Helmet>
         <title>User Profile | Guitar Shop</title>
+         <meta
+          name="description"
+          content="Manage your Guitar-Shop account & update your personal details easily and securely."
+        />
       </Helmet>
 
       <main className="w-3/4 rounded-2xl bg-white p-10 pb-15 shadow-lg max-2xl:ml-15 max-2xl:w-full max-lg:ml-0 max-md:p-5">

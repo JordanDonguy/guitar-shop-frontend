@@ -100,6 +100,10 @@ export default function CheckoutForm() {
     <div className="fade-in flex min-h-screen items-center justify-center p-4 pt-[100px] max-lg:mb-0 max-lg:min-h-fit max-lg:pt-60 max-lg:pb-20">
       <Helmet>
         <title>Checkout | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Securely complete your purchase at Guitar-Shop. Review your order, enter shipping details, and finalize payment with ease."
+        />
       </Helmet>
 
       {/* Hidden main heading for accessibility */}

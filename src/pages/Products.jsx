@@ -171,6 +171,10 @@ export default function Products() {
     >
       <Helmet>
         <title>Products | Guitar Shop</title>
+        <meta
+          name="description"
+          content="Explore our wide selection of high-quality guitars and accessories at Guitar-Shop. Find the perfect instrument to match your style and skill level."
+        />
       </Helmet>
 
       {/* Hidden main title for accessibility */}

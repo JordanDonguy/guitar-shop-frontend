@@ -49,6 +49,10 @@ export default function SingleProduct() {
             <DelayedMount>
               <Helmet>
                 <title>{`${productInfos.name}`} | Guitar Shop</title>
+                <meta
+                  name="description"
+                  content={`Discover detailed specs, pricing, and reviews for ${productInfos.name}. Find your perfect sound with Guitar-Shop’s expert-picked instruments.`}
+                />
               </Helmet>
 
               {/* SECTION 1: Product overview */}
@@ -69,9 +73,8 @@ export default function SingleProduct() {
                   <img
                     src={productInfos.image_url2}
                     alt={productInfos.name}
-                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${
-                      loadingImage2 ? "hidden" : ""
-                    }`}
+                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${loadingImage2 ? "hidden" : ""
+                      }`}
                     onLoad={() => setLoadingImage2(false)}
                     onError={() => setLoadingImage2(false)}
                   />
@@ -88,9 +91,8 @@ export default function SingleProduct() {
                   <img
                     src={productInfos.image_url}
                     alt={productInfos.name}
-                    className={`hidden h-110 w-full rounded-t-xl bg-white object-contain px-[2%] py-5 max-lg:block ${
-                      loadingImage1 ? "hidden" : ""
-                    }`}
+                    className={`hidden h-110 w-full rounded-t-xl bg-white object-contain px-[2%] py-5 max-lg:block ${loadingImage1 ? "hidden" : ""
+                      }`}
                     onLoad={() => setLoadingImage1(false)}
                     onError={() => setLoadingImage1(false)}
                   />
@@ -106,11 +108,10 @@ export default function SingleProduct() {
                     <div className="items-end justify-between pr-5 max-lg:mb-10 max-lg:flex">
                       <div>
                         <p
-                          className={`my-2 pb-5 text-xl ${
-                            productInfos.stock > 0
+                          className={`my-2 pb-5 text-xl ${productInfos.stock > 0
                               ? "text-green-600"
                               : "text-red-600"
-                          }`}
+                            }`}
                           aria-live="polite"
                         >
                           {productInfos.stock > 0

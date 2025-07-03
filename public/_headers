@@ -1,5 +1,20 @@
 /*
-  Content-Security-Policy: default-src 'self'; connect-src 'self' https://api.guitar-shop.store; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src * data:; script-src 'self' 'unsafe-inline'; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
+Content-Security-Policy:
+  default-src 'self';
+  script-src 'self'; 
+  style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+  style-src-elem 'self' https://fonts.googleapis.com;
+  font-src 'self' https://fonts.gstatic.com;
+  img-src * data:;
+  frame-src https://www.youtube.com https://www.youtube-nocookie.com;
+  connect-src 'self' https://api.guitar-shop.store;
+
+X-Content-Type-Options: nosniff
+
+Referrer-Policy: strict-origin-when-cross-origin
+
+Permissions-Policy: geolocation=(), microphone=(), camera=()
+
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+Cross-Origin-Opener-Policy: same-origin
