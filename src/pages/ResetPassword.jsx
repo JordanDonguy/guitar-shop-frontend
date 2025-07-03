@@ -35,7 +35,7 @@ export default function ResetPassword() {
       const data = await res.json();
       if (!res.ok) return setError(data.message);
 
-      navigate("/auth/login", {
+      navigate("/login", {
         state: {
           toastMessage: "Your password has been updated.",
         },

@@ -62,7 +62,7 @@ export default function Register() {
         return; //
       }
 
-      navigate("/auth/login", {
+      navigate("/login", {
         state: { toastMessage: "🎉 Registration successful! Please log in." },
       });
     } catch (err) {
@@ -282,7 +282,7 @@ export default function Register() {
 
         <p className="mt-4 text-center text-sm text-gray-600 max-lg:mt-8 max-lg:text-lg">
           Already have an account?&nbsp;
-          <Link to="/auth/login" className="text-blue-600 hover:underline">
+          <Link to="/login" className="text-blue-600 hover:underline">
             Login
           </Link>
         </p>

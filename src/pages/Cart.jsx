@@ -77,7 +77,7 @@ export default function Cart() {
   const guestTotalFormatted = Number(guestTotal || 0).toFixed(2);
 
   function handleCheckoutClick() {
-    if (!user) return navigate("/auth/login");
+    if (!user) return navigate("/login");
     if (!user.street) return handleAddressButton();
     if (finalPrice === 0) {
       toast("🛒 Your cart is empty !", {

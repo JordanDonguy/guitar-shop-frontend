@@ -148,7 +148,7 @@ export default function Navbar() {
             </NavLink>
           ) : (
             <NavLink
-              to="/auth/login"
+              to="login"
               className={({ isActive }) =>
                 `m-2 flex h-11 w-25 items-center justify-center rounded-4xl border-1 border-black text-xl font-light hover:border-2 hover:bg-teal-200 ${
                   isActive ? "border-2 bg-teal-200" : ""

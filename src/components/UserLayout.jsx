@@ -11,7 +11,7 @@ const UserLayout = () => {
   useEffect(() => {
     if (loadingAuth) return;
     if (!user) {
-      navigate("/auth/login");
+      navigate("/login");
     }
   }, [user, loadingAuth, navigate]);
 

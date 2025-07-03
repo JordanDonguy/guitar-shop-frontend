@@ -21,7 +21,7 @@ export default function CheckoutForm() {
   useEffect(() => {
     if (loadingAuth) return;
     if (!user) {
-      navigate("/auth/login");
+      navigate("/login");
       return;
     }
     if (!total_price) {

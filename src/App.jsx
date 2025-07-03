@@ -33,8 +33,8 @@ export default function App() {
               <Route index element={<HomePage />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<SingleProduct />} />
-              <Route path="/auth/login" element={<Login />}></Route>
-              <Route path="/auth/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/register" element={<Register />}></Route>
               <Route path="/user" element={<UserLayout />}>
                 <Route path="profile" element={<UserProfile />}></Route>
                 <Route path="orders" element={<Orders />}></Route>
