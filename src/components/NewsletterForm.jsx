@@ -15,20 +15,28 @@ export default function NewsletterForm({ onAboutPage }) {
         body: JSON.stringify({ email }),
       });
 
-      if (!res.ok) {
-        const data = await res.json();
-        const emailError = data.errors.find((e) => e.field === "email");
-        toast.error(emailError.msg, {
+      if (res.status === 409) {
+        toast.info("You've already subscribed to the newletter with this email 😉", {
+          position: "bottom-center",
+          autoClose: 4000,
+        })
+        return;
+      }
+
+      if (res.ok) {
+        toast.success("Thanks for subscribing to our newsletter! 😎", {
           position: "bottom-center",
           autoClose: 4000,
         });
-        throw new Error("Network response was not ok");
       }
 
-      toast.success("Thanks for subscribing to our newsletter! 😎", {
+      const data = await res.json();
+      const emailError = data.errors.find((e) => e.field === "email");
+      toast.error(emailError?.msg ?? "Something went wrong", {
         position: "bottom-center",
         autoClose: 4000,
       });
+      throw new Error("Network response was not ok");
     } catch (error) {
       console.error(error);
     }

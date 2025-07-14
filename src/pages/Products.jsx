@@ -14,6 +14,7 @@ export default function Products() {
 
   const [loading, setLoading] = useState(true);
   const [loadingProducts, setLoadingProducts] = useState(true);
+  const [loadingImage, setLoadingImage] = useState(true)
 
   const [filterVisibility, setFilterVisibility] = useState(false);
   const [blurBackground, setBlurBackground] = useState(false);
@@ -115,18 +116,32 @@ export default function Products() {
           No products match your search...
         </p>
       );
-    }
+    };
+
+
 
     return products.map((product) => (
       <article
         key={product.id}
         className="fade-in mb-10 flex rounded-xl border-2 border-neutral-300 shadow-sm"
       >
+        {loadingImage ? (
+          <div
+            role="status"
+            aria-live="polite"
+            className="flex min-w-100 max-md:min-w-60 max-2xl:min-w-70 items-center justify-center"
+          >
+            <img src="/img/loading.gif" alt="Loading..." />
+          </div>
+        ) : ""}
         <img
           src={product.image_url}
           alt={`${product.brand} ${product.name}`}
-          className="h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0"
+          onLoad={() => setLoadingImage(false)}
+          className={`h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0 ${loadingImage ? "hidden" : ""
+            }`}
         />
+
 
         <section className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
           <Link
