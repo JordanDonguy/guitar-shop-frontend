@@ -38,7 +38,7 @@ A responsive, modern frontend for an online guitar store. This application is bu
 - **React Toastify** – Toast pop-up informations
 - **Prettier** – Code formatter for consistent styling
 - **ESLint** – Linting tool to catch bugs and enforce code quality
-- **Netlify** – Hosting platform
+- **Cloudflare Pages** – Hosting platform
 - **Cloudflare** – DNS management, CDN caching, SSL, and security 
 
 ---
@@ -70,9 +70,9 @@ A responsive, modern frontend for an online guitar store. This application is bu
 
 ## 📦 Deployment
 
-This app is deployed using **Netlify**. Additionally, it is protected and accelerated by **Cloudflare**, which provides DNS management, CDN caching, SSL encryption, and security features like DDoS protection and a web application firewall.
+This app is deployed using **Cloudflare Pages**. Additionally, it is protected and accelerated by **Cloudflare**, which provides DNS management, CDN caching, SSL encryption, and security features like DDoS protection and a web application firewall.
 
-You can fork the repository and link it to your own Netlify account for redeployment if needed.
+You can fork the repository and link it to your own Cloudflare account for redeployment if needed.
 
 ---
 
