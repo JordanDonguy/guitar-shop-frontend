@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useAuth } from "../components/utils/AuthContext";
-import { BASE_URL } from "../components/utils/api";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { useAuth } from "../contexts/AuthContext";
+import { BASE_URL } from "../utils/api";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
 export default function CheckoutForm() {

@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { BASE_URL } from "./api";
+import { BASE_URL } from "../utils/api";
 
 const AuthContext = createContext();
 
@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
       if (res.ok) {
         const data = await res.json();
         setUser(data.user);
-        setHasPassword(data.hasPwd);
+        setHasPassword(data.user.hasPassword);
       } else {
         setUser(null);
       }

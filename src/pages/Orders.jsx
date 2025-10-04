@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { useAuth } from "../components/utils/AuthContext";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
-import { BASE_URL } from "../components/utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
 import { toast } from "react-toastify";
 import Order from "../components/Order";
 
@@ -31,7 +31,7 @@ export default function Orders() {
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
         setLoading(false);
       });
   }, [user, loadingAuth]);
@@ -49,19 +49,21 @@ export default function Orders() {
   }, []);
 
   function renderOrders() {
-    if (orders.length == 0)
-      return <div className="text-xl">No orders found... </div>;
+    if (orders.length === 0)
+      return <div className="text-xl">No orders found...</div>;
+
     return orders.map((order) => (
       <Order
         key={order.id}
-        order_id={order.id}
-        created_at={order.created_at}
-        total_price={order.total_price}
-        first_name={order.first_name}
-        last_name={order.last_name}
+        orderId={order.id}
+        createdAt={order.createdAt}
+        totalPrice={order.totalPrice}
+        userFirstName={order.userFirstName}
+        userLastName={order.userLastName}
       />
     ));
   }
+
   return (
     <div className="flex w-full justify-center">
       <Helmet>

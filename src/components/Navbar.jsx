@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import { BASE_URL } from "./utils/api";
-import { useAuth } from "./utils/AuthContext";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import SearchBar from "./SearchBar";
 import SearchBarMobile from "./SearchBarMobile";
 import { User } from "lucide-react";
@@ -21,7 +21,7 @@ export default function Navbar() {
   // Make shadow appear only after scrolled down 95px on mobile view
   useEffect(() => {
     const handleScroll = () => {
-      setHasShadow(window.scrollY > 95);
+      setHasShadow(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -61,7 +61,7 @@ export default function Navbar() {
   return (
     <header role="banner" aria-label="Primary site navigation">
       <nav
-        className={`fixed z-20 flex h-24 w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] max-lg:px-4 lg:shadow-md ${hasShadow ? "max-lg:shadow-md" : ""}`}
+        className={`fixed z-20 flex h-20 w-full items-center justify-between bg-[rgba(240,253,250,0.75)] px-[10%] backdrop-blur-sm max-2xl:px-[5%] max-lg:px-4 lg:shadow-sm ${hasShadow ? "max-lg:shadow-sm" : ""}`}
       >
         <NavLink
           to="/"
@@ -177,7 +177,7 @@ export default function Navbar() {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`fixed top-24 left-0 z-10 w-full bg-[rgba(245,245,245,0.75)] backdrop-blur-sm transition-all duration-300 ease-in-out ${
+        className={`fixed top-20 left-0 z-10 w-full bg-[rgba(245,245,245,0.75)] backdrop-blur-sm transition-all duration-300 ease-in-out ${
           menuVisibility
             ? "z-20 max-h-1/2 opacity-100"
             : "max-h-0 overflow-hidden opacity-0"

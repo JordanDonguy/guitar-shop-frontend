@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
-import { BASE_URL } from "../components/utils/api";
-import { useAuth } from "../components/utils/AuthContext";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { LayoutContext } from "../components/Layout";
 
 export default function UserProfile() {
@@ -48,7 +48,7 @@ export default function UserProfile() {
     };
 
     try {
-      const response = await fetchWithCsrf(`${BASE_URL}/user/${user.id}`, {
+      const response = await fetchWithCsrf(`${BASE_URL}/user`, {
         method: "PATCH",
         body: JSON.stringify(updatedUser),
       });
@@ -56,6 +56,9 @@ export default function UserProfile() {
       if (!response.ok) {
         throw new Error("Failed to update user");
       }
+
+      const data = await response.json();
+      setUser(data.user);
 
       toast.success("Your profile has been updated !", {
         position: "bottom-center",
@@ -77,7 +80,7 @@ export default function UserProfile() {
     <div className="flex h-fit w-full justify-center">
       <Helmet>
         <title>User Profile | Guitar Shop</title>
-         <meta
+        <meta
           name="description"
           content="Manage your Guitar-Shop account & update your personal details easily and securely."
         />
@@ -109,7 +112,7 @@ export default function UserProfile() {
                   type="text"
                   id="first_name"
                   name="first_name"
-                  defaultValue={user.first_name}
+                  defaultValue={user.firstName}
                   required
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -126,7 +129,7 @@ export default function UserProfile() {
                   type="text"
                   id="last_name"
                   name="last_name"
-                  defaultValue={user.last_name}
+                  defaultValue={user.lastName}
                   required
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -160,7 +163,7 @@ export default function UserProfile() {
                   type="tel"
                   id="phone_number"
                   name="phone_number"
-                  defaultValue={user.phone_number}
+                  defaultValue={user.phoneNumber}
                   required
                   className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 />
@@ -199,7 +202,7 @@ export default function UserProfile() {
               Address
             </h2>
 
-            {!user.street ? (
+            {!user.address ? (
               <p className="max-lg:my-10 max-lg:text-lg">
                 → You don&apos;t have an address yet, but you can create one by
                 clicking{" "}
@@ -224,7 +227,7 @@ export default function UserProfile() {
                     type="text"
                     id="street"
                     name="street"
-                    defaultValue={user.street}
+                    defaultValue={user.address.street}
                     required
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -241,7 +244,7 @@ export default function UserProfile() {
                     type="text"
                     id="city"
                     name="city"
-                    defaultValue={user.city}
+                    defaultValue={user.address.city}
                     required
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -258,7 +261,7 @@ export default function UserProfile() {
                     type="text"
                     id="state"
                     name="state"
-                    defaultValue={user.state}
+                    defaultValue={user.address.state}
                     required
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -275,7 +278,7 @@ export default function UserProfile() {
                     type="text"
                     id="postal_code"
                     name="postal_code"
-                    defaultValue={user.postal_code}
+                    defaultValue={user.address.postalCode}
                     required
                     className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   />
@@ -292,13 +295,19 @@ export default function UserProfile() {
                     id="country"
                     name="country"
                     required
-                    value={user.country || ""}
-                    onChange={(e) =>
-                      setUser({ ...user, country: e.target.value })
-                    }
+                    value={user.address.country || ""}
+                    onChange={(e) => {
+                      setUser({
+                        ...user,
+                        address: {
+                          ...user.address,
+                          country: e.target.value,
+                        },
+                      });
+                    }}
                     className="mt-1 w-full rounded-lg border bg-white px-4 py-2 hover:cursor-pointer focus:ring-2 focus:ring-blue-500 focus:outline-none"
                   >
-                    {!user.country && (
+                    {!user.address.country && (
                       <option value="" disabled>
                         -- Select a country --
                       </option>

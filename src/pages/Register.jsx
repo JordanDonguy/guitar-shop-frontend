@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { BASE_URL } from "../components/utils/api";
-import { useAuth } from "../components/utils/AuthContext";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 
 export default function Register() {
   const { user } = useAuth();
@@ -24,12 +24,6 @@ export default function Register() {
       navigate("/");
     }
   }, [user, navigate]);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/auth/register`)
-      .then((res) => res.json())
-      .catch((err) => console.log(err));
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -72,7 +66,7 @@ export default function Register() {
   };
 
   return (
-    <div className="fade-in flex min-h-screen items-center justify-center pt-[140px] max-lg:min-h-fit max-lg:pt-60">
+    <div className="fade-in flex min-h-screen items-center justify-center pt-[124px] max-lg:min-h-fit max-lg:pt-52">
       <Helmet>
         <title>Register | Guitar Shop</title>
         <meta
@@ -274,7 +268,12 @@ export default function Register() {
             }
             aria-label="Continue with Google"
           >
-            <img src="/img/google-logo.webp" alt="" className="w-10" aria-hidden="true" />
+            <img
+              src="/img/google-logo.webp"
+              alt=""
+              className="w-10"
+              aria-hidden="true"
+            />
             <a
               href="http://localhost:3000/auth/google"
               className="mr-10 w-full text-center font-semibold text-gray-700"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { BASE_URL } from "./utils/api";
-import { useAuth } from "./utils/AuthContext";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
 export default function AddressForm({ handleAddressButton }) {
@@ -12,7 +12,7 @@ export default function AddressForm({ handleAddressButton }) {
     street: "",
     city: "",
     state: "",
-    postal_code: "",
+    postalCode: "",
     country: "",
   });
 
@@ -141,17 +141,17 @@ export default function AddressForm({ handleAddressButton }) {
 
         <div>
           <label
-            htmlFor="postal_code"
+            htmlFor="postalCode"
             className="block text-sm font-medium text-gray-700 max-lg:text-lg"
           >
             Postal Code
           </label>
           <input
             type="text"
-            id="postal_code"
-            name="postal_code"
+            id="postalCode"
+            name="postalCode"
             required
-            value={addressData.postal_code}
+            value={addressData.postalCode}
             onChange={handleInputChange}
             className="mt-1 w-full rounded-lg border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none max-lg:text-lg"
           />

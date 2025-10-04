@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { BASE_URL } from "../components/utils/api";
-import DelayedMount from "../components/utils/DelayedMount";
+import { BASE_URL } from "../utils/api";
+import DelayedMount from "../utils/DelayedMount";
 import AddToCart from "../components/AddToCart";
 import Markdown from "react-markdown";
 
@@ -67,14 +67,18 @@ export default function SingleProduct() {
                       className="flex max-h-[75vh] w-[65%] items-center justify-center rounded-l-xl bg-white px-[2%] max-lg:hidden"
                       aria-busy="true"
                     >
-                      <img src="/img/loading.gif" alt="Loading product image..." />
+                      <img
+                        src="/img/loading.gif"
+                        alt="Loading product image..."
+                      />
                     </div>
                   )}
                   <img
-                    src={productInfos.image_url2}
+                    src={productInfos.imageUrl2}
                     alt={productInfos.name}
-                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${loadingImage2 ? "hidden" : ""
-                      }`}
+                    className={`max-h-[75vh] w-[65%] rounded-l-xl bg-white object-contain px-[2%] max-lg:hidden ${
+                      loadingImage2 ? "hidden" : ""
+                    }`}
                     onLoad={() => setLoadingImage2(false)}
                     onError={() => setLoadingImage2(false)}
                   />
@@ -85,14 +89,18 @@ export default function SingleProduct() {
                       className="hidden h-110 w-full items-center justify-center rounded-t-xl bg-white px-[2%] py-5 max-lg:block"
                       aria-busy="true"
                     >
-                      <img src="/img/loading.gif" alt="Loading product image..." />
+                      <img
+                        src="/img/loading.gif"
+                        alt="Loading product image..."
+                      />
                     </div>
                   )}
                   <img
-                    src={productInfos.image_url}
+                    src={productInfos.imageUrl}
                     alt={productInfos.name}
-                    className={`hidden h-110 w-full rounded-t-xl bg-white object-contain px-[2%] py-5 max-lg:block ${loadingImage1 ? "hidden" : ""
-                      }`}
+                    className={`hidden h-110 w-full rounded-t-xl bg-white object-contain px-[2%] py-5 max-lg:block ${
+                      loadingImage1 ? "hidden" : ""
+                    }`}
                     onLoad={() => setLoadingImage1(false)}
                     onError={() => setLoadingImage1(false)}
                   />
@@ -108,10 +116,11 @@ export default function SingleProduct() {
                     <div className="items-end justify-between pr-5 max-lg:mb-10 max-lg:flex">
                       <div>
                         <p
-                          className={`my-2 pb-5 text-xl ${productInfos.stock > 0
+                          className={`my-2 pb-5 text-xl ${
+                            productInfos.stock > 0
                               ? "text-green-600"
                               : "text-red-600"
-                            }`}
+                          }`}
                           aria-live="polite"
                         >
                           {productInfos.stock > 0
@@ -123,10 +132,10 @@ export default function SingleProduct() {
                         </p>
                       </div>
                       <AddToCart
-                        product_id={productInfos.id}
+                        productId={productInfos.id}
                         brand={productInfos.brand}
                         name={productInfos.name}
-                        image_url={productInfos.image_url}
+                        imageUrl={productInfos.image_url}
                         price={productInfos.price}
                       />
                     </div>
@@ -150,10 +159,10 @@ export default function SingleProduct() {
                     <Markdown>{productInfos.description}</Markdown>
                   </article>
 
-                  {productInfos.video_url && (
+                  {productInfos.videoUrl && (
                     <figure className="my-5 mb-15 aspect-16/9 w-[90%] rounded-xl shadow-xl">
                       <iframe
-                        src={productInfos.video_url}
+                        src={productInfos.videoUrl}
                         frameBorder="0"
                         allowFullScreen
                         title={`${productInfos.name} video`}

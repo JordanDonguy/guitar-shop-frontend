@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { useAuth } from "./utils/AuthContext";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
-import { BASE_URL } from "./utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
 
 export default function PasswordForm({ handlePasswordButton }) {
   const { hasPassword, fetchUser } = useAuth();
@@ -33,7 +33,7 @@ export default function PasswordForm({ handlePasswordButton }) {
       if (!hasPassword) {
         res = await fetchWithCsrf(`${BASE_URL}/user/password`, {
           method: "POST",
-          body: JSON.stringify({ newPassword }),
+          body: JSON.stringify({ password: newPassword }),
         });
       } else {
         res = await fetchWithCsrf(`${BASE_URL}/user/password`, {

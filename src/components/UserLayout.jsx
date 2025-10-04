@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "./utils/AuthContext";
-import { useMediaQuery } from "./utils/useMediaQuery";
+import { useAuth } from "../contexts/AuthContext";
+import { useMediaQuery } from "../utils/useMediaQuery";
 
 const UserLayout = () => {
   const { user, loadingAuth } = useAuth();

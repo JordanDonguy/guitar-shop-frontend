@@ -1,9 +1,9 @@
 import { lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import ScrollToTop from "./components/utils/ScrollToTop";
-import { AuthProvider } from "./components/utils/AuthContext";
-import { SearchProvider } from "./components/utils/SearchContext";
+import ScrollToTop from "./utils/ScrollToTop";
+import { AuthProvider } from "./contexts/AuthContext";
+import { SearchProvider } from "./contexts/SearchContext";
 import HomePage from "./pages/HomePage";
 const Products = lazy(() => import("./pages/Products"));
 const SingleProduct = lazy(() => import("./pages/SingleProduct"));

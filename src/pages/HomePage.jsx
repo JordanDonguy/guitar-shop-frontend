@@ -46,7 +46,7 @@ export default function HomePage() {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="fade-in w-full flex h-screen pt-24 shadow-lg max-lg:h-fit max-lg:pt-55 max-lg:pb-10 max-md:max-h-screen">
+      <section className="fade-in flex h-screen w-full pt-20 shadow-sm max-lg:h-fit max-lg:pt-55 max-lg:pb-10 max-md:max-h-screen">
         <div className="flex w-full flex-col justify-between pt-5 pb-10 pl-[10%] max-2xl:pl-[9%] max-xl:w-4/6 max-xl:justify-around max-xl:px-[5%] max-lg:w-full max-lg:items-center max-lg:p-0">
           <h1 className="text-8xl/30 text-shadow-lg max-2xl:w-[90%] max-2xl:text-7xl/24 max-xl:text-6xl/18 max-lg:text-center">
             Find the guitar you’ve always wanted
@@ -191,7 +191,7 @@ helped me pick the perfect starter bundle. Got my acoustic guitar in
         ].map(({ quote, text, author }, i) => (
           <blockquote
             key={i}
-            className={`w-[75%] text-center text-2xl py-8 max-lg:w-[90%] max-md:w-full max-md:px-4 ${i < 2 ? "border-b-2 border-teal-200" : ""}`}
+            className={`w-[75%] py-8 text-center text-2xl max-lg:w-[90%] max-md:w-full max-md:px-4 ${i < 2 ? "border-b-2 border-teal-200" : ""}`}
           >
             ⭐️⭐️⭐️⭐️⭐️
             <p className="font-medium">“{quote}”</p>

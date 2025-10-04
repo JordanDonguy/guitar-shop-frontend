@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { BASE_URL } from "../components/utils/api";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
 export default function Contact() {
@@ -51,7 +51,7 @@ export default function Contact() {
     <section className="mx-auto mt-24 min-h-screen max-w-6xl p-6 max-lg:mt-55 max-lg:mb-8 max-lg:min-h-fit">
       <Helmet>
         <title>Contact | Guitar Shop</title>
-         <meta
+        <meta
           name="description"
           content="Get in touch with Guitar-Shop. We're here to help with your questions, orders, or support needs—contact us anytime."
         />

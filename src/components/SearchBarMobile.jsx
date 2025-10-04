@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSearch } from "./utils/SearchContext";
+import { useSearch } from "../contexts/SearchContext";
 import { Search } from "lucide-react";
 
 export default function SearchBarMobile() {
@@ -20,7 +20,7 @@ export default function SearchBarMobile() {
   };
 
   return (
-    <div className="absolute z-10 mt-24 flex h-24 w-full items-center justify-center bg-[rgba(240,253,250,0.75)] shadow-md lg:hidden">
+    <div className="absolute z-10 mt-20 flex h-20 w-full items-center justify-center bg-[rgba(240,253,250,0.75)] shadow-sm lg:hidden">
       <form
         onSubmit={handleSearch}
         role="search"

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { BASE_URL } from "../components/utils/api";
-import { useSearch } from "../components/utils/SearchContext";
+import { BASE_URL } from "../utils/api";
+import { useSearch } from "../contexts/SearchContext";
 import Filter from "../components/Filter";
 import AddToCart from "../components/AddToCart";
 
@@ -14,7 +14,7 @@ export default function Products() {
 
   const [loading, setLoading] = useState(true);
   const [loadingProducts, setLoadingProducts] = useState(true);
-  const [loadingImage, setLoadingImage] = useState(true)
+  const [loadingImage, setLoadingImage] = useState(true);
 
   const [filterVisibility, setFilterVisibility] = useState(false);
   const [blurBackground, setBlurBackground] = useState(false);
@@ -116,9 +116,7 @@ export default function Products() {
           No products match your search...
         </p>
       );
-    };
-
-
+    }
 
     return products.map((product) => (
       <article
@@ -129,19 +127,21 @@ export default function Products() {
           <div
             role="status"
             aria-live="polite"
-            className="flex min-w-100 max-md:min-w-60 max-2xl:min-w-70 items-center justify-center"
+            className="flex min-w-100 items-center justify-center max-2xl:min-w-70 max-md:min-w-60"
           >
             <img src="/img/loading.gif" alt="Loading..." />
           </div>
-        ) : ""}
+        ) : (
+          ""
+        )}
         <img
-          src={product.image_url}
+          src={product.imageUrl}
           alt={`${product.brand} ${product.name}`}
           onLoad={() => setLoadingImage(false)}
-          className={`h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0 ${loadingImage ? "hidden" : ""
-            }`}
+          className={`h-auto w-100 rounded-l-xl bg-white object-contain px-20 max-2xl:w-70 max-2xl:px-3 max-lg:py-3 max-md:w-60 max-md:px-0 max-md:py-0 ${
+            loadingImage ? "hidden" : ""
+          }`}
         />
-
 
         <section className="flex flex-col justify-between py-2 pl-10 max-lg:pl-5">
           <Link
@@ -167,10 +167,10 @@ export default function Products() {
             </div>
 
             <AddToCart
-              product_id={product.id}
+              productId={product.id}
               brand={product.brand}
               name={product.name}
-              image_url={product.image_url}
+              imageUrl={product.imageUrl}
               price={product.price}
             />
           </div>

@@ -1,15 +1,9 @@
-import { BASE_URL } from "./utils/api";
-import { useAuth } from "./utils/AuthContext";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { toast } from "react-toastify";
 
-export default function AddToCart({
-  product_id,
-  brand,
-  name,
-  image_url,
-  price,
-}) {
+export default function AddToCart({ productId, brand, name, imageUrl, price }) {
   const { user } = useAuth();
 
   async function handleSubmit(event) {
@@ -19,7 +13,7 @@ export default function AddToCart({
       try {
         await fetchWithCsrf(`${BASE_URL}/cart/add`, {
           method: "POST",
-          body: JSON.stringify({ product_id, user }),
+          body: JSON.stringify({ productId }),
         });
         toast.success("Item added to cart!", {
           position: "bottom-center",
@@ -31,17 +25,16 @@ export default function AddToCart({
     } else {
       try {
         let cart = JSON.parse(localStorage.getItem("cart")) || [];
-        const index = cart.findIndex((item) => item.product_id === product_id);
-
+        const index = cart.findIndex((item) => item.productId === productId);
         if (index !== -1) {
           cart[index].quantity += 1;
         } else {
           cart.push({
-            product_id,
+            productId,
             quantity: 1,
-            brand,
-            name,
-            image_url,
+            brandName: brand,
+            productName: name,
+            imageUrl,
             price,
           });
         }
@@ -58,13 +51,18 @@ export default function AddToCart({
   }
 
   return (
-    <form onSubmit={handleSubmit} id={`add-to-cart-${product_id}`}>
+    <form onSubmit={handleSubmit} id={`add-to-cart-${productId}`}>
       <button
         type="submit"
-        aria-label={`Add product ${product_id} to cart`}
+        aria-label={`Add product ${productId} to cart`}
         className="flex w-60 items-center justify-center rounded-full border p-2 shadow-md hover:cursor-pointer hover:bg-teal-50 hover:outline max-lg:h-17 max-lg:w-17"
       >
-        <img src="/img/add-to-cart.webp" className="w-10" alt="" aria-hidden="true" />
+        <img
+          src="/img/add-to-cart.webp"
+          className="w-10"
+          alt=""
+          aria-hidden="true"
+        />
         <span className="pl-5 text-2xl max-lg:hidden">Add to cart</span>
       </button>
     </form>

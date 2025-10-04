@@ -1,5 +1,5 @@
 import { useNavigate, useLocation } from "react-router-dom";
-import { useSearch } from "./utils/SearchContext";
+import { useSearch } from "../contexts/SearchContext";
 import { Search } from "lucide-react";
 
 export default function SearchBar() {

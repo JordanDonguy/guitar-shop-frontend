@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
-import { BASE_URL } from "./utils/api";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
 
 export default function EmailForm({ handleEmailButton }) {
   const [email, setEmail] = useState("");

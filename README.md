@@ -2,13 +2,21 @@
 
 A responsive, modern frontend for an online guitar store. This application is built with **React**, **Vite**, and **Tailwind CSS**, and connects to a backend API for product data, authentication, cart management, and checkout.
 
-> ⚠️ This app is meant to be used via its live deployment. Local development is limited due to backend API restrictions (e.g., CORS policies, origin whitelist).
+> ⚠️ This app is meant to be used via its live deployment.  
+> Running it locally requires a **local backend instance** (see Backend Repository).  
+> Without the backend, local development is limited due to API restrictions (e.g., CORS policies, origin whitelists).
 
 ---
 
 ## 🚀 Live Demo
 
 👉 [https://app.guitar-shop.store](https://app.guitar-shop.store)
+
+---
+
+## 🗄️ Backend Repo
+
+👉 [https://github.com/JordanDonguy/guitar-shop-backend](https://github.com/JordanDonguy/guitar-shop-backend)
 
 ---
 
@@ -39,7 +47,7 @@ A responsive, modern frontend for an online guitar store. This application is bu
 - **Prettier** – Code formatter for consistent styling
 - **ESLint** – Linting tool to catch bugs and enforce code quality
 - **Cloudflare Pages** – Hosting platform
-- **Cloudflare** – DNS management, CDN caching, SSL, and security 
+- **Cloudflare** – DNS management, CDN caching, SSL, and security
 
 ---
 
@@ -48,9 +56,9 @@ A responsive, modern frontend for an online guitar store. This application is bu
 <pre lang="md">text guitar-shop-frontend/ 
 ├── public/
 ├── src/
-| ├── assets/ # Images and media
+│ ├── contexts/
 │ ├── components/
-| | |── utils/
+| ├── utils/
 │ ├── pages/
 │ ├── App.jsx
 | ├── main.jsx 
@@ -65,6 +73,44 @@ A responsive, modern frontend for an online guitar store. This application is bu
 ├── tailwind.config.js
 ├── vite.config.js
 └── README.md </pre>
+
+---
+
+## 💻 Local Development
+
+To run the project locally, you’ll need to have **Node.js (>=18)** and **npm** installed.
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/JordanDonguy/guitar-shop-frontend.git
+   cd guitar-shop-frontend
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   ```
+
+3. **Configure API base URL**  
+   Open [`/src/utils/api.js`](./src/utils/api.js) and replace the value of `BASE_URL` with your local backend address:
+
+   ```js
+   // src/utils/api.js
+   export const BASE_URL = "http://localhost:3000";
+   ```
+
+4. **Start the development server**
+
+   ```bash
+   npm run dev
+   ```
+
+5. **Visit the app**  
+   Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+> ⚠️ Make sure your backend API is running locally on port `3000` for the app to function correctly.
 
 ---
 

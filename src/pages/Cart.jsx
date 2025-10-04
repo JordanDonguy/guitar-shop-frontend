@@ -2,10 +2,10 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
-import { BASE_URL } from "../components/utils/api";
-import DelayedMount from "../components/utils/DelayedMount";
-import { useAuth } from "../components/utils/AuthContext";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
+import DelayedMount from "../utils/DelayedMount";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 import { LayoutContext } from "../components/Layout";
 import CartProduct from "../components/CartProduct";
 
@@ -29,8 +29,8 @@ export default function Cart() {
         .then((res) => res.json())
         .then((data) => {
           setProducts(data.products);
-          setFinalPrice(data.final_price);
-          setCartId(data.cart_id);
+          setFinalPrice(data.finalPrice);
+          setCartId(data.cartId);
         })
         .catch((err) => console.log(err));
     }
@@ -38,11 +38,11 @@ export default function Cart() {
 
   const handleQuantityChange = (productId, newQuantity) => {
     if (newQuantity <= 0) {
-      setProducts((prev) => prev.filter((p) => p.product_id != productId));
+      setProducts((prev) => prev.filter((p) => p.productId != productId));
     } else {
       setProducts((prev) =>
         prev.map((p) =>
-          p.product_id === productId ? { ...p, quantity: newQuantity } : p,
+          p.productId === productId ? { ...p, quantity: newQuantity } : p,
         ),
       );
     }
@@ -56,7 +56,7 @@ export default function Cart() {
 
   const updateLocalCart = (itemId, delta) => {
     let cart = [...guestCart];
-    const index = cart.findIndex((item) => item.product_id === itemId);
+    const index = cart.findIndex((item) => item.productId === itemId);
     if (index !== -1) {
       cart[index].quantity += delta;
       if (cart[index].quantity <= 0) {
@@ -78,7 +78,7 @@ export default function Cart() {
 
   function handleCheckoutClick() {
     if (!user) return navigate("/login");
-    if (!user.street) return handleAddressButton();
+    if (!user.address) return handleAddressButton();
     if (finalPrice === 0) {
       toast("🛒 Your cart is empty !", {
         position: "bottom-center",
@@ -93,7 +93,7 @@ export default function Cart() {
     <div className="fade-in mx-auto min-h-screen w-1/2 pt-30 max-xl:w-3/4 max-lg:min-h-fit max-lg:w-full max-lg:px-4 max-lg:pt-55">
       <Helmet>
         <title>Cart | Guitar Shop</title>
-         <meta
+        <meta
           name="description"
           content="View and manage the items in your cart at Guitar-Shop. Update quantities, remove products, and proceed to secure checkout."
         />
@@ -112,7 +112,7 @@ export default function Cart() {
             <DelayedMount delay={300}>
               {products.map((product) => (
                 <CartProduct
-                  key={product.id}
+                  key={product.productId}
                   product={product}
                   cartId={cartId}
                   updateFinalPrice={updateFinalPrice}
@@ -135,7 +135,7 @@ export default function Cart() {
             </div>
 
             <div className="mb-12">
-              {!user.street && (
+              {!user.address && (
                 <div className="mb-10 text-lg">
                   → You don&apos;t have a shipping address yet. Please create
                   one before checking out by clicking{" "}
@@ -164,7 +164,7 @@ export default function Cart() {
               {guestCart.length > 0 ? (
                 guestCart.map((product) => (
                   <CartProduct
-                    key={product.id}
+                    key={product.productId}
                     product={product}
                     updateLocalCart={updateLocalCart}
                   />

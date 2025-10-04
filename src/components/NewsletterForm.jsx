@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
-import { BASE_URL } from "./utils/api";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
+import { BASE_URL } from "../utils/api";
 
 export default function NewsletterForm({ onAboutPage }) {
   const [email, setEmail] = useState("");
@@ -16,10 +16,13 @@ export default function NewsletterForm({ onAboutPage }) {
       });
 
       if (res.status === 409) {
-        toast.info("You've already subscribed to the newletter with this email 😉", {
-          position: "bottom-center",
-          autoClose: 4000,
-        })
+        toast.info(
+          "You've already subscribed to the newletter with this email 😉",
+          {
+            position: "bottom-center",
+            autoClose: 4000,
+          },
+        );
         return;
       }
 

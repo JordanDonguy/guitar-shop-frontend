@@ -1,1 +1,0 @@
-export const BASE_URL = "https://api.guitar-shop.store"; // https://localhost:3000  to use with local backend

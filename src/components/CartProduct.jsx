@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "./utils/AuthContext";
-import { BASE_URL } from "./utils/api";
-import { fetchWithCsrf } from "./utils/fetchWithCsrf";
+import { useAuth } from "../contexts/AuthContext";
+import { BASE_URL } from "../utils/api";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
 
 export default function CartProduct({
   product,
@@ -19,14 +19,14 @@ export default function CartProduct({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
-    const product_id = formData.get("product_id");
+    const productId = formData.get("productId");
     const quantity = Number(formData.get("quantity"));
 
     try {
       const response = await fetchWithCsrf(`${BASE_URL}/cart/updateQuantity`, {
         method: "POST",
         body: JSON.stringify({
-          product_id,
+          productId,
           quantity,
         }),
       });
@@ -36,14 +36,14 @@ export default function CartProduct({
       setProductQuantity(newQuantity);
       setPrice(product.price * newQuantity);
       updateFinalPrice(Number(product.price), quantity);
-      handleQuantityChange(product_id, newQuantity);
+      handleQuantityChange(productId, newQuantity);
     } catch (err) {
       console.error(err);
     }
   };
 
-  const handleOnClick = (product_id, quantity) => {
-    updateLocalCart(product_id, quantity);
+  const handleOnClick = (productId, quantity) => {
+    updateLocalCart(productId, quantity);
     const newQuantity = productQuantity + Number(quantity);
     setProductQuantity(newQuantity);
     setPrice(product.price * newQuantity);
@@ -51,22 +51,22 @@ export default function CartProduct({
 
   return (
     <div
-      key={product.id}
+      key={product.productId}
       className="fade-in my-5 flex items-center rounded-xl border-2 border-neutral-300 shadow-md"
     >
       <img
-        src={product.image_url}
+        src={product.imageUrl}
         alt={product.name}
         className="h-fit w-60 rounded-l-xl bg-white object-cover p-5"
       />
       <div className="ml-6 flex min-h-60 flex-col justify-between py-2">
         <Link
-          to={`/products/${product.product_id}`}
+          to={`/products/${product.productId}`}
           className="border-y border-transparent hover:border-teal-400 hover:bg-teal-50"
         >
-          <h2 className="pb-2 text-2xl font-medium">{product.brand}</h2>
+          <h2 className="pb-2 text-2xl font-medium">{product.brandName}</h2>
           <h3 className="text-xl font-light max-md:text-lg max-md:font-normal">
-            {product.name}
+            {product.productName}
           </h3>
         </Link>
         <div>
@@ -76,7 +76,7 @@ export default function CartProduct({
                 <button
                   type="button"
                   className="rounded-l-xl border-r px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleOnClick(product.product_id, -1)}
+                  onClick={() => handleOnClick(product.productId, -1)}
                   aria-label={`Decrease quantity of ${product.name}`}
                 >
                   -
@@ -87,7 +87,7 @@ export default function CartProduct({
                 <button
                   type="button"
                   className="rounded-r-xl border-l px-3 py-1 hover:cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleOnClick(product.product_id, 1)}
+                  onClick={() => handleOnClick(product.productId, 1)}
                   aria-label={`Increase quantity of ${product.name}`}
                 >
                   +
@@ -98,8 +98,8 @@ export default function CartProduct({
                 <form onSubmit={handleSubmit} id={`remove-one-${product.id}`}>
                   <input
                     type="hidden"
-                    name="product_id"
-                    value={product.product_id}
+                    name="productId"
+                    value={product.productId}
                   />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="-1" />
@@ -117,8 +117,8 @@ export default function CartProduct({
                 <form onSubmit={handleSubmit} id={`add-one-${product.id}`}>
                   <input
                     type="hidden"
-                    name="product_id"
-                    value={product.product_id}
+                    name="productId"
+                    value={product.productId}
                   />
                   <input type="hidden" name="cart_id" value={cartId} />
                   <input type="hidden" name="quantity" value="1" />

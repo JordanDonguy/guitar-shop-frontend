@@ -3,10 +3,10 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import { LayoutContext } from "../components/Layout";
-import { BASE_URL } from "../components/utils/api";
-import { useAuth } from "../components/utils/AuthContext";
-import { fetchWithCsrf } from "../components/utils/fetchWithCsrf";
-import { saveTemporaryCartAndRedirect } from "../components/utils/saveTemporaryCartAndRedirect";
+import { BASE_URL } from "../utils/api";
+import { useAuth } from "../contexts/AuthContext";
+import { fetchWithCsrf } from "../utils/fetchWithCsrf";
+import { saveTemporaryCartAndRedirect } from "../utils/saveTemporaryCartAndRedirect";
 
 export default function Login() {
   const { fetchUser, user } = useAuth();
@@ -92,7 +92,7 @@ export default function Login() {
   };
 
   return (
-    <div className="fade-in mt-12 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-15 max-lg:min-h-fit max-lg:p-0 max-md:mt-50 max-md:mb-5 max-md:py-10">
+    <div className="fade-in mt-8 flex min-h-screen items-center justify-center p-6 max-lg:mt-60 max-lg:mb-15 max-lg:min-h-fit max-lg:p-0 max-md:mt-50 max-md:mb-5 max-md:py-10">
       <Helmet>
         <title>Login | Guitar Shop</title>
         <meta
@@ -217,7 +217,12 @@ export default function Login() {
             className="flex h-14 w-full items-center rounded-full border px-4 transition hover:cursor-pointer hover:bg-gray-200 max-lg:h-16 max-lg:text-2xl"
             aria-label="Continue with Google"
           >
-            <img src="/img/google-logo.webp" alt="" className="w-10" aria-hidden="true" />
+            <img
+              src="/img/google-logo.webp"
+              alt=""
+              className="w-10"
+              aria-hidden="true"
+            />
             <span className="mr-10 w-full text-center font-semibold text-gray-700">
               Continue with Google
             </span>
